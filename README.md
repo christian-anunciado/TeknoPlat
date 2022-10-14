@@ -41,6 +41,8 @@ py manage.py runserver
 py .\manage.py runserver
 ```
 
+If error (e.g. TemplateDoesNotExist) is shown when running the server proceed to the [React Section](https://github.com/SkrowRepap/TeknoPlat/blob/main/README.md#react/)
+
 ---
 
 # React
@@ -52,8 +54,15 @@ py .\manage.py runserver
 
 ## Applying your react in the django app.
 ### Note
-- Django will only use React's build bundle, so in order to apply your changes make sure you build first your react and reload the django server.
-- When adding new page, you can add your newly created page in App.js via Router. To learn more about react-router-dom, (Read here](https://v5.reactrouter.com/web/guides/quick-start)
+- Django will only use React's build bundle, so in order to apply your changes make sure you `build first your react` and reload the django server afterwards.
+```
+# build react-app by running this command:
+npm run build
+
+# after building, run the django application
+py manage.py runserver
+```
+- When adding new page, you can add your newly created page in App.js via Router. To learn more about react-router-dom, [Read here](https://v5.reactrouter.com/web/guides/quick-start)
 
 ---
 # Rule for development standard process
