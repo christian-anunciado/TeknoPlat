@@ -22,7 +22,8 @@ git clone 'https://github.com/SkrowRepap/Teknoplat'
 # you can use either py / python / python3
 py -m virtualenv env
 
-source env/bin/activate
+# run this afterwards
+env/Scripts/activate
 ```
 
 If you haven't installed virtual env, install by opening cmd and type the command: `python -m pip install virtualenv`
