@@ -41,7 +41,7 @@ py manage.py runserver
 py .\manage.py runserver
 ```
 
-If error (e.g. TemplateDoesNotExist) is shown when running the server proceed to the [React Section](https://github.com/SkrowRepap/TeknoPlat/blob/main/README.md#react/)
+If error (e.g. TemplateDoesNotExist) is shown when running the server proceed to the [React Section](#React)
 
 ---
 
