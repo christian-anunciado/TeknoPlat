@@ -19,7 +19,8 @@ git clone 'https://github.com/SkrowRepap/Teknoplat'
 
 ## 2. Create and start a a virtual environment
 ```
-virtualenv env --no-site-packages
+# you can use either py / python / python3
+py -m virtualenv env
 
 source env/bin/activate
 ```
