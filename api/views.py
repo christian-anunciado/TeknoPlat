@@ -1,8 +1,11 @@
+from msilib.schema import SelfReg
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import SampleModel
 from .serializers import SampleModelSerializer
+from .models import UserModel
+from .serializers import UserModelSerializer
 
 
 # Learn more about django_rest_framework here:
@@ -56,3 +59,20 @@ def getSampleModel(request):
     sampleModel = SampleModel.objects.all()
     serializer = SampleModelSerializer(sampleModel, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def getUserModel(request):
+    userModel = UserModel.objects.all()
+    serializer = UserModelSerializer(userModel, many=True)
+    return Response(serializer.data)
+
+
+
+@api_view(['POST'])
+def addUserModel(request):
+    serializeUser = UserModelSerializer(data=request.data)
+    if serializeUser.is_valid():
+        serializeUser.save()
+        return Response(200)
+    return Response(serializeUser.errors)
+
