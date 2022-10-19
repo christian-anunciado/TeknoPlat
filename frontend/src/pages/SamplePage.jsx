@@ -23,6 +23,7 @@ function SamplePage() {
         <div>
             <h1>Sample Page</h1>
             <h3>Sample Api Call:</h3>
+            <h1> TEST </h1>
             {api.map((apis) => {
                 return <p key={apis.id}> {apis.modelBody} </p>
             })}
