@@ -20,7 +20,7 @@ function App() {
 
         */}
         <Route path="/">
-          <Route index element={<SamplePage />} />
+          <Route index element={<Login />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
