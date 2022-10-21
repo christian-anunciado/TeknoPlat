@@ -19,6 +19,3 @@ class UserModel(models.Model):
     email = models.TextField(max_length = 30)
     username= models.TextField(max_length = 15)
     password = models.TextField(max_length = 15)
-
-    def __str__(self):
-        return self.firstname or ''
