@@ -1,4 +1,7 @@
+from datetime import datetime
+import email
 from msilib.schema import SelfReg
+from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -6,6 +9,7 @@ from .models import SampleModel
 from .serializers import SampleModelSerializer
 from .models import UserModel
 from .serializers import UserModelSerializer
+import jwt, datetime
 
 
 # Learn more about django_rest_framework here:
@@ -76,3 +80,57 @@ def addUserModel(request):
         return Response(200)
     return Response(serializeUser.errors)
 
+@api_view(['POST'])
+def authUser(request):
+    email = request.data['email']
+    password = request.data['password']
+
+    user = UserModel.objects.filter(email=email).first()
+
+    if user is None:
+        return Response("User not found")
+
+    if not user.password:
+        return Response("Incorrect password")
+
+    payload = {
+        'id': user.userID,
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
+        'iat': datetime.datetime.utcnow()
+    }
+
+    token = jwt.encode(payload, 'secret', algorithm='HS256')
+
+    res = Response()
+
+    res.set_cookie(key='jwt', value = token, httponly = True)
+    res.data = {
+        'jwt':token
+    }
+
+    return res
+
+@api_view(['GET'])
+def getAuthUser(request):
+    token = request.COOKIES.get('jwt')
+
+    if not token:
+        Response("Unauthenticated")
+
+    try:
+        payload = jwt.decode(token, 'secret', algorithms = ['HS256'])
+    except jwt.ExpiredSignatureError:
+        Response("Unauthenticated")
+    
+    user = UserModel.objects.filter(userID=payload['id']).first()
+    serializer = UserModelSerializer(user)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def logout(reqest):
+    response = Response()
+    response.delete_cookie('jwt')
+    response.data = {
+        'message':'successfully logged out'
+    }
+    return response

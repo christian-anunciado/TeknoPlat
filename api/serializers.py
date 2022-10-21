@@ -11,4 +11,4 @@ class SampleModelSerializer(ModelSerializer):
 class UserModelSerializer(ModelSerializer):
     class Meta:
         model = UserModel
-        fields = '__all__'
+        fields = ['userID', 'firstname', 'lastname', 'email', 'username', 'password']
