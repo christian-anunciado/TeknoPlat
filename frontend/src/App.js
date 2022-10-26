@@ -10,7 +10,10 @@ import Login from "./pages/LoginPage/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import AddSession from "./pages/AddSession/AddSession";
-import "./style/style.scss";
+import Session from "./pages/JoinSession/Session";
+import JoinSession from "./pages/JoinSession/JoinSession";
+import InSession from "./pages/JoinSession/InSession";
+// import "./style/style.scss";
 import Navbar from "./components/Navbar/Navbar";
 function App() {
     const [name, setName] = useState("")
@@ -45,6 +48,9 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="add_session" element={<AddSession />}/>
+          <Route path="session" element={<Session />} />
+          <Route path="joinsession/:id" element={<JoinSession />} />
+          <Route path="insession/:id" element={<InSession />} />
         </Route>
       </Routes>
     </Router>

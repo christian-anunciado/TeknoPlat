@@ -10,5 +10,7 @@ urlpatterns = [
     path('add', views.addUserModel, name="addUsers"),
     path('auth', views.authUser, name="auth"),
     path('authUser', views.getAuthUser, name="authUser"),
+    path('joinsession', views.getAllSessionModel, name="joinsession"),
+    path('joinsession/<str:pk>', views.getSessionModel, name = "joinsession-filter"),
     path('logout', views.logout, name="logout")
 ]
