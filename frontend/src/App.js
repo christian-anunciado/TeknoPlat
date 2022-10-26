@@ -8,9 +8,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Session from "./pages/Session";
 import JoinSession from "./pages/JoinSession";
-import Parent from "./pages/Parent";
-import Child from "./pages/Child";
-import TodoList from './example/TodoList'
+import InSession from "./pages/InSession";
 
 function App() {
   return (
@@ -30,10 +28,7 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="session" element={<Session />} />
           <Route path="joinsession/:id" element={<JoinSession />} />
-          <Route path="child" element={<Parent />} />
-          <Route path="parent" element={<Child />} />
-          <Route path="example" element={<TodoList/>} />
-
+          <Route path="insession/:id" element={<InSession />} />
         </Route>
       </Routes>
     </Router>

@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
 function JoinSession(props) {
@@ -17,25 +18,28 @@ function JoinSession(props) {
         const data = await response.data
         setApi(data)
     }
+    
 
     console.log('api: ', typeof (api));
     console.log('state: ', props.state);
 
     return (
         <div>
-            <h1>Join Session</h1>
+
+            <Link to={`/session`} ><button>Go back</button></Link>
             {api.map((apis) => {
                 return <div>
+                    
+                <h1 key={apis.id}>{apis.sessionName}</h1>
+                <p key={apis.id}>{apis.sessionDescription}</p>   
+                {/* <p key={apis.id}><strong>User ID:</strong> {apis.userID} </p>
+                <p key={apis.id}><strong>Session ID:</strong>  {apis.sessionID} </p>
+                <p key={apis.id}><strong>Status: </strong>  {apis.status} </p>
+                <p key={apis.id}><strong>Start at: </strong>  {apis.startsAt} </p>
+                <p key={apis.id}><strong>Ends at: </strong>  {apis.endsAt} </p> */}
 
-                <p key={api.id}><strong>User ID:</strong> {apis.userID} </p>
-                <p key={api.id}><strong>Session ID:</strong>  {apis.sessionID} </p>
-                <p key={api.id}><strong>Status: </strong>  {apis.status} </p>
-                <p key={api.id}><strong>Start at: </strong>  {apis.startsAt} </p>
-                <p key={api.id}><strong>Ends at: </strong>  {apis.endsAt} </p>
-                
-                <input type="text" />
-                <button> Join Session</button>
-                <h2>{props.data}</h2>
+                <Link to={`/insession/${apis.id}`} ><button>Join</button></Link>
+                <Link to={`/insession/${apis.id}`} ><button disabled>Leave</button></Link>
                 <br/><br/>
                 
                 
