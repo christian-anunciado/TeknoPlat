@@ -6,8 +6,6 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
-    
-
   return (
     <div className='navbar'>
         <div className="left"> 
@@ -21,16 +19,11 @@ const Navbar = () => {
             <h3>Join Session</h3>
         </div>
         <div className="right">
-        
             <NotificationsOutlinedIcon/>
             <SettingsOutlinedIcon/>
-            
             <PersonOutlineOutlinedIcon/>
-           
-            </div>
-           
+            </div>  
     </div>
   )
 }
-
 export default Navbar

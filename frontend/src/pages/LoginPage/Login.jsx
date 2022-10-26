@@ -65,8 +65,6 @@ const Login =() => {
                 <Link to="/dashboard" onClick={loginUser}>Login</Link>
                 </div>
         </>
-       
     )
 }
-
 export default Login

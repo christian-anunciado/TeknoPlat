@@ -7,6 +7,5 @@ function LandingNav() {
             </div>
         </div>
     )
-        
 } 
 export default LandingNav;

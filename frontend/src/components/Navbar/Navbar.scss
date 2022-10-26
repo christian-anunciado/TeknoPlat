@@ -27,13 +27,11 @@
         align-items: center;
         gap: 30px;
         margin-right: 5rem;
-
     }
     .center{
         display: flex;
         align-items: center;
-        gap: 30px;
-        
+        gap: 30px;        
     }
     @media screen and (max-width: 768px){
         .left{
@@ -43,8 +41,4 @@
             margin-right: 0;
         }
     }
-        
-    
-
 } 
-
