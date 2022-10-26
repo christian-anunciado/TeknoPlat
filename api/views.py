@@ -161,3 +161,4 @@ def setSessionModel(request):
         serializeUser.save()
         return Response()
     return Response(serializeUser.errors)
+    

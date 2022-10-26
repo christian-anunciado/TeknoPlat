@@ -43,28 +43,16 @@ function Session() {
             <Link to={`/joinsession/${search}`} ><button>Search</button></Link>
             {api.map((apis) => {
                 return <div>
-                
-
                 <h1 key={apis.id}>{apis.sessionName}</h1>
                 <p key={apis.id}>{apis.sessionDescription}</p>   
-                {/* <p key={apis.id}><strong>User ID:</strong> {apis.userID} </p>
-                <p key={apis.id}><strong>Session ID:</strong>  {apis.sessionID} </p>
-                <p key={apis.id}><strong>Status: </strong>  {apis.status} </p>
-                <p key={apis.id}><strong>Start at: </strong>  {apis.startsAt} </p>
-                <p key={apis.id}><strong>Ends at: </strong>  {apis.endsAt} </p> */}
-            <input type="text" 
-                placeholder="Enter Password" 
-                name="password" value={password} 
-                onChange = {(e) => setPassword(e.target.value)} 
-                />
-
-            <Link to={`/insession/${apis.id}`} ><button onClick={joinSession}>Join</button></Link>
-            <Link to={`/insession/${apis.id}`} ><button disabled>Leave</button></Link>
-                
-                <br/><br/>
-                
-                
-                
+                <input type="text" 
+                    placeholder="Enter Password" 
+                    name="password" value={password} 
+                    onChange = {(e) => setPassword(e.target.value)} 
+                    />
+                <Link to={`/insession/${apis.id}`} ><button onClick={joinSession}>Join</button></Link>
+                <Link to={`/insession/${apis.id}`} ><button disabled>Leave</button></Link>
+                <br/><br/>             
                 </div>
             })}
         </div>

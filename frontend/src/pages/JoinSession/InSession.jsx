@@ -26,10 +26,7 @@ function InSession(props) {
             <h1>WELCOME!!</h1>
             {api.map((apis) => {
                 return <div>
-
-                <p key={api.id}><strong>You are currently in session: </strong> {apis.sessionName} </p>
-                
-                
+                <p key={api.id}><strong>You are currently in session: </strong> {apis.sessionName} </p>                      
                 </div>
             })}
         </div>

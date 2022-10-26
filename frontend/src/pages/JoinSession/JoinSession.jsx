@@ -28,21 +28,12 @@ function JoinSession(props) {
 
             <Link to={`/session`} ><button>Go back</button></Link>
             {api.map((apis) => {
-                return <div>
-                    
-                <h1 key={apis.id}>{apis.sessionName}</h1>
-                <p key={apis.id}>{apis.sessionDescription}</p>   
-                {/* <p key={apis.id}><strong>User ID:</strong> {apis.userID} </p>
-                <p key={apis.id}><strong>Session ID:</strong>  {apis.sessionID} </p>
-                <p key={apis.id}><strong>Status: </strong>  {apis.status} </p>
-                <p key={apis.id}><strong>Start at: </strong>  {apis.startsAt} </p>
-                <p key={apis.id}><strong>Ends at: </strong>  {apis.endsAt} </p> */}
-
-                <Link to={`/insession/${apis.id}`} ><button>Join</button></Link>
-                <Link to={`/insession/${apis.id}`} ><button disabled>Leave</button></Link>
-                <br/><br/>
-                
-                
+                return <div>                
+                    <h1 key={apis.id}>{apis.sessionName}</h1>
+                    <p key={apis.id}>{apis.sessionDescription}</p>   
+                    <Link to={`/insession/${apis.id}`} ><button>Join</button></Link>
+                    <Link to={`/insession/${apis.id}`} ><button disabled>Leave</button></Link>
+                    <br/><br/>            
                 </div>
             })}
         </div>
