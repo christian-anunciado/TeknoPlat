@@ -6,10 +6,12 @@ import {
 } from "react-router-dom";
 import { useEffect } from 'react'
 import { useState } from 'react'
-import Login from "./pages/Login";
+import Login from "./pages/LoginPage/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-
+import AddSession from "./pages/AddSession/AddSession";
+import "./style/style.scss";
+import Navbar from "./components/Navbar/Navbar";
 function App() {
     const [name, setName] = useState("")
 
@@ -25,7 +27,7 @@ function App() {
             }
         )();
     },[])
-
+    
   return (
     <Router>
       <Routes>
@@ -38,10 +40,11 @@ function App() {
 
         */}
         <Route path="/">
-          <Route index element={<SamplePage />} />
+          <Route index element={<SamplePage/>} />
           <Route path="dashboard" element={<Dashboard name={name}/>} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="add_session" element={<AddSession />}/>
         </Route>
       </Routes>
     </Router>
