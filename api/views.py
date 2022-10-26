@@ -6,9 +6,11 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import SampleModel
+from .models import SessionModel
 from .serializers import SampleModelSerializer
 from .models import UserModel
 from .serializers import UserModelSerializer
+from .serializers import SessionModelSerializer
 import jwt, datetime
 
 
@@ -134,3 +136,29 @@ def logout(reqest):
         'message':'successfully logged out'
     }
     return response
+
+#SessionModel
+
+@api_view(['GET'])
+def getAllSessionModel(request):
+    sessionModel = SessionModel.objects.all()
+    sessionSerializer = SessionModelSerializer(sessionModel, many=True)
+    return Response(sessionSerializer.data)
+
+
+@api_view(['GET'])
+def getSessionModel(request, pk):
+    sessionModel = SessionModel.objects.filter(id = pk)
+    sessionSerializer = SessionModelSerializer(sessionModel, many=True)
+    return Response(sessionSerializer.data)
+
+
+
+@api_view(['POST'])
+def setSessionModel(request):
+    serializeUser = SessionModelSerializer(data=request.data)
+    if serializeUser.is_valid():
+        serializeUser.save()
+        return Response()
+    return Response(serializeUser.errors)
+    
