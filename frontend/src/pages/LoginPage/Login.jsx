@@ -41,7 +41,9 @@ const Login =() => {
     } */
 
     return (
-        <div>
+        <>
+       
+          <div className='container'>
             <h1>Login</h1>
 
                 <input 
@@ -61,8 +63,9 @@ const Login =() => {
                 /> <br/>
 
                 <Link to="/dashboard" onClick={loginUser}>Login</Link>
-
-        </div>
+                </div>
+        </>
+       
     )
 }
 
