@@ -12,5 +12,6 @@ urlpatterns = [
     path('addSession', views.setSessionModel, name="addSession"),
     path('joinsession', views.getAllSessionModel, name="joinsession"),
     path('joinsession/<str:pk>', views.getSessionModel, name="joinsession-filter"),
-    path('logout', views.logout, name="logout")
+    path('logout', views.logout, name="logout"),
+    path('sessions', views.getAllSessionModel, name="sessions")
 ]
