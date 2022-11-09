@@ -44,22 +44,24 @@ function JoinSession(props) {
         <div>
             <Navbar />
             <Link to={`/session`} ><button>Go back</button></Link>
-            {api.map((apis) => {
-                return <div key={apis.id}>
-                    <h1 >{apis.sessionName}</h1>
-                    <p >{apis.sessionDescription}</p>
-                    <button onClick={handleJoin}>Join</button>
-                    <Link to={`/sessionLobby/${apis.searchID}`} ><button disabled>Leave</button></Link>
-                    <br /><br />
-                    {passwordStatus &&
-                        <>
-                            <input type="password" name="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                            <button onClick={handlePasswordSubmit}>Submit</button>
-                        </>
-                    }
-                </div>
-            })}
-        </div>
+            {
+                api.map((apis) => {
+                    return <div key={apis.id}>
+                        <h1 >{apis.sessionName}</h1>
+                        <p >{apis.sessionDescription}</p>
+                        <button onClick={handleJoin}>Join</button>
+                        <Link to={`/sessionLobby/${apis.searchID}`} ><button disabled>Leave</button></Link>
+                        <br /><br />
+                        {passwordStatus &&
+                            <>
+                                <input type="password" name="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                <button onClick={handlePasswordSubmit}>Submit</button>
+                            </>
+                        }
+                    </div>
+                })
+            }
+        </div >
     )
 }
 

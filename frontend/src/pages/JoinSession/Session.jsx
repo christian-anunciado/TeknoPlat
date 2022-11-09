@@ -57,7 +57,7 @@ function Session() {
                 <br/><br/>             
                 </div>
             })} */}
-        </div>
+        </div >
     )
 }
 
