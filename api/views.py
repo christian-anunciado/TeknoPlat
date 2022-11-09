@@ -11,7 +11,8 @@ from .serializers import SampleModelSerializer
 from .models import UserModel
 from .serializers import UserModelSerializer
 from .serializers import SessionModelSerializer
-import jwt, datetime
+import jwt
+import datetime
 
 
 # Learn more about django_rest_framework here:
@@ -66,12 +67,12 @@ def getSampleModel(request):
     serializer = SampleModelSerializer(sampleModel, many=True)
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 def getUserModel(request):
     userModel = UserModel.objects.all()
     serializer = UserModelSerializer(userModel, many=True)
     return Response(serializer.data)
-
 
 
 @api_view(['POST'])
@@ -81,6 +82,7 @@ def addUserModel(request):
         serializeUser.save()
         return Response(200)
     return Response(serializeUser.errors)
+
 
 @api_view(['POST'])
 def authUser(request):
@@ -105,39 +107,44 @@ def authUser(request):
 
     res = Response()
 
-    res.set_cookie(key='jwt', value = token, httponly = True)
+    res.set_cookie(key='jwt', value=token, httponly=True)
+
     res.data = {
-        'jwt':token
+        'jwt': token
     }
 
     return res
 
+
 @api_view(['GET'])
 def getAuthUser(request):
     token = request.COOKIES.get('jwt')
+    print(token)
 
     if not token:
         Response("Unauthenticated")
 
     try:
-        payload = jwt.decode(token, 'secret', algorithms = ['HS256'])
+        payload = jwt.decode(token, 'secret', algorithms=['HS256'])
     except jwt.ExpiredSignatureError:
         Response("Unauthenticated")
-    
+
     user = UserModel.objects.filter(userID=payload['id']).first()
     serializer = UserModelSerializer(user)
     return Response(serializer.data)
+
 
 @api_view(['POST'])
 def logout(reqest):
     response = Response()
     response.delete_cookie('jwt')
     response.data = {
-        'message':'successfully logged out'
+        'message': 'successfully logged out'
     }
     return response
 
-#SessionModel
+# SessionModel
+
 
 @api_view(['GET'])
 def getAllSessionModel(request):
@@ -148,10 +155,9 @@ def getAllSessionModel(request):
 
 @api_view(['GET'])
 def getSessionModel(request, pk):
-    sessionModel = SessionModel.objects.filter(id = pk)
+    sessionModel = SessionModel.objects.filter(searchID=pk)
     sessionSerializer = SessionModelSerializer(sessionModel, many=True)
     return Response(sessionSerializer.data)
-
 
 
 @api_view(['POST'])
@@ -161,4 +167,3 @@ def setSessionModel(request):
         serializeUser.save()
         return Response()
     return Response(serializeUser.errors)
-    

@@ -2,7 +2,8 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Navbar from '../../components/Navbar/Navbar'
 
 
 function Session() {
@@ -22,26 +23,27 @@ function Session() {
     const joinSession = async () => {
         await fetch('http://localhost:8000/api/auth', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
             body: JSON.stringify({
                 password
             })
         });
-    } 
+    }
 
     console.log('api: ', typeof (api));
 
     return (
         <div>
+            <Navbar />
             <h1>SESSIONS: </h1>
-            <input type="text" 
-                placeholder="Search Session ID" 
-                name="search" value={search} 
-                onChange = {(e) => setSearch(e.target.value)} 
-                />         
+            <input type="text"
+                placeholder="Search Session ID"
+                name="search" value={search}
+                onChange={(e) => setSearch(e.target.value)}
+            />
             <Link to={`/joinsession/${search}`} ><button>Search</button></Link>
-            {api.map((apis) => {
+            {/* {api.map((apis) => {
                 return <div>
                 <h1 key={apis.id}>{apis.sessionName}</h1>
                 <p key={apis.id}>{apis.sessionDescription}</p>   
@@ -54,7 +56,7 @@ function Session() {
                 <Link to={`/insession/${apis.id}`} ><button disabled>Leave</button></Link>
                 <br/><br/>             
                 </div>
-            })}
+            })} */}
         </div>
     )
 }
