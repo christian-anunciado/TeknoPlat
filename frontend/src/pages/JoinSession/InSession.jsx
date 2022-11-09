@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import Navbar from '../../components/Navbar/Navbar'
 
 
 function InSession(props) {
@@ -23,6 +24,7 @@ function InSession(props) {
 
     return (
         <div>
+            <Navbar/>
             <h1>WELCOME!!</h1>
             {api.map((apis) => {
                 return <div>
