@@ -4,6 +4,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import {Link} from 'react-router-dom'
+import Navbar from '../../components/Navbar/Navbar'
 
 
 function JoinSession(props) {
@@ -25,7 +26,7 @@ function JoinSession(props) {
 
     return (
         <div>
-
+            <Navbar/>
             <Link to={`/session`} ><button>Go back</button></Link>
             {api.map((apis) => {
                 return <div>                

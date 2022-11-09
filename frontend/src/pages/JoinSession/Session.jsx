@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import Navbar from '../../components/Navbar/Navbar'
 
 
 function Session() {
@@ -34,6 +35,7 @@ function Session() {
 
     return (
         <div>
+            <Navbar/>
             <h1>SESSIONS: </h1>
             <input type="text" 
                 placeholder="Search Session ID" 
