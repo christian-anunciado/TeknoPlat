@@ -15,22 +15,24 @@ import JoinSession from "./pages/JoinSession/JoinSession";
 import InSession from "./pages/JoinSession/InSession";
 // import "./style/style.scss";
 import Navbar from "./components/Navbar/Navbar";
+import CreateSession from "./pages/CreateSession";
+import SessionsLobby from "./pages/SessionsLobby/SessionsLobby";
 function App() {
-    const [name, setName] = useState("")
+  const [name, setName] = useState("")
 
-    useEffect(() => {
-        (
-            async () => {
-                const user = await fetch('http://localhost:8000/api/authUser', {
-                    headers: {'Content-Type': 'application/json'},
-                    credentials: 'include',
-                });
-                const loggedUser = await user.json()
-                setName(loggedUser.username)
-            }
-        )();
-    },[])
-    
+  // useEffect(() => {
+  //   (
+  //     async () => {
+  //       const user = await fetch('http://localhost:8000/api/authUser', {
+  //         headers: { 'Content-Type': 'application/json' },
+  //         credentials: 'include',
+  //       });
+  //       const loggedUser = await user.json()
+  //       setName(loggedUser.username)
+  //     }
+  //   )();
+  // }, [])
+
   return (
     <Router>
       <Routes>
@@ -43,14 +45,15 @@ function App() {
 
         */}
         <Route path="/">
-          <Route index element={<SamplePage/>} />
-          <Route path="dashboard" element={<Dashboard name={name}/>} />
+          <Route index element={<SamplePage />} />
+          <Route path="dashboard" element={<Dashboard name={name} />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="add_session" element={<AddSession />}/>
+          <Route path="add_session" element={<AddSession />} />
           <Route path="session" element={<Session />} />
           <Route path="joinsession/:id" element={<JoinSession />} />
           <Route path="insession/:id" element={<InSession />} />
+          <Route path="sessionLobby/:room" element={<SessionsLobby />} />
         </Route>
       </Routes>
     </Router>

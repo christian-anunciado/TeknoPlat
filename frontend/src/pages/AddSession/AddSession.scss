@@ -1,1 +1,22 @@
 
+.createSession-container {
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2em;
+
+    input {
+        width: 250px;
+        padding: 8px 12px;
+    }
+
+    .submit-button {
+        color: black;
+        background-color: greenyellow;
+        padding: 14px 10px;
+        width: 325px;
+        cursor: pointer;
+    }
+}
