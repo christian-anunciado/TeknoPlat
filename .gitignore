@@ -1,5 +1,5 @@
 # Django #
 
-.env
+env/
 *.pyc
 pycache/
