@@ -368,11 +368,11 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   flex: 0 1 206px;
 }
 .wrapper4 {
-  width: 100%;
+  width: 80%;
   height: auto;
-  vertical-align: top;
+  vertical-align: center;
   object-fit: contain;
-  object-position: center top;
+  object-position: center right ;
   position: relative;
   flex-grow: 1;
 }
@@ -617,11 +617,17 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   position: relative;
 }
 .image6 {
-  width: 100%;
+  width: 30%;
   height: auto;
-  vertical-align: top;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  vertical-align: bottom;
   object-fit: contain;
   object-position: center top;
+}
+.image6:hover {
+  transform: scale(1.3);
 }
 .medium_title11 {
   @include h-center-content;
