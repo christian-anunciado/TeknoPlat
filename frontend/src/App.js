@@ -55,6 +55,7 @@ function App() {
           <Route path="joinsession/:id" element={<JoinSession />} />
           <Route path="insession/:id" element={<InSession />} />
           <Route path="sessionLobby/:room" element={<SessionsLobby />} />
+          <Route path="createsession" element={<CreateSession />} />
           <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>

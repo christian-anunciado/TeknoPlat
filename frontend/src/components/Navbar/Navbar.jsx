@@ -20,7 +20,6 @@ const Navbar = () => {
         </div>
         <div className="right">
             <NotificationsOutlinedIcon/>
-      
             <SettingsOutlinedIcon/>
             <PersonOutlineOutlinedIcon/>
             </div>  
