@@ -11,6 +11,8 @@ import styles from './Profile.module.scss';
 
 const Profile = () => {
 
+ const [filtersearch, filter] = useState("")
+ 
     const logout = async () => {
         await fetch('http://localhost:8000/api/logout', {
             method: 'POST',
@@ -79,12 +81,8 @@ const Profile = () => {
                           area-style=":before: [object Object];"
                           x="65.5fr 67px 54.5fr"
                           y="0px 46px 0px">
-                          <img
-                            className={styles.image6}
-                            src={require('./assets/LogoutButton.png')}
-                            alt="alt text"
-                            onClick={logout}
-                          />
+                       
+                          <Link to="/login" onClick={logout}> <img className={styles.image6} src={require('./assets/LogoutButton.png')} alt="alt text" link /></Link>
                         </px-grid>
                       </div>
                       <h2 className={styles.medium_title11}>Log out</h2>
@@ -125,7 +123,13 @@ const Profile = () => {
                         </div>
                         <div className={styles.row5__item1}>
                           <div className={styles.box3}>
-                            <h5 className={styles.highlights21}>Filter Search</h5>
+                               <h5 className={styles.highlights21}>
+                            <input 
+                type="text"
+                placeholder="Filter Search"
+                name="searchfilter"
+                value={filter}
+                onChange={(e) => filter(e.target.value)} ></input></h5>
                           </div>
                         </div>
                       </div>
