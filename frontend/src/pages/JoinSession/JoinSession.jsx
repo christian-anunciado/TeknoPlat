@@ -2,14 +2,17 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar'
+import { useNavigate, useParams } from 'react-router-dom'
 
 
 function JoinSession(props) {
     const [api, setApi] = useState([])
-    const {id} = useParams();
+    const [passwordStatus, setPasswordStatus] = useState(false)
+    const [password, setPassword] = useState("")
+    const { id } = useParams();
+    const navigate = useNavigate()
     useEffect(() => {
         fetchApi()
     }, [])
@@ -19,25 +22,46 @@ function JoinSession(props) {
         const data = await response.data
         setApi(data)
     }
-    
 
-    console.log('api: ', typeof (api));
-    console.log('state: ', props.state);
+    const handleJoin = (e) => {
+        e.preventDefault()
+
+        setPasswordStatus(true)
+
+    }
+
+    const handlePasswordSubmit = (e) => {
+        e.preventDefault()
+        if (password === api[0].sessionPassword) {
+            navigate(`/sessionLobby/room?${id}`)
+        } else {
+            alert("Incorrect Password!")
+        }
+
+    }
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <Link to={`/session`} ><button>Go back</button></Link>
-            {api.map((apis) => {
-                return <div>                
-                    <h1 key={apis.id}>{apis.sessionName}</h1>
-                    <p key={apis.id}>{apis.sessionDescription}</p>   
-                    <Link to={`/insession/${apis.id}`} ><button>Join</button></Link>
-                    <Link to={`/insession/${apis.id}`} ><button disabled>Leave</button></Link>
-                    <br/><br/>            
-                </div>
-            })}
-        </div>
+            {
+                api.map((apis) => {
+                    return <div key={apis.id}>
+                        <h1 >{apis.sessionName}</h1>
+                        <p >{apis.sessionDescription}</p>
+                        <button onClick={handleJoin}>Join</button>
+                        <Link to={`/sessionLobby/${apis.searchID}`} ><button disabled>Leave</button></Link>
+                        <br /><br />
+                        {passwordStatus &&
+                            <>
+                                <input type="password" name="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                                <button onClick={handlePasswordSubmit}>Submit</button>
+                            </>
+                        }
+                    </div>
+                })
+            }
+        </div >
     )
 }
 
