@@ -15,8 +15,9 @@ import JoinSession from "./pages/JoinSession/JoinSession";
 import InSession from "./pages/JoinSession/InSession";
 // import "./style/style.scss";
 import Navbar from "./components/Navbar/Navbar";
-import CreateSession from "./pages/CreateSession";
+
 import SessionsLobby from "./pages/SessionsLobby/SessionsLobby";
+import Profile from "./pages/Profile/Profile";
 function App() {
   const [name, setName] = useState("")
 
@@ -54,6 +55,8 @@ function App() {
           <Route path="joinsession/:id" element={<JoinSession />} />
           <Route path="insession/:id" element={<InSession />} />
           <Route path="sessionLobby/:room" element={<SessionsLobby />} />
+          <Route path="createsession" element={<CreateSession />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </Router>

@@ -1,6 +1,6 @@
 import { createMicrophoneAndCameraTracks, createClient, createScreenVideoTrack } from 'agora-rtc-react'
 
-const token = "007eJxTYMiJztLzszX69c49Xtle0cVDN3mf2yy3qfdT/UqyWF32TVNgSDIzM0s1M7VMTU4zNjFKNkhKNEoxNk8yTzSzSDUwNDGYV5mV3BDIyGChM4mZkQECQXwWhtzEzDwGBgBRExv6"
+const token = "007eJxTYODrCcqK/LMvM/693tPshcJ9Avtt+y4dnJokckNgafjdXXsVGJLMzMxSzUwtU5PTjE2Mkg2SEo1SjM2TzBPNLFINDE0MMkJykhsCGRkEGEpZGBkgEMRnYchNzMxjYAAAWVQesg=="
 const APP_ID = "b666e659ecf342c0ba2d37b7a68e0140"
 
 const queryString = window.location.search

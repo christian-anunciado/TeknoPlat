@@ -1,0 +1,907 @@
+
+@use "utils" as *;
+@import "utils";
+
+
+$color_type_0: rgb(0, 0, 0);
+$color_type_1: rgb(102, 102, 102);
+$color_type_2: rgb(196, 196, 196);
+$color_type_3: rgb(240, 240, 240);
+$color_type_4: rgb(255, 255, 255);
+$color_type_5: rgb(55, 63, 65);
+$color_type_6: rgb(60, 99, 176);
+
+$border_radius_type_0: 30px 30px 30px 30px;
+$border_radius_type_1: 4px 4px 4px 4px;
+
+$font_type_0: 700 25px/0.96 "Mulish", Helvetica, Arial, serif;
+$font_type_1: 700 24px/1.33 "Lato", Helvetica, Arial, serif;
+$font_type_2: 700 16px/1.5 "Mulish", Helvetica, Arial, serif;
+$font_type_3: 400 16px/1.2 "Montserrat", Helvetica, Arial, serif;
+$font_type_4: 600 14px/1.28 "Mulish", Helvetica, Arial, serif;
+$font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
+
+.root {
+  @include flex-column;
+  background-color: $color_type_4;
+  position: relative;
+  overflow: hidden;
+}
+.col {
+  @include flex-column;
+  position: relative;
+  flex-grow: 1;
+}
+.col1 {
+  @include flex-column;
+  position: relative;
+}
+.box {
+  @include flex-column;
+  background-color: $color_type_4;
+  outline: 1px solid rgb(195, 203, 205);
+  outline-offset: -1px;
+  position: relative;
+}
+.row {
+  display: flex;
+  width: 77.08%;
+  @include lg {
+    flex-wrap: wrap;
+    align-content: flex-start;
+    column-gap: 0px;
+    row-gap: 16px;
+    width: 81.77%;
+  }
+  position: relative;
+  flex-grow: 1;
+  margin: 20px auto;
+  @include md {
+    width: 85.67%;
+  }
+  @include sm {
+    width: 88.86%;
+  }
+  @include xs {
+    width: 91.4%;
+  }
+  @include xxs {
+    width: 93.41%;
+  }
+  @include tn {
+    width: 94.97%;
+  }
+}
+.row__item {
+  @include flex-column;
+  position: relative;
+  flex: 1 1 69px;
+  @include lg {
+    flex: 0 0 100%;
+  }
+}
+.wrapper2 {
+  @include flex-column;
+  height: 32px;
+  position: relative;
+  margin: 8px 0px;
+}
+.medium_title {
+  display: flex;
+  align-items: flex-end;
+  @include font-face($font_type_1, $color_type_6, 0.20000000298023224px);
+  width: 156px;
+  height: min-content;
+  @include lg {
+    font-size: 22px;
+    text-align: left;
+  }
+  @include md {
+    font-size: 20px;
+  }
+  @include sm {
+    font-size: 19px;
+  }
+  @include xs {
+    font-size: 18px;
+  }
+  @include xxs {
+    font-size: 17px;
+  }
+  @include tn {
+    font-size: 16px;
+  }
+  position: absolute;
+  top: 0px;
+  right: -56px;
+}
+.row__spacer {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 230px;
+  @include lg {
+    display: none;
+  }
+}
+.row__item1 {
+  @include flex-column;
+  position: relative;
+  flex: 1 1 811px;
+  @include lg {
+    flex: 0 0 100%;
+  }
+}
+.row1 {
+  display: flex;
+  @include lg {
+    flex-wrap: wrap;
+    align-content: flex-start;
+    column-gap: 0px;
+    row-gap: 16px;
+  }
+  position: relative;
+  flex-grow: 1;
+}
+.row1__item {
+  @include flex-column;
+  position: relative;
+  flex: 1 1 513px;
+  @include lg {
+    flex: 0 0 calc(50% - 8px);
+  }
+  @include md {
+    flex: 0 0 100%;
+  }
+}
+.wrapper {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  flex-grow: 1;
+  margin: 15px 0px;
+}
+.text {
+  @include v-center-content;
+  @include font-face($font_type_4, $color_type_5, 0.20000000298023224px);
+  @include md {
+    font-size: 13px;
+    text-align: left;
+  }
+  @include xs {
+    font-size: 12px;
+  }
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 83px;
+  min-height: 18px;
+}
+.wrapper__spacer {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 32px;
+}
+.text1 {
+  @include v-center-content;
+  @include font-face($font_type_4, $color_type_5, 0.20000000298023224px);
+  @include md {
+    font-size: 13px;
+    text-align: left;
+  }
+  @include xs {
+    font-size: 12px;
+  }
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 101px;
+  min-height: 18px;
+}
+.text2 {
+  @include v-center-content;
+  @include font-face($font_type_4, $color_type_5, 0.20000000298023224px);
+  @include md {
+    font-size: 13px;
+    text-align: left;
+  }
+  @include xs {
+    font-size: 12px;
+  }
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 82px;
+  min-height: 18px;
+}
+.text3 {
+  @include v-center-content;
+  @include font-face($font_type_4, $color_type_5, 0.20000000298023224px);
+  @include md {
+    font-size: 13px;
+    text-align: left;
+  }
+  @include xs {
+    font-size: 12px;
+  }
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 61px;
+  min-height: 18px;
+}
+.text4 {
+  @include v-center-content;
+  @include font-face($font_type_4, $color_type_5, 0.20000000298023224px);
+  @include md {
+    font-size: 13px;
+    text-align: left;
+  }
+  @include xs {
+    font-size: 12px;
+  }
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 58px;
+  min-height: 18px;
+}
+.row1__spacer {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 169px;
+  @include lg {
+    flex: 0 0 16px;
+  }
+  @include md {
+    display: none;
+  }
+}
+.row1__item1 {
+  @include flex-column;
+  position: relative;
+  flex: 1 1 15px;
+  @include lg {
+    flex: 0 0 calc(50% - 8px);
+  }
+  @include md {
+    flex: 0 0 100%;
+  }
+}
+.image8 {
+  width: 15px;
+  height: 16px;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: relative;
+  min-width: 15px;
+  margin: 16px 0px;
+}
+.row1__spacer1 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 23px;
+  @include lg {
+    display: none;
+  }
+}
+.row1__item2 {
+  @include flex-column;
+  position: relative;
+  flex: 1 1 18px;
+  @include lg {
+    flex: 0 0 calc(50% - 8px);
+  }
+  @include md {
+    flex: 0 0 100%;
+  }
+}
+.image7 {
+  width: 18px;
+  height: 18px;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: relative;
+  min-width: 18px;
+  margin: 15px 0px;
+}
+.row1__spacer2 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 25px;
+  @include lg {
+    flex: 0 0 16px;
+  }
+  @include md {
+    display: none;
+  }
+}
+.row1__item3 {
+  @include flex-column;
+  position: relative;
+  flex: 1 1 48px;
+  @include lg {
+    flex: 0 0 calc(50% - 8px);
+  }
+  @include md {
+    flex: 0 0 100%;
+  }
+}
+.wrapper1 {
+  width: 48px;
+  height: 48px;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: relative;
+  min-width: 48px;
+}
+.row2 {
+  display: flex;
+  width: 82.81%;
+  @include lg {
+    flex-wrap: wrap;
+    align-content: flex-start;
+    column-gap: 0px;
+    row-gap: 16px;
+  }
+  position: relative;
+  margin: 22.99px 5.31% 0px 11.88%;
+}
+.row2__item {
+  @include flex-column;
+  position: relative;
+  flex: 1 1 550px;
+  @include lg {
+    flex: 0 0 100%;
+  }
+}
+.col2 {
+  @include flex-column;
+  position: relative;
+  flex-grow: 1;
+  margin: 45.01px 0px 468px;
+}
+.row3 {
+  display: flex;
+  position: relative;
+}
+.row3__item {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 206px;
+}
+.wrapper4 {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: relative;
+  flex-grow: 1;
+}
+.col3 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 344px;
+  margin: 26px 0px 45px;
+}
+.highlights {
+  @include h-center-content;
+  font: $font_type_2;
+  color: $color_type_5;
+  text-align: center;
+  letter-spacing: 0.10000000149011612px;
+  width: 42.15%;
+  @include lg {
+    font-size: 15px;
+    text-align: center;
+  }
+  @include md {
+    font-size: 14px;
+  }
+  @include sm {
+    font-size: 13px;
+  }
+  @include xxs {
+    font-size: 12px;
+  }
+  position: relative;
+  min-height: 24px;
+  margin: 0px 50% 0px 7.85%;
+}
+.box1 {
+  @include flex-column;
+  background-color: $color_type_4;
+  border-radius: $border_radius_type_1;
+  outline: 1px solid rgb(219, 221, 228);
+  outline-offset: -1px;
+  width: 87.21%;
+  position: relative;
+  margin: 3px 0% 0px 12.79%;
+}
+.group {
+  @include flex-column;
+  position: relative;
+  flex-grow: 1;
+  margin: 8px 12px;
+  @include lg {
+    margin: 8px 11px;
+  }
+  @include md {
+    margin: 8px 9px;
+  }
+  @include sm {
+    margin: 8px;
+  }
+  @include xs {
+    margin: 8px 7px;
+  }
+  @include xxs {
+    margin: 8px 6px;
+  }
+}
+.highlights1 {
+  @include v-center-content;
+  @include font-face($font_type_3, $color_type_0, 0px);
+  @include lg {
+    font-size: 15px;
+    text-align: left;
+  }
+  @include md {
+    font-size: 14px;
+  }
+  @include sm {
+    font-size: 13px;
+  }
+  @include xxs {
+    font-size: 12px;
+  }
+  position: relative;
+  flex-grow: 1;
+  min-height: 24px;
+}
+.highlights2 {
+  @include h-center-content;
+  font: $font_type_2;
+  color: $color_type_5;
+  text-align: center;
+  letter-spacing: 0.10000000149011612px;
+  width: 145px;
+  @include lg {
+    font-size: 15px;
+    text-align: center;
+  }
+  @include md {
+    font-size: 14px;
+  }
+  @include sm {
+    font-size: 13px;
+  }
+  @include xxs {
+    font-size: 12px;
+  }
+  position: relative;
+  min-height: 24px;
+  min-width: 145px;
+  margin: 6px 0px 0px;
+}
+.box11 {
+  @include flex-column;
+  background-color: $color_type_4;
+  border-radius: $border_radius_type_1;
+  outline: 1px solid rgb(219, 221, 228);
+  outline-offset: -1px;
+  width: 87.21%;
+  position: relative;
+  margin: 2px 0% 0px 12.79%;
+}
+.row4 {
+  display: flex;
+  position: relative;
+  margin: 25px 18px 0px;
+  @include lg {
+    margin: 25px 16px 0px;
+  }
+  @include md {
+    margin: 25px 13px 0px;
+  }
+  @include sm {
+    margin: 25px 11px 0px;
+  }
+  @include xs {
+    margin: 25px 10px 0px;
+  }
+  @include xxs {
+    margin: 25px 9px 0px;
+  }
+}
+.medium_title2 {
+  @include h-center-content;
+  font: $font_type_0;
+  color: $color_type_1;
+  text-align: center;
+  letter-spacing: 0.10000000149011612px;
+  @include lg {
+    font-size: 23px;
+    text-align: center;
+  }
+  @include md {
+    font-size: 21px;
+  }
+  @include sm {
+    font-size: 19px;
+  }
+  @include xs {
+    font-size: 18px;
+  }
+  @include xxs {
+    font-size: 17px;
+  }
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 149px;
+  margin: 6px 0px;
+}
+.row4__item {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 43px;
+}
+.icon5 {
+  width: 37px;
+  height: 36px;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: relative;
+  min-width: 37px;
+  margin: 0px 0px 0px 6px;
+  @include lg {
+    margin: 0px 0px 0px 5px;
+  }
+}
+.row2__spacer {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 103px;
+  @include lg {
+    display: none;
+  }
+}
+.row2__item1 {
+  @include flex-column;
+  position: relative;
+  flex: 1 1 539.5px;
+  @include lg {
+    flex: 0 0 100%;
+  }
+}
+.medium_title1 {
+  @include h-center-content;
+  font: $font_type_0;
+  color: $color_type_5;
+  text-align: center;
+  letter-spacing: 0.10000000149011612px;
+  @include lg {
+    font-size: 23px;
+    text-align: center;
+  }
+  @include md {
+    font-size: 21px;
+  }
+  @include sm {
+    font-size: 19px;
+  }
+  @include xs {
+    font-size: 18px;
+  }
+  @include xxs {
+    font-size: 17px;
+  }
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 203px;
+  min-height: 24px;
+  margin: 68.01px 0px 0px;
+}
+.row3__spacer {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 149.5px;
+}
+.col4 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 187px;
+  margin: 0px 0px 16.01px;
+}
+.col4__item {
+  @include flex-column;
+  position: relative;
+}
+.image6 {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+}
+.medium_title11 {
+  @include h-center-content;
+  font: $font_type_0;
+  color: $color_type_5;
+  text-align: center;
+  letter-spacing: 0.10000000149011612px;
+  @include lg {
+    font-size: 23px;
+    text-align: center;
+  }
+  @include md {
+    font-size: 21px;
+  }
+  @include sm {
+    font-size: 19px;
+  }
+  @include xs {
+    font-size: 18px;
+  }
+  @include xxs {
+    font-size: 17px;
+  }
+  position: relative;
+  margin: 6.01px 0px 0px;
+}
+.group1 {
+  @include flex-column;
+  position: relative;
+  margin: 19px 6.5px 0px 8px;
+  @include lg {
+    margin: 19px 6px 0px 7px;
+  }
+  @include md {
+    margin: 19px 5px 0px 6px;
+  }
+  @include sm {
+    margin: 19px 5px 0px;
+  }
+}
+.group2 {
+  @include flex-column;
+  position: relative;
+  flex-grow: 1;
+}
+.rect2 {
+  background-color: $color_type_4;
+  border-radius: $border_radius_type_0;
+  outline: 2px solid rgb(193, 193, 193);
+  outline-offset: -2px;
+  height: 673px;
+  position: relative;
+}
+.col5 {
+  @include flex-column;
+  width: 19px;
+  height: 594px;
+  position: absolute;
+  top: 60px;
+  right: 11px;
+}
+.col5__item {
+  @include flex-column;
+  position: relative;
+}
+.image5 {
+  width: 16px;
+  height: 10px;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: relative;
+  min-width: 16px;
+  margin: 0px 3px 0px 0px;
+  @include lg {
+    margin: 0px 5px 0px 0px;
+  }
+}
+.rect3 {
+  background-color: $color_type_2;
+  height: 87px;
+  position: relative;
+  margin: 9px 0px 0px;
+}
+.image51 {
+  width: 16px;
+  height: 10px;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: relative;
+  min-width: 16px;
+  margin: 478px 0px 0px 3px;
+  @include lg {
+    margin: 478px 0px 0px 5px;
+  }
+}
+.col6 {
+  @include flex-column;
+  width: 458px;
+  height: 511px;
+  position: absolute;
+  top: 21px;
+  left: -8px;
+}
+.row5 {
+  display: flex;
+  width: 59.17%;
+  position: relative;
+  margin: 0px 3.71% 0px 37.12%;
+}
+.row5__item {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 27px;
+}
+.image4 {
+  width: 27px;
+  height: 30px;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: relative;
+  min-width: 27px;
+  margin: 5px 0px 3px;
+}
+.row5__item1 {
+  @include flex-column;
+  position: relative;
+  flex: 0 1 244px;
+}
+.box3 {
+  @include flex-column;
+  background-color: $color_type_4;
+  border-radius: $border_radius_type_1;
+  outline: 1px solid rgb(219, 221, 228);
+  outline-offset: -1px;
+  position: relative;
+  flex-grow: 1;
+  margin: 0px 0px 0px 12px;
+  @include lg {
+    margin: 0px 0px 0px 11px;
+  }
+  @include md {
+    margin: 0px 0px 0px 9px;
+  }
+  @include sm {
+    margin: 0px 0px 0px 8px;
+  }
+  @include xs {
+    margin: 0px 0px 0px 7px;
+  }
+  @include xxs {
+    margin: 0px 0px 0px 6px;
+  }
+}
+.highlights21 {
+  @include v-center-content;
+  @include font-face($font_type_3, $color_type_3, 0px);
+  @include lg {
+    font-size: 15px;
+    text-align: left;
+    margin: 8px 11px 6px;
+  }
+  @include md {
+    font-size: 14px;
+    margin: 8px 9px 6px;
+  }
+  @include sm {
+    font-size: 13px;
+    margin: 8px 8px 6px;
+  }
+  @include xxs {
+    font-size: 12px;
+    margin: 8px 6px 6px;
+  }
+  position: relative;
+  flex-grow: 1;
+  min-height: 24px;
+  margin: 8px 12px 6px;
+  @include xs {
+    margin: 8px 7px 6px;
+  }
+}
+.col7 {
+  @include flex-column;
+  position: relative;
+  margin: 52px 0px 0px;
+}
+.highlights3 {
+  @include h-center-content;
+  font: $font_type_2;
+  color: $color_type_5;
+  text-align: center;
+  letter-spacing: 0.10000000149011612px;
+  width: 145px;
+  @include lg {
+    font-size: 15px;
+    text-align: center;
+  }
+  @include md {
+    font-size: 14px;
+  }
+  @include sm {
+    font-size: 13px;
+  }
+  @include xxs {
+    font-size: 12px;
+  }
+  position: relative;
+  min-height: 24px;
+  min-width: 145px;
+}
+.box2 {
+  @include flex-column;
+  background-color: $color_type_4;
+  border-radius: $border_radius_type_1;
+  outline: 1px solid rgb(219, 221, 228);
+  outline-offset: -1px;
+  width: 90.39%;
+  position: relative;
+  margin: 2px 0% 0px 9.61%;
+}
+.highlights11 {
+  @include v-center-content;
+  @include font-face($font_type_3, $color_type_0, 0px);
+  @include lg {
+    font-size: 15px;
+    text-align: left;
+  }
+  @include md {
+    font-size: 14px;
+  }
+  @include sm {
+    font-size: 13px;
+  }
+  @include xxs {
+    font-size: 12px;
+  }
+  position: relative;
+  flex-grow: 1;
+  min-height: 24px;
+  margin: 0px 0px 67px;
+}
+.col8 {
+  @include flex-column;
+  position: relative;
+  margin: 11px 0px 0px;
+}
+.wrapper3 {
+  @include flex-column;
+  background-color: $color_type_5;
+  position: relative;
+  margin: 65px 0px 0px;
+}
+.info {
+  @include v-center-content;
+  justify-content: center;
+  font: $font_type_5;
+  color: $color_type_4;
+  text-align: center;
+  letter-spacing: 0.20000000298023224px;
+  width: 50.69%;
+  position: relative;
+  flex-grow: 1;
+  min-height: 16px;
+  margin: 24px auto;
+  @include md {
+    width: 57.81%;
+  }
+  @include sm {
+    width: 64.62%;
+  }
+  @include xs {
+    width: 70.89%;
+  }
+  @include xxs {
+    width: 76.45%;
+  }
+  @include tn {
+    width: 81.23%;
+  }
+}
