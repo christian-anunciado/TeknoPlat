@@ -15,7 +15,7 @@ import JoinSession from "./pages/JoinSession/JoinSession";
 import InSession from "./pages/JoinSession/InSession";
 // import "./style/style.scss";
 import Navbar from "./components/Navbar/Navbar";
-import CreateSession from "./pages/CreateSession";
+
 import SessionsLobby from "./pages/SessionsLobby/SessionsLobby";
 function App() {
   const [name, setName] = useState("")
