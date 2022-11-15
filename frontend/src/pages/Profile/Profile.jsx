@@ -5,6 +5,11 @@ import {Link} from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar'
 import styles from './Profile.module.scss';
 
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import { fontSize } from '@mui/system'
 
 
 
@@ -29,10 +34,8 @@ const Profile = () => {
                 <div className={styles.col2}>
                   <div className={styles.row3}>
                     <div className={styles.row3__item}>
-                      <img
-                        className={styles.wrapper4}
-                        src={require('./assets/DefaultPic.png')}
-                        alt="alt text"
+                      <PersonOutlineOutlinedIcon
+                      className={styles.wrapper4}
                       />
                     </div>
   
@@ -56,14 +59,9 @@ const Profile = () => {
                   </div>
   
                   <div className={styles.row4}>
-                    <h2 className={styles.medium_title2}>Settings</h2>
+                    <h2 className={styles.medium_title2}>Edit Profile</h2>
                     <div className={styles.row4__item}>
-                      <img
-                        className={styles.icon5}
-                        src={require('./assets/Settings Icon.png')}
-                        alt="alt text"
-                      />
-                    </div>
+                      <SettingsOutlinedIcon className={styles.icon5}/></div>
                   </div>
                 </div>
               </div>
@@ -76,16 +74,20 @@ const Profile = () => {
   
                     <div className={styles.col4}>
                       <div className={styles.col4__item}>
+                  
+                        <div className={styles.image6}>
                         <px-grid
                           track-style="flex-grow: 1;"
                           area-style=":before: [object Object];"
                           x="65.5fr 67px 54.5fr"
                           y="0px 46px 0px">
                        
-                          <Link to="/login" onClick={logout}> <img className={styles.image6} src={require('./assets/LogoutButton.png')} alt="alt text" link /></Link>
+                          <Link to="/login" onClick={logout}><LogoutOutlinedIcon/></Link>
                         </px-grid>
+                              
+                        </div>
                       </div>
-                      <h2 className={styles.medium_title11}>Log out</h2>
+                     
                     </div>
                   </div>
   
@@ -94,37 +96,19 @@ const Profile = () => {
                       <div className={styles.rect2} />
   
                       <div className={styles.col5}>
-                        <div className={styles.col5__item}>
-                          <img
-                            className={styles.image5}
-                            src={require('./assets/Scroll(Up).png')}
-                            alt="alt text"
-                          />
-                        </div>
                         <div className={styles.rect3} />
-                        <div className={styles.col5__item}>
-                          <img
-                            className={styles.image51}
-                            src={require('./assets/Scroll(Down).png')}
-                            alt="alt text"
-                          />
-                        </div>
                       </div>
                     </div>
   
                     <div className={styles.col6}>
                       <div className={styles.row5}>
                         <div className={styles.row5__item}>
-                          <img
-                            className={styles.image4}
-                            src={require('./assets/Search Icon.png')}
-                            alt="alt text"
-                          />
+                          <SearchOutlinedIcon/>
                         </div>
                         <div className={styles.row5__item1}>
-                          <div className={styles.box3}>
+                          <div>
                                <h5 className={styles.highlights21}>
-                            <input 
+                            <input className={styles.filterInput}
                 type="text"
                 placeholder="Filter Search"
                 name="searchfilter"

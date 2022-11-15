@@ -21,6 +21,8 @@ $font_type_3: 400 16px/1.2 "Montserrat", Helvetica, Arial, serif;
 $font_type_4: 600 14px/1.28 "Mulish", Helvetica, Arial, serif;
 $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
 
+
+
 .root {
   @include flex-column;
   background-color: $color_type_4;
@@ -345,7 +347,6 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   margin: 22.99px 5.31% 0px 11.88%;
 }
 .row2__item {
-  @include flex-column;
   position: relative;
   flex: 1 1 550px;
   @include lg {
@@ -365,10 +366,13 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
 .row3__item {
   @include flex-column;
   position: relative;
+  font-size: 500%;
   flex: 0 1 206px;
 }
 .wrapper4 {
   width: 80%;
+  
+  font-size: 500%;
   height: auto;
   vertical-align: center;
   object-fit: contain;
@@ -604,20 +608,20 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
 .row3__spacer {
   @include flex-column;
   position: relative;
-  flex: 0 1 149.5px;
+  flex: 0 0 250px;
 }
 .col4 {
   @include flex-column;
   position: relative;
-  flex: 0 1 187px;
-  margin: 0px 0px 16.01px;
+  flex: 0 1 0px;
+  margin: 30px 0px 30px;
 }
 .col4__item {
   @include flex-column;
-  position: relative;
+  position: left;
 }
 .image6 {
-  width: 30%;
+  width: 100%;
   height: auto;
   cursor: pointer;
   transition-duration: 0.3s;
@@ -627,7 +631,7 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   object-position: center top;
 }
 .image6:hover {
-  transform: scale(1.3);
+  transform: scale(1.5);
 }
 .medium_title11 {
   @include h-center-content;
@@ -758,6 +762,9 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   @include flex-column;
   position: relative;
   flex: 0 1 244px;
+}
+.filterInput {
+  margin-left: 150%;
 }
 .box3 {
   @include flex-column;
