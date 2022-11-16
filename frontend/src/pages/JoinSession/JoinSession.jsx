@@ -33,7 +33,7 @@ function JoinSession(props) {
     const handlePasswordSubmit = (e) => {
         e.preventDefault()
         if (password === api[0].sessionPassword) {
-            navigate(`/sessionLobby/room?${id}`)
+            navigate(`/session`)
         } else {
             alert("Incorrect Password!")
         }
