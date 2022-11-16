@@ -11,6 +11,8 @@ from .serializers import SampleModelSerializer
 from .models import UserModel
 from .serializers import UserModelSerializer
 from .serializers import SessionModelSerializer
+from .models import RatingModel
+from .serializers import RatingModelSerializer
 import jwt
 import datetime
 
@@ -166,4 +168,19 @@ def setSessionModel(request):
     if serializeUser.is_valid():
         serializeUser.save()
         return Response()
+    return Response(serializeUser.errors)
+
+
+@api_view(['GET'])
+def getRateModel(request):
+    userModel = RatingModel.objects.all()
+    serializer = RatingModelSerializer(userModel, many=True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def addRateModel(request):
+    serializeUser = RatingModelSerializer(data=request.data)
+    if serializeUser.is_valid():
+        serializeUser.save()
+        return Response(200)
     return Response(serializeUser.errors)

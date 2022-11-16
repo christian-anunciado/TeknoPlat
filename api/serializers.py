@@ -24,4 +24,5 @@ class SessionModelSerializer(ModelSerializer):
 class RatingModelSerializer(ModelSerializer):
     class Meta:
         model = RatingModel
-        field = ('punctuality', 'presentation', 'delivery', 'innovativeness', 'feedback')
+    #    field = ('punctuality', 'presentation', 'delivery', 'innovativeness', 'feedback')
+        fields = '__all__'

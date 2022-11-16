@@ -17,6 +17,7 @@ import InSession from "./pages/JoinSession/InSession";
 // import "./style/style.scss";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./pages/Profile/Profile";
+import RatingSession from "./pages/Rating/RatingSession";
 function App() {
   const [name, setName] = useState("")
 
@@ -52,6 +53,7 @@ function App() {
           <Route path="add_session" element={<AddSession />} />
           <Route path="session" element={<SessionRoom />} />
           <Route path="search_session" element={<Session />} />
+          <Route path="rating_session" element={<RatingSession />} />
           <Route path="joinsession/:id" element={<JoinSession />} />
           <Route path="insession/:id" element={<InSession />} />
           <Route path="profile" element={<Profile />} />

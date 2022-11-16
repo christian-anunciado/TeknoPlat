@@ -40,5 +40,5 @@ class RatingModel(models.Model):
     delivery = models.IntegerField(null = True)
     innovativeness = models.IntegerField(null = True)
     feedback = models.CharField(max_length = 500)
-    userID = models.ForeignKey(UserModel, on_delete = models.CASCADE, null = True)
+    #userID = models.ForeignKey(UserModel, on_delete = models.CASCADE, null = True)
 
