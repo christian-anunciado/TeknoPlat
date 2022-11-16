@@ -32,6 +32,14 @@
         display: flex;
         align-items: center;
         gap: 30px;        
+        font-family: 'Mulish', sans-serif;
+        font-weight: bolder;
+        color: black;
+        font-size: 25px;
+        text-decoration: none;
+      &:hover{
+        color: rgba(60,100,177, 1.0);
+      }
     }
     @media screen and (max-width: 768px){
         .left{
