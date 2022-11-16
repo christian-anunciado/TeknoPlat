@@ -14,9 +14,9 @@ const Navbar = () => {
          </Link>
         </div>
         <div className="center">
-            <h3 >My Session</h3>
-            <h3>Create Session</h3>
-            <h3>Join Session</h3>
+            <Link className="center" to="/session">My Session</Link>
+            <Link className="center" to="/add_session">Create Session</Link>
+            <Link className="center" to="/session">Join Session</Link>
         </div>
         <div className="right">
             <NotificationsOutlinedIcon/>
