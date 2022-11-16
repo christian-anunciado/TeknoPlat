@@ -20,17 +20,27 @@
             font-weight: bolder;
             color: rgba(60,100,177, 1.0);
             font-size: 25px;
+            
         }
+        
     }
     .right{
         display: flex;
         align-items: center;
+        
+        cursor: pointer;
+        transition-duration: 0.3s;
+        transition-property: transform;
         gap: 30px;
         margin-right: 5rem;
+    }
+    .right:hover {
+        transform: scale(1.3);
     }
     .center{
         display: flex;
         align-items: center;
+<<<<<<< HEAD
         gap: 30px;        
         font-family: 'Mulish', sans-serif;
         font-weight: bolder;
@@ -40,6 +50,15 @@
       &:hover{
         color: rgba(60,100,177, 1.0);
       }
+=======
+        gap: 30px;      
+        cursor: pointer;
+        transition-duration: 0.3s;
+        transition-property: transform;  
+    }
+    .center:hover {
+        transform: scale(1.3);
+>>>>>>> d2f1563f78d2dae52993ee6b137e80096ef0c409
     }
     @media screen and (max-width: 768px){
         .left{
@@ -48,5 +67,7 @@
         .right{
             margin-right: 0;
         }
+        
     }
+  
 } 

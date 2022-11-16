@@ -1,0 +1,92 @@
+@mixin tn {
+  @media(max-width: 383px) {
+    @content;
+  }
+}
+
+@mixin xxs {
+  @media(max-width: 479px) {
+    @content;
+  }
+}
+
+@mixin xs {
+  @media(max-width: 575px) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media(max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media(max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media(max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media(max-width: 1399px) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media(max-width: 1919px) {
+    @content;
+  }
+}
+
+@mixin xxxl {
+  @media(max-width: 2999px) {
+    @content;
+  }
+}
+
+@mixin max {
+  @media(max-width: 99999px) {
+    @content;
+  }
+}
+
+@mixin h-center-content {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin v-center-content {
+  display: flex;
+  align-items: center;
+}
+
+@mixin center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-item($grow: 0, $shrink: 1, $basis: auto) {
+  display: flex;
+  position: relative;
+  flex: $grow $shrink $basis;
+}
+
+@mixin font-face($font, $color, $letterSpacing: 0px) {
+  font: $font;
+  color: $color;
+  letter-spacing: $letterSpacing;
+}
