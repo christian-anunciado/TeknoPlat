@@ -18,6 +18,7 @@ import Navbar from "./components/Navbar/Navbar";
 
 import SessionsLobby from "./pages/SessionsLobby/SessionsLobby";
 import Profile from "./pages/Profile/Profile";
+import EditProfile from "./pages/Profile/EditProfile";
 function App() {
   const [name, setName] = useState("")
 
@@ -56,6 +57,7 @@ function App() {
           <Route path="insession/:id" element={<InSession />} />
           <Route path="sessionLobby/:room" element={<SessionsLobby />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="editProfile" element={<EditProfile />} />
         </Route>
       </Routes>
     </Router>

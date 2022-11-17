@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar'
 import styles from './Profile.module.scss';
 
+
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
@@ -15,16 +16,23 @@ import { fontSize } from '@mui/system'
 
 
 const Profile = () => {
+  
+  const [filter, setFilter] = useState("")
 
- const [filtersearch, filter] = useState("")
+  const logout = async () => {
+    await fetch('http://localhost:8000/api/logout', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        credentials: 'include',
+    });
+}
+    const Profile = async () => {
+
+  let formField = new FormData()
+ formField.append('filter',filter)
  
-    const logout = async () => {
-        await fetch('http://localhost:8000/api/logout', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            credentials: 'include',
-        });
-    }
+   
+  }
     return(
 <div>
             <Navbar />
@@ -34,9 +42,11 @@ const Profile = () => {
                 <div className={styles.col2}>
                   <div className={styles.row3}>
                     <div className={styles.row3__item}>
-                      <PersonOutlineOutlinedIcon
+                    <img
                       className={styles.wrapper4}
-                      />
+                      src={require('./assets/Default.png')}
+                      alt="alt text"
+                    />
                     </div>
   
                     <div className={styles.col3}>
@@ -59,7 +69,8 @@ const Profile = () => {
                   </div>
   
                   <div className={styles.row4}>
-                    <h2 className={styles.medium_title2}>Edit Profile</h2>
+                    <h2 className={styles.medium_title2} >
+                          <a  href='#/editProfile' style={{fontWeight: "bold",color: "Blue", textDecoration: "none"}}> Edit Profile </a></h2>
                     <div className={styles.row4__item}>
                       <SettingsOutlinedIcon className={styles.icon5}/></div>
                   </div>
@@ -108,12 +119,12 @@ const Profile = () => {
                         <div className={styles.row5__item1}>
                           <div>
                                <h5 className={styles.highlights21}>
-                            <input className={styles.filterInput}
+                            <input
                 type="text"
                 placeholder="Filter Search"
                 name="searchfilter"
                 value={filter}
-                onChange={(e) => filter(e.target.value)} ></input></h5>
+                onChange={(e) => setFilter(e.target.value)} ></input></h5>
                           </div>
                         </div>
                       </div>
