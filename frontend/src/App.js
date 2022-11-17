@@ -11,12 +11,11 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import AddSession from "./pages/AddSession/AddSession";
 import Session from "./pages/JoinSession/Session";
+import SessionRoom from "./pages/Session/SessionRoom";
 import JoinSession from "./pages/JoinSession/JoinSession";
 import InSession from "./pages/JoinSession/InSession";
 // import "./style/style.scss";
 import Navbar from "./components/Navbar/Navbar";
-
-import SessionsLobby from "./pages/SessionsLobby/SessionsLobby";
 import Profile from "./pages/Profile/Profile";
 function App() {
   const [name, setName] = useState("")
@@ -51,10 +50,10 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="add_session" element={<AddSession />} />
-          <Route path="session" element={<Session />} />
+          <Route path="session" element={<SessionRoom />} />
+          <Route path="search_session" element={<Session />} />
           <Route path="joinsession/:id" element={<JoinSession />} />
           <Route path="insession/:id" element={<InSession />} />
-          <Route path="sessionLobby/:room" element={<SessionsLobby />} />
           <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
