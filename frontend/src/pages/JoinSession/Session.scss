@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Mulish', sans-serif;
+  font-size: 20px;
+}
+
+.session-space{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 5rem;
+}
+
+.session-container{
+  max-width: 700px;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.session{
+  color: #000;
+  font-size: 35px;
+  padding: 0px;
+  margin: 0px 0px 20px 0px;
+  display: flex;
+  flex-grow: 1;
+}
+
+.session-1{
+  align-self: flex-end;
+}
+
+.session-2{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+
+.session-2-1{
+  padding: 100px 50px 98px 50px;
+  background-color: #ccc;
+}
+
+.session-2-2{
+  display: flex;
+  flex-direction: column;
+  color: #000;
+}
+
+.session-2-2-1{
+  margin: 0px 0px 20px 10px;
+}
+
+.session-2-2-1 h1{
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.session-2-2-2{
+  margin: 0px 0px 40px 10px;
+}
+
+.session-2-2-2 p{
+  font-size: 16px;
+  font-weight: lighter;
+  color: #808080;
+}
+
+.session-2-2-3{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+
+
+.session-space .session-container .button button{
+  padding: 10px 30px 10px 30px;
+  border: #3C64B1;
+  font-size: 15px;
+  color: white;
+  background-color: #3C64B1;
+}
+
+.session-space .session-container .button-shaded button{
+  padding: 10px 30px 16px 30px;
+  margin: 0px 0px 0px 10px;
+  border: #3C64B1;
+  font-size: 15px;
+  color: white;
+  background-color: #3C64B1;
+}
+
+
+.session-space .session-container .button-noshade button{
+  padding: 10px 20px 15px 20px;
+  margin: 0px 0px 0px 10px;
+  border: #3C64B1;
+  font-size: 15px;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.session-space .session-container .button input{
+  color: #808080;
+  padding: 4px 30px 8px 30px;
+  border: 1px solid #ccc;
+}
