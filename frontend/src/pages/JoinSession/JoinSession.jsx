@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar'
 import { useNavigate, useParams } from 'react-router-dom'
+import "./JoinSessionModal.scss";
 
 
 function JoinSession(props) {
@@ -13,6 +14,7 @@ function JoinSession(props) {
     const [password, setPassword] = useState("")
     const { id } = useParams();
     const navigate = useNavigate()
+
     useEffect(() => {
         fetchApi()
     }, [])
@@ -43,6 +45,7 @@ function JoinSession(props) {
     return (
         <div>
             <Navbar />
+            
             <Link to={`/session`} ><button>Go back</button></Link>
             {
                 api.map((apis) => {
