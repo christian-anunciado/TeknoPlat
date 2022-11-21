@@ -15,14 +15,15 @@
     .sessionRoom {
         // background-color: #fffbfb;
         height: calc(100% - 80px);
-        background-color: green;
+        background-color: white;
         display: flex;
         align-items: center;
         overflow: auto;
 
         .sessionRoom-container {
-            background-color: red;
+            background-color: white;
             height: 100%;
+            min-width: 100vw;
             flex-direction: row;
             display: flex;
             overflow: hidden;
