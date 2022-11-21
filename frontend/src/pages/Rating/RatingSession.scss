@@ -1,19 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap');
 
-*{
+
+.rating-space {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Mulish', sans-serif;
   font-size: 20px;
-}
-
-.rating-space {
   justify-content: center;
   align-items: center;
   display: flex;
   padding: 5rem;
 }
+
+.rating-space div{
+  font-family: 'Mulish', sans-serif;
+}
+
 
 .rating-container{
   max-width: 700px;
@@ -92,6 +94,7 @@
 }
 
 .rating-space .rating-container .button input{
+  font-family: 'Mulish', sans-serif;
   padding: 10px 40px 10px 40px;
   border: #3C64B1;
   font-size: 15px;
@@ -99,14 +102,15 @@
   background-color: #3C64B1;
 }
 
-select{
+.rating-space .rating-container select{
+  font-family: 'Mulish', sans-serif;
   color: #808080;
   padding: 2px 20px 2px 2px;
   border: 1px solid #ccc;
-  //text-align: center;
 }
 
-textarea{
+.rating-space .rating-container textarea{
+  font-family: 'Mulish', sans-serif;
   border: 1px solid #ccc;
   font-size: 16px;
   padding: 2px 20px 2px 2px;
@@ -115,6 +119,7 @@ textarea{
   justify-content: stretch;
 }
 
-label{
+.rating-space .rating-container label{
+  font-family: 'Mulish', sans-serif;
   margin: 0px 0px 5px 5px;
 }
