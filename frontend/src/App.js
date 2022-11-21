@@ -18,6 +18,10 @@ import InSession from "./pages/JoinSession/InSession";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./pages/Profile/Profile";
 import RatingSession from "./pages/Rating/RatingSession";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./style/flexboxgrid.min.css";
+import './style/index.css';
 function App() {
   const [name, setName] = useState("")
 
