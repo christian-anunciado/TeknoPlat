@@ -1,8 +1,5 @@
-// * {
-//     font-family: 'Poppins', sans-serif;
-//     padding: 0;
-//     margin: 0;
-// }
+@use '../../style/index.css';
+@import url('../../style/index.css');
 
 .main-content {
     display: flex;
