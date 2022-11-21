@@ -25,23 +25,22 @@ function SessionRoom() {
         };
     }, [hmsActions, isConnected]);
     return (
-        <body>
-            {isConnected ? (
                 <div className='main-content'>
                     <Navbar />
-                    <div className='session'>
-                        <div className="session-container">
+                    {isConnected ? (
+                    <div className='sessionRoom'>
+                        <div className="sessionRoom-container">
                             <Settings />
                             <Stream peers={peers1} />
 
                         </div>
                     </div>
+                    ) : (
+                        <JoinForm />
+                    )
+                    }
                 </div>
-            ) : (
-                <JoinForm />
-            )
-            }
-        </body>
+            
     )
 }
 
