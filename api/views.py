@@ -15,6 +15,8 @@ from .models import RatingModel
 from .serializers import RatingModelSerializer
 import jwt
 import datetime
+import uuid
+from django.conf import settings
 
 
 # Learn more about django_rest_framework here:
@@ -177,6 +179,7 @@ def getRateModel(request):
     serializer = RatingModelSerializer(userModel, many=True)
     return Response(serializer.data)
 
+
 @api_view(['POST'])
 def addRateModel(request):
     serializeUser = RatingModelSerializer(data=request.data)
@@ -184,3 +187,33 @@ def addRateModel(request):
         serializeUser.save()
         return Response(200)
     return Response(serializeUser.errors)
+
+
+@api_view(['GET'])
+def get100MsKeys(request):
+    keys = {
+        'APP_KEY_100MS': settings.APP_KEY_100MS,
+        'SECRET_KEY_100MS': settings.SECRET_KEY_100MS,
+    }
+    return Response(keys)
+
+
+@api_view(['GET'])
+def generateManagementToken(request):
+    app_access_key = '6372de82a04fa8bc9163c888'
+    app_secret = 'nH6grEk7yAMdjtvp3JEpSHDa0w95Iv_DkiC_ylkAmhM6xmx5TRkaIswO-TN1t-55uoRV5CqFavbvW3jzcM9yr8W81D009tMUYZR0JDVjAYt_BKwX2HDy1FFtuqCsS5dMg5DfmKOo8VrLMiFgmuiibnfHoCKjIXN_BrjXjzSHAto='
+    expires = 24 * 3600
+    now = datetime.datetime.utcnow()
+    exp = now + datetime.timedelta(seconds=expires)
+
+    management_token = jwt.encode(payload={
+        'access_key': app_access_key,
+        'type': 'management',
+        'version': 2,
+        'jti': str(uuid.uuid4()),
+        'iat': now,
+        'exp': exp,
+        'nbf': now
+    }, key=app_secret)
+
+    return Response(management_token)

@@ -37,16 +37,13 @@ function JoinForm() {
                     placeholder="Your name"
                 />
             </div>
+
             <div className="input-container">
-                <input
-                    required
-                    value={inputValues.token}
-                    onChange={handleInputChange}
-                    id="token"
-                    type="text"
-                    name="token"
-                    placeholder="Auth token"
-                />
+                <label for="cars">Choose a role: </label>
+                <select name="cars" id="cars">
+                    <option value="creator">Creator</option>
+                    <option value="participant">Participant</option>
+                </select>
             </div>
             <button className="btn-primary">Join</button>
         </form>
