@@ -20,6 +20,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./style/flexboxgrid.min.css";
 import './style/index.css';
 import LandingPage from "./pages/SamplePage";
+import LandingPage from "./pages/LandingPage";
 function App() {
   const [name, setName] = useState("")
 
