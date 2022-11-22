@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Chats from './Chats'
 import Navbar from '../../components/Navbar/Navbar'
-import './session.scss'
+import './sessionRoom.scss'
 import Settings from './Settings'
 import Stream from './Stream'
-import { selectIsConnectedToRoom, selectPeers, selectRemotePeers, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
+import { selectIsConnectedToRoom, selectIsSomeoneScreenSharing, selectPeers, selectPeerScreenSharing, selectRemotePeers, useHMSActions, useHMSStatsStore, useHMSStore } from "@100mslive/react-sdk";
 import JoinForm from './JoinForm';
 
 function SessionRoom() {
-    const peers = useHMSStore(selectRemotePeers);
-    const peers1 = useHMSStore(selectPeers);
+    const [peer, setPeer] = useState(null)
+    const peers = useHMSStore(selectPeers);
+    const presentor = useHMSStore(selectPeerScreenSharing);
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const hmsActions = useHMSActions();
-    const filteredPeers = [...peers].filter(peer => peer.name != peers[0].name)
-    console.log(peers1);
-
+    const screenShareOn = useHMSStore(selectIsSomeoneScreenSharing)
+  
 
 
     useEffect(() => {
@@ -24,6 +24,8 @@ function SessionRoom() {
             }
         };
     }, [hmsActions, isConnected]);
+
+
     return (
                 <div className='main-content'>
                     <Navbar />
@@ -31,7 +33,7 @@ function SessionRoom() {
                     <div className='sessionRoom'>
                         <div className="sessionRoom-container">
                             <Settings />
-                            <Stream peers={peers1} />
+                            <Stream peers={peers} />
 
                         </div>
                     </div>

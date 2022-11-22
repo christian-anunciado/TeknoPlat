@@ -1,29 +1,35 @@
 import React from 'react'
-import { AiOutlineHome, AiOutlineVideoCamera, AiOutlineSetting, AiOutlineUser } from 'react-icons/ai';
-import { BsCameraVideo, BsListCheck, BsPeople, BsCameraVideoOff } from 'react-icons/bs';
+import { AiOutlineSetting } from 'react-icons/ai';
+import { BsCameraVideo, BsPeople, BsCameraVideoOff } from 'react-icons/bs';
 import { BiMicrophone, BiMicrophoneOff } from 'react-icons/bi';
-import { FaUserCircle } from 'react-icons/fa';
-import { TbScreenShare, TbScreenShareOff } from 'react-icons/tb';
+import { MdOutlineScreenShare, MdOutlineStopScreenShare } from 'react-icons/md';
 import { ImExit } from 'react-icons/im';
 import { Button } from '@mui/material';
 import { blueGrey, pink } from '@mui/material/colors'
 
-import { selectIsConnectedToRoom, useAVToggle, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
+import { selectIsConnectedToRoom, selectIsSomeoneScreenSharing, useAVToggle, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
 
 function Settings() {
     const {
         isLocalAudioEnabled,
         isLocalVideoEnabled,
         toggleAudio,
-        toggleVideo
+        toggleVideo,
     } = useAVToggle();
     const hmsActions = useHMSActions()
     const isConnected = useHMSStore(selectIsConnectedToRoom)
+    const screenShareOn = useHMSStore(selectIsSomeoneScreenSharing)
 
-    const handleClick = (e) => {
+    const handleLeave = (e) => {
         if (isConnected) {
             hmsActions.leave()
         }
+    }
+
+    const toggleShareScreen = async (e) => {
+        if (!screenShareOn)
+            await hmsActions.setScreenShareEnabled(true)
+        else await hmsActions.setScreenShareEnabled(false)
     }
 
     return (
@@ -45,8 +51,11 @@ function Settings() {
 
                 </Button>
 
-                <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }}>
-                    <TbScreenShare className='button-setting' />
+                <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }} onClick={toggleShareScreen}>
+                    {screenShareOn ?
+                        <MdOutlineScreenShare className='button-setting' /> :
+                        <MdOutlineStopScreenShare className='button-setting' />
+                    }
                 </Button>
 
                 <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }}>
@@ -59,7 +68,7 @@ function Settings() {
 
             </div>
             <div className="user-account">
-                <Button sx={{ color: pink[700], "&:hover": { backgroundColor: "transparent" } }} onClick={handleClick}>
+                <Button sx={{ color: pink[700], "&:hover": { backgroundColor: "transparent" } }} onClick={handleLeave}>
                     <ImExit className='user-button' />
                 </Button>
             </div>

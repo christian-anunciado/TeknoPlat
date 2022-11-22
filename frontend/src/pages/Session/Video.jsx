@@ -1,13 +1,27 @@
 import React from 'react'
-import { FaUserAlt } from 'react-icons/fa'
-import { useVideo } from "@100mslive/react-sdk";
+import { selectIsSomeoneScreenSharing, useHMSActions, useHMSStore, useVideo } from "@100mslive/react-sdk";
+import { useEffect } from 'react';
 
 
 function Video({ peers }) {
-    console.log(peers);
+    const screenShareOn = useHMSStore(selectIsSomeoneScreenSharing)
+    const hmsActions = useHMSActions()
+
     const { videoRef } = useVideo({
-        trackId: peers[0].videoTrack
-    });
+        trackId: screenShareOn ? peers[0].auxiliaryTracks[0] : peers[0].videoTrack
+    })
+
+    useEffect(() => {
+        const unsub = async (e) => {
+            if (screenShareOn) {
+                await hmsActions.setLocalVideoEnabled(false);
+            } else {
+                await hmsActions.setLocalVideoEnabled(true);
+            }
+        }
+        unsub()
+    }, [screenShareOn, hmsActions])
+   
 
     return (
         <div className='sessionVideo-container'>
