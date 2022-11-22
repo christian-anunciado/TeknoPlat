@@ -1,10 +1,8 @@
-import SamplePage from "./pages/SamplePage";
 import {
   HashRouter as Router,
   Route,
   Routes
 } from "react-router-dom";
-import { useEffect } from 'react'
 import { useState } from 'react'
 import Login from "./pages/LoginPage/Login";
 import Register from "./pages/Register";
@@ -14,14 +12,14 @@ import Session from "./pages/JoinSession/Session";
 import SessionRoom from "./pages/Session/SessionRoom";
 import JoinSession from "./pages/JoinSession/JoinSession";
 import InSession from "./pages/JoinSession/InSession";
-// import "./style/style.scss";
-import Navbar from "./components/Navbar/Navbar";
 import Profile from "./pages/Profile/Profile";
 import RatingSession from "./pages/Rating/RatingSession";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style/flexboxgrid.min.css";
 import './style/index.css';
+import LandingPage from "./pages/SamplePage";
+
 function App() {
   const [name, setName] = useState("")
 
@@ -50,7 +48,7 @@ function App() {
 
         */}
         <Route path="/">
-          <Route index element={<SamplePage />} />
+          <Route index element={<LandingPage />} />
           <Route path="dashboard" element={<Dashboard name={name} />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
