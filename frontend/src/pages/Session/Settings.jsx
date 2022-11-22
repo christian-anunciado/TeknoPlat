@@ -8,7 +8,7 @@ import { ImExit } from 'react-icons/im';
 import { Button } from '@mui/material';
 import { blueGrey, pink } from '@mui/material/colors'
 
-import { useAVToggle } from "@100mslive/react-sdk";
+import { selectIsConnectedToRoom, useAVToggle, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
 
 function Settings() {
     const {
@@ -17,6 +17,14 @@ function Settings() {
         toggleAudio,
         toggleVideo
     } = useAVToggle();
+    const hmsActions = useHMSActions()
+    const isConnected = useHMSStore(selectIsConnectedToRoom)
+
+    const handleClick = (e) => {
+        if (isConnected) {
+            hmsActions.leave()
+        }
+    }
 
     return (
         <div className='sessionSettings-container'>
@@ -51,7 +59,7 @@ function Settings() {
 
             </div>
             <div className="user-account">
-                <Button sx={{ color: pink[700], "&:hover": { backgroundColor: "transparent" } }}>
+                <Button sx={{ color: pink[700], "&:hover": { backgroundColor: "transparent" } }} onClick={handleClick}>
                     <ImExit className='user-button' />
                 </Button>
             </div>
