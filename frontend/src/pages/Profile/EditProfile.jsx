@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+import "./EditProfile.scss"
+import Navbar from '../../components/Navbar/Navbar'
 
 
 
@@ -35,52 +37,43 @@ const EditProfile = () => {
         setPassword("")
     }
     return (
-        <div>
-            <h1>Edit Profile</h1>
+        <>
 
-                <input 
-                type="text"
-                placeholder="Enter new firstname"
-                name="firstname"
-                value={firstname}
-                onChange={(e) => setFN(e.target.value)} 
-                /> <br/>
-
-                <input 
-                type="text"
-                placeholder="Enter new lastname"
-                name="lastname"
-                value={lastname}
-                onChange={(e) => setLN(e.target.value)} 
-                /> <br/>
-                <input 
-                type="text"
-                placeholder="Enter new email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)} 
-                /> <br/>
-
-                <input 
-                type="text"
-                placeholder="Enter new username"
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)} 
-                /> <br/>
-
-                <input 
-                type="password"
-                placeholder="Enter new password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)} 
-                /> <br/>
-
-                <button onClick={EditUser}>Save</button>
-
+        <Navbar/>
+        <div className="edit-profile">
+        <div className="container">
+      <div className="title">Edit Profile</div>
+      <div className="content">
+        <form >
+          <div className="user-details">
+            <div className="input-box">
+              <span className="details">First Name</span>
+              <input type="text" name='setFN' placeholder="First Name" value={firstname} onChange={(e) => setFN(e.target.value)}/>
+            </div>
+            <div className="input-box">
+              <span className="details">Lastname</span>
+              <input type="text" name="setLN" placeholder="Last Name" value={lastname} onChange={(e) => setLN(e.target.value)}/>
+            </div>
+            <div className="input-box">
+              <span className="details">Username</span>
+              <input type="text" name="sessionDescription" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+            </div>
+            <div className="input-box">
+              <span className="details">Password</span>
+              <input type="password" name="sessionDescription" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+            </div>
+          </div>
+          <div className="button">
+            <input type="submit" value="Save" onClick={EditUser}/>
+          </div>
+        </form>
+      </div>
+    </div>
+  
         </div>
+      </>
     )
 }
 
 export default EditProfile
+

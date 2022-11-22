@@ -14,7 +14,6 @@ import JoinSession from "./pages/JoinSession/JoinSession";
 import InSession from "./pages/JoinSession/InSession";
 import Profile from "./pages/Profile/Profile";
 import EditProfile from "./pages/Profile/EditProfile";
-=======
 import RatingSession from "./pages/Rating/RatingSession";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

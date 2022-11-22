@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@100mslive/hms-video-react": "^0.6.1",
     "@100mslive/react-sdk": "^0.5.1",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -13,6 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.1.2",
     "framer-motion": "^7.6.5",
+    "mdb-react-ui-kit": "^5.0.0",
     "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-agora": "^0.7.3",
