@@ -33,3 +33,12 @@ class SessionModel(models.Model):
     status = models.IntegerField(blank=True, null=True)
     startsAt = models.DateTimeField(auto_now=True)
     endsAt = models.DateTimeField(auto_now=True)
+
+class RatingModel(models.Model):
+    punctuality = models.IntegerField(null = True)
+    presentation = models.IntegerField(null = True)
+    delivery = models.IntegerField(null = True)
+    innovativeness = models.IntegerField(null = True)
+    feedback = models.CharField(max_length = 500)
+    #userID = models.ForeignKey(UserModel, on_delete = models.CASCADE, null = True)
+

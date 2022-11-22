@@ -1,4 +1,4 @@
-
+@use "utils"as *;
 @import "utils";
 
 
@@ -13,12 +13,30 @@ $color_type_6: rgb(60, 99, 176);
 $border_radius_type_0: 30px 30px 30px 30px;
 $border_radius_type_1: 4px 4px 4px 4px;
 
-$font_type_0: 700 25px/0.96 "Mulish", Helvetica, Arial, serif;
-$font_type_1: 700 24px/1.33 "Lato", Helvetica, Arial, serif;
-$font_type_2: 700 16px/1.5 "Mulish", Helvetica, Arial, serif;
-$font_type_3: 400 16px/1.2 "Montserrat", Helvetica, Arial, serif;
-$font_type_4: 600 14px/1.28 "Mulish", Helvetica, Arial, serif;
-$font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
+$font_type_0: 700 25px/0.96 "Mulish",
+Helvetica,
+Arial,
+serif;
+$font_type_1: 700 24px/1.33 "Lato",
+Helvetica,
+Arial,
+serif;
+$font_type_2: 700 16px/1.5 "Mulish",
+Helvetica,
+Arial,
+serif;
+$font_type_3: 400 16px/1.2 "Montserrat",
+Helvetica,
+Arial,
+serif;
+$font_type_4: 600 14px/1.28 "Mulish",
+Helvetica,
+Arial,
+serif;
+$font_type_5: 600 12px/1.33 "Mulish",
+Helvetica,
+Arial,
+serif;
 
 
 
@@ -28,15 +46,18 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   position: relative;
   overflow: hidden;
 }
+
 .col {
   @include flex-column;
   position: relative;
   flex-grow: 1;
 }
+
 .col1 {
   @include flex-column;
   position: relative;
 }
+
 .box {
   @include flex-column;
   background-color: $color_type_4;
@@ -44,9 +65,11 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   outline-offset: -1px;
   position: relative;
 }
+
 .row {
   display: flex;
   width: 77.08%;
+
   @include lg {
     flex-wrap: wrap;
     align-content: flex-start;
@@ -54,106 +77,134 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
     row-gap: 16px;
     width: 81.77%;
   }
+
   position: relative;
   flex-grow: 1;
   margin: 20px auto;
+
   @include md {
     width: 85.67%;
   }
+
   @include sm {
     width: 88.86%;
   }
+
   @include xs {
     width: 91.4%;
   }
+
   @include xxs {
     width: 93.41%;
   }
+
   @include tn {
     width: 94.97%;
   }
 }
+
 .row__item {
   @include flex-column;
   position: relative;
   flex: 1 1 69px;
+
   @include lg {
     flex: 0 0 100%;
   }
 }
+
 .wrapper2 {
   @include flex-column;
   height: 32px;
   position: relative;
   margin: 8px 0px;
 }
+
 .medium_title {
   display: flex;
   align-items: flex-end;
   @include font-face($font_type_1, $color_type_6, 0.20000000298023224px);
   width: 156px;
   height: min-content;
+
   @include lg {
     font-size: 22px;
     text-align: left;
   }
+
   @include md {
     font-size: 20px;
   }
+
   @include sm {
     font-size: 19px;
   }
+
   @include xs {
     font-size: 18px;
   }
+
   @include xxs {
     font-size: 17px;
   }
+
   @include tn {
     font-size: 16px;
   }
+
   position: absolute;
   top: 0px;
   right: -56px;
 }
+
 .row__spacer {
   @include flex-column;
   position: relative;
   flex: 0 1 230px;
+
   @include lg {
     display: none;
   }
 }
+
 .row__item1 {
   @include flex-column;
   position: relative;
   flex: 1 1 811px;
+
   @include lg {
     flex: 0 0 100%;
   }
 }
+
 .row1 {
   display: flex;
+
   @include lg {
     flex-wrap: wrap;
     align-content: flex-start;
     column-gap: 0px;
     row-gap: 16px;
   }
+
   position: relative;
   flex-grow: 1;
 }
+
 .row1__item {
   @include flex-column;
   position: relative;
   flex: 1 1 513px;
+
   @include lg {
     flex: 0 0 calc(50% - 8px);
   }
+
   @include md {
     flex: 0 0 100%;
   }
 }
+
 .wrapper {
   display: flex;
   position: relative;
@@ -161,108 +212,136 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   flex-grow: 1;
   margin: 15px 0px;
 }
+
 .text {
   @include v-center-content;
   @include font-face($font_type_4, $color_type_5, 0.20000000298023224px);
+
   @include md {
     font-size: 13px;
     text-align: left;
   }
+
   @include xs {
     font-size: 12px;
   }
+
   position: relative;
   flex: 0 0 auto;
   min-width: 83px;
   min-height: 18px;
 }
+
 .wrapper__spacer {
   @include flex-column;
   position: relative;
   flex: 0 1 32px;
 }
+
 .text1 {
   @include v-center-content;
   @include font-face($font_type_4, $color_type_5, 0.20000000298023224px);
+
   @include md {
     font-size: 13px;
     text-align: left;
   }
+
   @include xs {
     font-size: 12px;
   }
+
   position: relative;
   flex: 0 0 auto;
   min-width: 101px;
   min-height: 18px;
 }
+
 .text2 {
   @include v-center-content;
   @include font-face($font_type_4, $color_type_5, 0.20000000298023224px);
+
   @include md {
     font-size: 13px;
     text-align: left;
   }
+
   @include xs {
     font-size: 12px;
   }
+
   position: relative;
   flex: 0 0 auto;
   min-width: 82px;
   min-height: 18px;
 }
+
 .text3 {
   @include v-center-content;
   @include font-face($font_type_4, $color_type_5, 0.20000000298023224px);
+
   @include md {
     font-size: 13px;
     text-align: left;
   }
+
   @include xs {
     font-size: 12px;
   }
+
   position: relative;
   flex: 0 0 auto;
   min-width: 61px;
   min-height: 18px;
 }
+
 .text4 {
   @include v-center-content;
   @include font-face($font_type_4, $color_type_5, 0.20000000298023224px);
+
   @include md {
     font-size: 13px;
     text-align: left;
   }
+
   @include xs {
     font-size: 12px;
   }
+
   position: relative;
   flex: 0 0 auto;
   min-width: 58px;
   min-height: 18px;
 }
+
 .row1__spacer {
   @include flex-column;
   position: relative;
   flex: 0 1 169px;
+
   @include lg {
     flex: 0 0 16px;
   }
+
   @include md {
     display: none;
   }
 }
+
 .row1__item1 {
   @include flex-column;
   position: relative;
   flex: 1 1 15px;
+
   @include lg {
     flex: 0 0 calc(50% - 8px);
   }
+
   @include md {
     flex: 0 0 100%;
   }
 }
+
 .image8 {
   width: 15px;
   height: 16px;
@@ -273,25 +352,31 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   min-width: 15px;
   margin: 16px 0px;
 }
+
 .row1__spacer1 {
   @include flex-column;
   position: relative;
   flex: 0 1 23px;
+
   @include lg {
     display: none;
   }
 }
+
 .row1__item2 {
   @include flex-column;
   position: relative;
   flex: 1 1 18px;
+
   @include lg {
     flex: 0 0 calc(50% - 8px);
   }
+
   @include md {
     flex: 0 0 100%;
   }
 }
+
 .image7 {
   width: 18px;
   height: 18px;
@@ -302,28 +387,35 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   min-width: 18px;
   margin: 15px 0px;
 }
+
 .row1__spacer2 {
   @include flex-column;
   position: relative;
   flex: 0 1 25px;
+
   @include lg {
     flex: 0 0 16px;
   }
+
   @include md {
     display: none;
   }
 }
+
 .row1__item3 {
   @include flex-column;
   position: relative;
   flex: 1 1 48px;
+
   @include lg {
     flex: 0 0 calc(50% - 8px);
   }
+
   @include md {
     flex: 0 0 100%;
   }
 }
+
 .wrapper1 {
   width: 48px;
   height: 48px;
@@ -333,58 +425,70 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   position: relative;
   min-width: 48px;
 }
+
 .row2 {
   display: flex;
   width: 82.81%;
+
   @include lg {
     flex-wrap: wrap;
     align-content: flex-start;
     column-gap: 0px;
     row-gap: 16px;
   }
+
   position: relative;
   margin: 22.99px 5.31% 0px 11.88%;
 }
+
 .row2__item {
   position: relative;
   flex: 1 1 550px;
+
   @include lg {
     flex: 0 0 100%;
   }
 }
+
 .col2 {
   @include flex-column;
   position: relative;
   flex-grow: 1;
   margin: 45.01px 0px 468px;
 }
+
 .row3 {
   display: flex;
   position: relative;
 }
+
 .row3__item {
   @include flex-column;
   position: relative;
-  font-size: 500%;
+  font-size: 500px;
+  size: 500px;
   flex: 0 1 206px;
 }
+
 .wrapper4 {
   width: 100%;
-  
+  width: 500px;
   font-size: 500%;
   height: auto;
   vertical-align: center;
   object-fit: contain;
-  object-position: center right ;
+  object-position: center right;
   position: relative;
   flex-grow: 1;
 }
+
 .col3 {
   @include flex-column;
   position: relative;
   flex: 0 1 344px;
   margin: 26px 0px 45px;
 }
+
 .highlights {
   @include h-center-content;
   font: $font_type_2;
@@ -392,23 +496,29 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   text-align: center;
   letter-spacing: 0.10000000149011612px;
   width: 42.15%;
+
   @include lg {
     font-size: 15px;
     text-align: center;
   }
+
   @include md {
     font-size: 14px;
   }
+
   @include sm {
     font-size: 13px;
   }
+
   @include xxs {
     font-size: 12px;
   }
+
   position: relative;
   min-height: 24px;
   margin: 0px 50% 0px 7.85%;
 }
+
 .box1 {
   @include flex-column;
   background-color: $color_type_4;
@@ -419,47 +529,60 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   position: relative;
   margin: 3px 0% 0px 12.79%;
 }
+
 .group {
   @include flex-column;
   position: relative;
   flex-grow: 1;
   margin: 8px 12px;
+
   @include lg {
     margin: 8px 11px;
   }
+
   @include md {
     margin: 8px 9px;
   }
+
   @include sm {
     margin: 8px;
   }
+
   @include xs {
     margin: 8px 7px;
   }
+
   @include xxs {
     margin: 8px 6px;
   }
 }
+
 .highlights1 {
   @include v-center-content;
   @include font-face($font_type_3, $color_type_0, 0px);
+
   @include lg {
     font-size: 15px;
     text-align: left;
   }
+
   @include md {
     font-size: 14px;
   }
+
   @include sm {
     font-size: 13px;
   }
+
   @include xxs {
     font-size: 12px;
   }
+
   position: relative;
   flex-grow: 1;
   min-height: 24px;
 }
+
 .highlights2 {
   @include h-center-content;
   font: $font_type_2;
@@ -467,24 +590,30 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   text-align: center;
   letter-spacing: 0.10000000149011612px;
   width: 145px;
+
   @include lg {
     font-size: 15px;
     text-align: center;
   }
+
   @include md {
     font-size: 14px;
   }
+
   @include sm {
     font-size: 13px;
   }
+
   @include xxs {
     font-size: 12px;
   }
+
   position: relative;
   min-height: 24px;
   min-width: 145px;
   margin: 6px 0px 0px;
 }
+
 .box11 {
   @include flex-column;
   background-color: $color_type_4;
@@ -495,26 +624,33 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   position: relative;
   margin: 2px 0% 0px 12.79%;
 }
+
 .row4 {
   display: flex;
   position: relative;
   margin: 25px 18px 0px;
+
   @include lg {
     margin: 25px 16px 0px;
   }
+
   @include md {
     margin: 25px 13px 0px;
   }
+
   @include sm {
     margin: 25px 11px 0px;
   }
+
   @include xs {
     margin: 25px 10px 0px;
   }
+
   @include xxs {
     margin: 25px 9px 0px;
   }
 }
+
 .medium_title2 {
   @include h-center-content;
   font: $font_type_0;
@@ -522,32 +658,40 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   text-align: center;
   text-decoration: none;
   letter-spacing: 0.10000000149011612px;
+
   @include lg {
     font-size: 23px;
     text-align: center;
   }
+
   @include md {
     font-size: 21px;
   }
+
   @include sm {
     font-size: 19px;
   }
+
   @include xs {
     font-size: 18px;
   }
+
   @include xxs {
     font-size: 17px;
   }
+
   position: relative;
   flex: 0 0 auto;
   min-width: 149px;
   margin: 6px 0px;
 }
+
 .row4__item {
   @include flex-column;
   position: relative;
   flex: 0 1 43px;
 }
+
 .icon5 {
   width: 37px;
   height: 36px;
@@ -557,69 +701,85 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   position: relative;
   min-width: 37px;
   margin: 0px 0px 0px 6px;
+
   @include lg {
     margin: 0px 0px 0px 5px;
   }
 }
+
 .row2__spacer {
   @include flex-column;
   position: relative;
   flex: 0 1 103px;
+
   @include lg {
     display: none;
   }
 }
+
 .row2__item1 {
   @include flex-column;
   position: relative;
   flex: 1 1 539.5px;
+
   @include lg {
     flex: 0 0 100%;
   }
 }
+
 .medium_title1 {
   @include h-center-content;
   font: $font_type_0;
   color: $color_type_5;
   text-align: center;
   letter-spacing: 0.10000000149011612px;
+
   @include lg {
     font-size: 23px;
     text-align: center;
   }
+
   @include md {
     font-size: 21px;
   }
+
   @include sm {
     font-size: 19px;
   }
+
   @include xs {
     font-size: 18px;
   }
+
   @include xxs {
     font-size: 17px;
   }
+
   position: relative;
   flex: 0 0 auto;
   min-width: 203px;
   min-height: 24px;
   margin: 68.01px 0px 0px;
 }
+
 .row3__spacer {
   @include flex-column;
   position: relative;
   flex: 0 0 250px;
 }
+
 .col4 {
   @include flex-column;
   position: relative;
   flex: 0 1 0px;
   margin: 30px 0px 30px;
 }
+
 .col4__item {
   @include flex-column;
   position: left;
 }
+
 .image6 {
   width: 100%;
   height: auto;
@@ -630,53 +790,67 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   object-fit: contain;
   object-position: center top;
 }
+
 .image6:hover {
   transform: scale(1.5);
 }
+
 .medium_title11 {
   @include h-center-content;
   font: $font_type_0;
   color: $color_type_5;
   text-align: center;
   letter-spacing: 0.10000000149011612px;
+
   @include lg {
     font-size: 23px;
     text-align: center;
   }
+
   @include md {
     font-size: 21px;
   }
+
   @include sm {
     font-size: 19px;
   }
+
   @include xs {
     font-size: 18px;
   }
+
   @include xxs {
     font-size: 17px;
   }
+
   position: relative;
   margin: 6.01px 0px 0px;
 }
+
 .group1 {
   @include flex-column;
   position: relative;
   margin: 19px 6.5px 0px 8px;
+
   @include lg {
     margin: 19px 6px 0px 7px;
   }
+
   @include md {
     margin: 19px 5px 0px 6px;
   }
+
   @include sm {
     margin: 19px 5px 0px;
   }
 }
+
 .group2 {
   @include flex-column;
   position: relative;
   flex-grow: 0;
 }
+
 .rect2 {
   background-color: $color_type_4;
   border-radius: $border_radius_type_0;
@@ -687,6 +861,7 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   position: relative;
   margin-right: 100px;
 }
+
 .col5 {
   @include flex-column;
   width: 19px;
@@ -695,10 +870,12 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   top: 60px;
   right: 110px;
 }
+
 .col5__item {
   @include flex-column;
   position: relative;
 }
+
 .image5 {
   width: 16px;
   height: 10px;
@@ -708,16 +885,19 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   position: relative;
   min-width: 16px;
   margin: 0px 3px 0px 0px;
+
   @include lg {
     margin: 0px 5px 0px 0px;
   }
 }
+
 .rect3 {
   background-color: $color_type_2;
   height: 87px;
   position: relative;
   margin: 9px 0px 0px;
 }
+
 .image51 {
   width: 16px;
   height: 10px;
@@ -727,10 +907,12 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   position: relative;
   min-width: 16px;
   margin: 478px 0px 0px 3px;
+
   @include lg {
     margin: 478px 0px 0px 5px;
   }
 }
+
 .col6 {
   @include flex-column;
   width: 458px;
@@ -739,12 +921,14 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   top: 21px;
   left: -8px;
 }
+
 .row5 {
   display: flex;
   width: 59.17%;
   position: relative;
   margin: 0px 3.71% 0px 37.12%;
 }
+
 .row5__item {
   @include flex-column;
   position: relative;
@@ -752,15 +936,31 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   align-items: center
   
   ;
+  flex: 0 1 27px;
+  margin-right: 20px;
 }
+
+.image4 {
+  width: 27px;
+  height: 30px;
+  vertical-align: top;
+  object-fit: contain;
+  object-position: center top;
+  position: relative;
+  min-width: 27px;
+  margin: 5px 0px 3px;
+}
+
 .row5__item1 {
   @include flex-column;
   position: relative;
-  flex: 0 1 244px;
+  flex: 0 1 2px;
 }
+
 .filterInput {
-  margin-left: 150%;
+  margin-left: -10%;
 }
+
 .box3 {
   @include flex-column;
   background-color: $color_type_4;
@@ -770,55 +970,69 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   position: relative;
   flex-grow: 1;
   margin: 0px 0px 0px 12px;
+
   @include lg {
     margin: 0px 0px 0px 11px;
   }
+
   @include md {
     margin: 0px 0px 0px 9px;
   }
+
   @include sm {
     margin: 0px 0px 0px 8px;
   }
+
   @include xs {
     margin: 0px 0px 0px 7px;
   }
+
   @include xxs {
     margin: 0px 0px 0px 6px;
   }
 }
+
 .highlights21 {
   @include v-center-content;
   @include font-face($font_type_3, $color_type_3, 0px);
+
   @include lg {
     font-size: 15px;
     text-align: left;
     margin: 8px 11px 6px;
   }
+
   @include md {
     font-size: 14px;
     margin: 8px 9px 6px;
   }
+
   @include sm {
     font-size: 13px;
     margin: 8px 8px 6px;
   }
+
   @include xxs {
     font-size: 12px;
     margin: 8px 6px 6px;
   }
+
   position: relative;
   flex-grow: 1;
   min-height: 24px;
   margin: 8px 12px 6px;
+
   @include xs {
     margin: 8px 7px 6px;
   }
 }
+
 .col7 {
   @include flex-column;
   position: relative;
   margin: 52px 0px 0px;
 }
+
 .highlights3 {
   @include h-center-content;
   font: $font_type_2;
@@ -826,23 +1040,29 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   text-align: center;
   letter-spacing: 0.10000000149011612px;
   width: 145px;
+
   @include lg {
     font-size: 15px;
     text-align: center;
   }
+
   @include md {
     font-size: 14px;
   }
+
   @include sm {
     font-size: 13px;
   }
+
   @include xxs {
     font-size: 12px;
   }
+
   position: relative;
   min-height: 24px;
   min-width: 145px;
 }
+
 .box2 {
   @include flex-column;
   background-color: $color_type_4;
@@ -853,38 +1073,47 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   position: relative;
   margin: 2px 0% 0px 9.61%;
 }
+
 .highlights11 {
   @include v-center-content;
   @include font-face($font_type_3, $color_type_0, 0px);
+
   @include lg {
     font-size: 15px;
     text-align: left;
   }
+
   @include md {
     font-size: 14px;
   }
+
   @include sm {
     font-size: 13px;
   }
+
   @include xxs {
     font-size: 12px;
   }
+
   position: relative;
   flex-grow: 1;
   min-height: 24px;
   margin: 0px 0px 67px;
 }
+
 .col8 {
   @include flex-column;
   position: relative;
   margin: 11px 0px 0px;
 }
+
 .wrapper3 {
   @include flex-column;
   background-color: $color_type_5;
   position: relative;
   margin: 65px 0px 0px;
 }
+
 .info {
   @include v-center-content;
   justify-content: center;
@@ -897,18 +1126,23 @@ $font_type_5: 600 12px/1.33 "Mulish", Helvetica, Arial, serif;
   flex-grow: 1;
   min-height: 16px;
   margin: 24px auto;
+
   @include md {
     width: 57.81%;
   }
+
   @include sm {
     width: 64.62%;
   }
+
   @include xs {
     width: 70.89%;
   }
+
   @include xxs {
     width: 76.45%;
   }
+
   @include tn {
     width: 81.23%;
   }

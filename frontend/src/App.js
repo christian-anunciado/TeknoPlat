@@ -1,24 +1,26 @@
-import SamplePage from "./pages/SamplePage";
 import {
   HashRouter as Router,
   Route,
   Routes
 } from "react-router-dom";
-import { useEffect } from 'react'
 import { useState } from 'react'
 import Login from "./pages/LoginPage/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import AddSession from "./pages/AddSession/AddSession";
 import Session from "./pages/JoinSession/Session";
+import SessionRoom from "./pages/Session/SessionRoom";
 import JoinSession from "./pages/JoinSession/JoinSession";
 import InSession from "./pages/JoinSession/InSession";
-// import "./style/style.scss";
-import Navbar from "./components/Navbar/Navbar";
-
-import SessionsLobby from "./pages/SessionsLobby/SessionsLobby";
 import Profile from "./pages/Profile/Profile";
 import EditProfile from "./pages/Profile/EditProfile";
+=======
+import RatingSession from "./pages/Rating/RatingSession";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./style/flexboxgrid.min.css";
+import './style/index.css';
+import LandingPage from "./pages/SamplePage";
 function App() {
   const [name, setName] = useState("")
 
@@ -47,15 +49,16 @@ function App() {
 
         */}
         <Route path="/">
-          <Route index element={<SamplePage />} />
+          <Route index element={<LandingPage />} />
           <Route path="dashboard" element={<Dashboard name={name} />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="add_session" element={<AddSession />} />
-          <Route path="session" element={<Session />} />
+          <Route path="session" element={<SessionRoom />} />
+          <Route path="search_session" element={<Session />} />
+          <Route path="rating_session" element={<RatingSession />} />
           <Route path="joinsession/:id" element={<JoinSession />} />
           <Route path="insession/:id" element={<InSession />} />
-          <Route path="sessionLobby/:room" element={<SessionsLobby />} />
           <Route path="profile" element={<Profile />} />
           <Route path="editProfile" element={<EditProfile />} />
         </Route>
