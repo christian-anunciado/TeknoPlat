@@ -1,11 +1,14 @@
+import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import {Link} from 'react-router-dom'
+import Navbar from '../components/Navbar/Navbar'
 
 const Dashboard = ({name}) => {
-
+    const [session,setSession] = useState([]);
     const [username,setUsername] = useState("")
+    let form = new FormData();
 
     useEffect(() => {
         setUsername(name)
@@ -16,13 +19,31 @@ const Dashboard = ({name}) => {
             headers: {'Content-Type': 'application/json'},
             credentials: 'include',
         });
-    }
+    }     
+    useEffect(()=>{
+        const fetchSession = async () => {
+            const response = await axios.get('http://localhost:8000/api/joinsession')
+            setSession(response.data)
+        }
+        fetchSession()
+    },[])    
+    
     return (
         <div>
-            <h1>Sample Page</h1>
-            <h3>Sample Api Call:</h3>
+            <Navbar/>
+            <h1>Dashboard</h1>
+         
             <h1> Welcome: {name} </h1>
             <Link to="/login" onClick={logout}>Logout</Link>
+            <h1>Sessions:</h1>
+            {session.map((sessions, index) => {
+                       
+                            return (
+                              <p>{sessions.sessionName}</p>
+                            );
+                          
+                         
+                        })}
         </div>
     )
 }

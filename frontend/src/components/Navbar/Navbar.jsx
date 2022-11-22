@@ -74,6 +74,8 @@ const Wrapper = styled.nav`
   top: 0;
   left: 0;
   z-index: 999;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+
 `;
 const NavInner = styled.div`
   position: relative;
