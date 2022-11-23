@@ -1,14 +1,16 @@
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { useState, useContext } from 'react'
+import Navbar from '../../components/Navbar-Out/Navbar-Out'
+import "./Login.scss"
+import AuthContext from '../../context/AuthContext'
 
 const Login = () => {
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    let {loginUser} = useContext(AuthContext)
 
-    const loginUser = async () => {
+    /*const loginUser = async () => {
         await fetch('http://localhost:8000/api/auth', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -18,52 +20,29 @@ const Login = () => {
                 password
             })
         });
-    }
-
-
-    /*const loginUser = async () => {
-        let formField = new FormData()
-
-        formField.append('email',email)
-        formField.append('password',password)
-
-        await axios({
-            method: 'post',
-            url: 'http://localhost:8000/api/auth',
-            headers: {
-                'Accept' : 'application/json',
-                //'Content-Type': 'application/json;charset=UTF-8'
-            },
-            data: formField
-        }).then((response) => {
-            console.log(response.data);
-        })
     } */
 
     return (
         <>
-
-            <div className='container'>
-                <h1>Login</h1>
-
-                <input
+        <Navbar />
+            <div className='login-container'>
+            <h1>Login</h1> <br/>
+               <form onSubmit={loginUser}>
+                    <input 
                     type="text"
                     placeholder="Enter email"
                     name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                /> <br />
+                    /> <br/>
 
-                <input
+                    <input 
                     type="password"
                     placeholder="Enter password"
                     name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                /> <br />
-
-                <Link to="/dashboard" onClick={loginUser}>Login</Link>
+                    /> <br/>
+                    <button className='submit-button' type='submit'>Login</button>
+                </form>
             </div>
+                
         </>
     )
 }

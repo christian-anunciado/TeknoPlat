@@ -1,24 +1,23 @@
-.login-container{
-    color: black;
+
+.register-container {
+    margin-top: 2em;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 2px;
-    padding-top: 2%;
+    gap: 2em;
 
     input {
         width: 250px;
-        padding: 8px 8px;
+        padding: 8px 12px;
     }
 
     .submit-button {
         color: white;
-        background-color: black;
         font-size: medium;
-        padding: 8px 8px;
-        width: 150px;
-        text-align: center;
+        background-color: black;
+        padding: 14px 10px;
+        width: 200px;
         cursor: pointer;
     }
 }

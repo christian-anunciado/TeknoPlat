@@ -1,17 +1,12 @@
 import { useState } from "react";
 import { useHMSActions } from "@100mslive/react-sdk";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
 
-function JoinForm({ role, setRole }) {
+function JoinForm() {
     const hmsActions = useHMSActions();
     const [inputValues, setInputValues] = useState({
         name: "",
         token: ""
     });
-
-    const { state } = useLocation()
-    const { sessionID } = state || {}
 
     const handleInputChange = (e) => {
         setInputValues((prevValues) => ({
@@ -22,26 +17,11 @@ function JoinForm({ role, setRole }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const req = await axios.post('http://localhost:8000/api/generateAppToken', {
-                "room_id": sessionID,
-                "role": role,
-                "user_id": inputValues.name
-            })
-            if (req) {
-                await hmsActions.join({
-                    userName: inputValues.name,
-                    authToken: req.data
-                });
-            }
-        } catch (err) {
-            alert(err)
-        }
-
+        await hmsActions.join({
+            userName: inputValues.name,
+            authToken: inputValues.token
+        });
     };
-
-    console.log(sessionID);
-    console.log(role);
 
     return (
         <form onSubmit={handleSubmit}>
@@ -60,7 +40,7 @@ function JoinForm({ role, setRole }) {
 
             <div className="input-container">
                 <label for="cars">Choose a role: </label>
-                <select name="cars" id="cars" value={role} onChange={(e) => setRole(e.target.value)}>
+                <select name="cars" id="cars">
                     <option value="creator">Creator</option>
                     <option value="participant">Participant</option>
                 </select>
