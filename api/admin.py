@@ -9,12 +9,10 @@ from .models import RatingModel
 
 
 class SessionAdminConfig(admin.ModelAdmin):
-    list_display = ('sessionName', 'sessionDescription',
+    list_display = ('id', 'sessionName', 'sessionDescription',
                     'searchID', 'startsAt', 'status')
     search_fields = ('sessionName', 'searchID')
     ordering = ['id']
-    # fields = ('creator', 'sessionID', 'sessionName', 'sessionDescription',
-    #           'sessionPassword', 'searchID', 'status', 'startsAt')
     fields = ()
 
     filter_horizontal = ()

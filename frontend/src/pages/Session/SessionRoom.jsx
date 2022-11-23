@@ -3,17 +3,22 @@ import Navbar from '../../components/Navbar/Navbar'
 import './sessionRoom.scss'
 import Settings from '../../components/SessionRoom/Settings'
 import Stream from '../../components/SessionRoom/Stream'
-import { selectIsConnectedToRoom, selectPeers, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
+import { selectIsConnectedToRoom, selectLocalPeer, selectPeers, selectRemotePeers, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
 import JoinForm from './JoinForm';
 
 function SessionRoom() {
-    const [peer, setPeer] = useState(null)
-    const peers = useHMSStore(selectPeers);
+    const [role, setRole] = useState("creator")
+    const [peer, setPeer] = useState([])
+    const localPeer = useHMSStore(selectPeers);
+    const remotePeer = useHMSStore(selectRemotePeers);
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const hmsActions = useHMSActions();
 
 
-
+    console.log("session: ", role);
+    console.log("Lpeer: ", localPeer);
+    console.log("Rpeer: ", remotePeer);
+    console.log("peer: ", peer);
     useEffect(() => {
         window.onunload = () => {
             if (isConnected) {
@@ -23,19 +28,20 @@ function SessionRoom() {
     }, [hmsActions, isConnected]);
 
 
+
     return (
         <div className='main-content'>
             <Navbar />
             {isConnected ? (
                 <div className='sessionRoom'>
                     <div className="sessionRoom-container">
-                        <Settings />
-                        <Stream peers={peers} />
+                        <Settings role={role} />
+                        <Stream peers={role === 'creator' ? localPeer : remotePeer} role={role} />
 
                     </div>
                 </div>
             ) : (
-                <JoinForm />
+                <JoinForm setRole={setRole} role={role} />
             )
             }
         </div>
