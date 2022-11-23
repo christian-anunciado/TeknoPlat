@@ -4,7 +4,7 @@ import SessionNav from './SessionNav'
 import Video from './Video'
 
 
-function Stream({ peers }) {
+function Stream({ peers, role }) {
 
 
 
