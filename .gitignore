@@ -3,4 +3,7 @@
 env/
 *.pyc
 pycache/
+<<<<<<< HEAD
+=======
 .env
+>>>>>>> a196bdf5166b02bc794a5cc7a2cfbee47e7726dd

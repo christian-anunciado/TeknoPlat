@@ -3,6 +3,7 @@ from .models import SampleModel
 from .models import UserModel
 from .models import SessionModel
 from .models import RatingModel
+from rest_framework import serializers
 
 
 class SampleModelSerializer(ModelSerializer):
@@ -11,9 +12,26 @@ class SampleModelSerializer(ModelSerializer):
         fields = '__all__'
 
 class UserModelSerializer(ModelSerializer):
+    id = serializers.UUIDField(read_only=True)
+    first_name = serializers.CharField(max_length=45)
+    last_name = serializers.CharField(max_length=45)
+    email = serializers.EmailField(required=True)
+    institute = serializers.CharField(max_length=45)
+    password = serializers.CharField(min_length=8, write_only=True)
+
     class Meta:
         model = UserModel
-        fields = ['userID', 'firstname', 'lastname', 'email', 'username', 'password']
+        fields = ['id','first_name','last_name','email','username','institute','password']
+
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        # as long as the fields are the same, we can just use this
+        instance = self.Meta.model(**validated_data)
+        if password is not None:
+            instance.set_password(password)
+        instance.save()
+        return instance
+
 
 
 class SessionModelSerializer(ModelSerializer):

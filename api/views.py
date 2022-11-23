@@ -5,6 +5,7 @@ from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from .models import SampleModel
 from .models import SessionModel
 from .serializers import SampleModelSerializer
@@ -17,6 +18,8 @@ import jwt
 import datetime
 import uuid
 from django.conf import settings
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 # Learn more about django_rest_framework here:
@@ -96,13 +99,14 @@ def authUser(request):
     user = UserModel.objects.filter(email=email).first()
 
     if user is None:
-        return Response("User not found")
+        raise AuthenticationError("User not found")
 
-    if not user.password:
-        return Response("Incorrect password")
+    #if not user.password:
+     #   raise AuthenticationError("Incorrect Password")
 
     payload = {
         'id': user.userID,
+        'email': user.email,
         'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
         'iat': datetime.datetime.utcnow()
     }
@@ -126,12 +130,12 @@ def getAuthUser(request):
     print(token)
 
     if not token:
-        Response("Unauthenticated")
+        raise AuthenticationError("Unauthenticated")
 
     try:
         payload = jwt.decode(token, 'secret', algorithms=['HS256'])
     except jwt.ExpiredSignatureError:
-        Response("Unauthenticated")
+        raise AuthenticationError("Expired")
 
     user = UserModel.objects.filter(userID=payload['id']).first()
     serializer = UserModelSerializer(user)
@@ -169,7 +173,7 @@ def setSessionModel(request):
     serializeUser = SessionModelSerializer(data=request.data)
     if serializeUser.is_valid():
         serializeUser.save()
-        return Response(serializeUser.data)
+        return Response()
     return Response(serializeUser.errors)
 
 
@@ -200,8 +204,8 @@ def get100MsKeys(request):
 
 @api_view(['GET'])
 def generateManagementToken(request):
-    app_access_key = settings.APP_KEY_100MS
-    app_secret = settings.SECRET_KEY_100MS
+    app_access_key = '6372de82a04fa8bc9163c888'
+    app_secret = 'nH6grEk7yAMdjtvp3JEpSHDa0w95Iv_DkiC_ylkAmhM6xmx5TRkaIswO-TN1t-55uoRV5CqFavbvW3jzcM9yr8W81D009tMUYZR0JDVjAYt_BKwX2HDy1FFtuqCsS5dMg5DfmKOo8VrLMiFgmuiibnfHoCKjIXN_BrjXjzSHAto='
     expires = 24 * 3600
     now = datetime.datetime.utcnow()
     exp = now + datetime.timedelta(seconds=expires)
@@ -217,28 +221,18 @@ def generateManagementToken(request):
     }, key=app_secret)
 
     return Response(management_token)
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, usermodel):
+        token = super().get_token(usermodel)
 
+        # Add custom claims
+        token['username'] = usermodel.username
+        token['first_name'] = usermodel.first_name
+        token['last_name'] = usermodel.last_name
+        # ...
 
-@api_view(['POST'])
-def generateAppToken(request):
-    res = request.data
-    app_access_key = settings.APP_KEY_100MS
-    app_secret = settings.SECRET_KEY_100MS
-    expires = 24 * 3600
-    now = datetime.datetime.utcnow()
-    exp = now + datetime.timedelta(seconds=expires)
+        return token
 
-    app_token = jwt.encode(payload={
-        "access_key": app_access_key,
-        "type": "app",
-        "version": 2,
-        "room_id": res['room_id'],
-        "user_id": res['user_id'],
-        "role": res['role'],
-        "jti": str(uuid.uuid4()),
-        "exp": exp,
-        "iat": now,
-        "nbf": now,
-    }, key=app_secret)
-
-    return Response(app_token)
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
