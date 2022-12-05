@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-scroll";
 import { useNavigate } from "react-router-dom";
 // Components
 import Sidebar from "./Sidebar";
@@ -27,26 +26,26 @@ export default function TopNavbar() {
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
       <Wrapper className="flexCenter animate whiteBg" style={y > 100 ? { height: "60px" } : { height: "80px" }}>
-        <NavInner className="container flexSpaceCenter">
-          <Link className="pointer flexNullCenter" to="home" smooth={true}>
+        <NavInner className="container flexSpaceCenter" onClick={() => navigate('/')}>
+          <div className="pointer flexNullCenter" smooth={true}>
             <LogoIcon />
             <h1 style={{ marginLeft: "15px" }} className="font20 extraBold">
               TeknoPlat
             </h1>
-          </Link>
+          </div>
           <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
             <BurgerIcon />
           </BurderWrapper>
           <UlWrapperRight className="flexNullCenter">
             <li className="semiBold font15 pointer">
-              <a onClick={()=>{
+              <a onClick={() => {
                 navigate("/login")
               }} style={{ padding: "10px 30px 10px 0" }}>
                 Log in
               </a>
             </li>
             <li className="semiBold font15 pointer flexCenter">
-              <a onClick={()=>{
+              <a onClick={() => {
                 navigate("/register")
               }} className="radius8 lightBg" style={{ padding: "10px 15px" }}>
                 Create an Account
