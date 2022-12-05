@@ -1,14 +1,17 @@
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { useState, useContext } from 'react'
+import LoginNav from '../../components/Nav/LoginNav'
+import "./Login.scss"
+import AuthContext from '../../context/AuthContext'
+import header from '../../assets/img/header.png'
 
 const Login = () => {
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    let {loginUser} = useContext(AuthContext)
 
-    const loginUser = async () => {
+    /*const loginUser = async () => {
         await fetch('http://localhost:8000/api/auth', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -18,51 +21,30 @@ const Login = () => {
                 password
             })
         });
-    }
-
-
-    /*const loginUser = async () => {
-        let formField = new FormData()
-
-        formField.append('email',email)
-        formField.append('password',password)
-
-        await axios({
-            method: 'post',
-            url: 'http://localhost:8000/api/auth',
-            headers: {
-                'Accept' : 'application/json',
-                //'Content-Type': 'application/json;charset=UTF-8'
-            },
-            data: formField
-        }).then((response) => {
-            console.log(response.data);
-        })
     } */
 
     return (
         <>
+        <LoginNav />
+            <div>
+                <div>
+                    <img src={header} width='900' height='700'></img>
+                </div>
+                <form onSubmit={loginUser} className='login-container'>
+                    <h1>Login</h1> 
+                        <input 
+                        type="text"
+                        placeholder="Enter email"
+                        name="email"
+                        /> <br/>
 
-            <div className='container'>
-                <h1>Login</h1>
-
-                <input
-                    type="text"
-                    placeholder="Enter email"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                /> <br />
-
-                <input
-                    type="password"
-                    placeholder="Enter password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                /> <br />
-
-                <Link to="/dashboard" onClick={loginUser}>Login</Link>
+                        <input 
+                        type="password"
+                        placeholder="Enter password"
+                        name="password"
+                        /> <br/>
+                        <button className='submit-button' >Login</button>
+                    </form>
             </div>
         </>
     )

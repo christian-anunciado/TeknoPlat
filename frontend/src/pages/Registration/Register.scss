@@ -1,19 +1,15 @@
-.login-container {
-    margin-top: 7em;
+
+.register-container {
+    margin-top: 5em;
     display: flex;
-    float: right;
-    margin-right: 24em;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 1px;
-    border:solid;
-    border-width: thin;
-    padding: 5em;
+    gap: 2em;
 
     input {
         width: 250px;
-        padding: 8px 8px;
+        padding: 8px 12px;
     }
 
     .submit-button {
@@ -24,13 +20,4 @@
         width: 200px;
         cursor: pointer;
     }
-    
-    
 }
-
-img{
-        width: 50%;
-        height: auto;
-        object-position: 90px 50px;
-        float: left;
-    }

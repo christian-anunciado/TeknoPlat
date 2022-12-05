@@ -9,7 +9,7 @@ import { blueGrey, pink } from '@mui/material/colors'
 
 import { selectIsConnectedToRoom, selectIsSomeoneScreenSharing, useAVToggle, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
 
-function Settings({ role }) {
+function Settings() {
     const {
         isLocalAudioEnabled,
         isLocalVideoEnabled,
@@ -35,34 +35,28 @@ function Settings({ role }) {
     return (
         <div className='sessionSettings-container'>
             <div className='setting-icons topIcon'>
-                {role === 'creator' ? (
-                    <>
-                        <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }} onClick={toggleAudio}>
-                            {isLocalAudioEnabled ?
-                                <BiMicrophone className='button-setting' /> :
-                                <BiMicrophoneOff className='button-setting' />
-                            }
-                        </Button>
 
-                        <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }} onClick={toggleVideo}>
-                            {isLocalVideoEnabled ?
-                                <BsCameraVideo className='button-setting' /> :
-                                <BsCameraVideoOff className='button-setting' />
-                            }
+                <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }} onClick={toggleAudio}>
+                    {isLocalAudioEnabled ?
+                        <BiMicrophone className='button-setting' /> :
+                        <BiMicrophoneOff className='button-setting' />
+                    }
+                </Button>
 
-                        </Button>
+                <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }} onClick={toggleVideo}>
+                    {isLocalVideoEnabled ?
+                        <BsCameraVideo className='button-setting' /> :
+                        <BsCameraVideoOff className='button-setting' />
+                    }
 
-                        <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }} onClick={toggleShareScreen}>
-                            {screenShareOn ?
-                                <MdOutlineScreenShare className='button-setting' /> :
-                                <MdOutlineStopScreenShare className='button-setting' />
-                            }
-                        </Button>
-                    </>) : (
+                </Button>
 
-                    null
-                )
-                }
+                <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }} onClick={toggleShareScreen}>
+                    {screenShareOn ?
+                        <MdOutlineScreenShare className='button-setting' /> :
+                        <MdOutlineStopScreenShare className='button-setting' />
+                    }
+                </Button>
 
                 <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }}>
                     <BsPeople className='button-setting' />
