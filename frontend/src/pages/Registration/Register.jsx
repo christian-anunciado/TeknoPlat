@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import Navbar from '../../components/Navbar-Out/Navbar-Out'
+import LoginNav from '../../components/Nav/LoginNav'
 import "./Register.scss"
 
 
@@ -34,15 +34,16 @@ const Register = () => {
         }).then((response) => {
             console.log(response.data);
         })
-        // setFN("")
-        // setLN("")
-        // setEmail("")
-        // setInstitute("")
-        // setPassword("")
+        setFN("")
+        setLN("")
+        setEmail("")
+        setInstitute("")
+        setUN("")
+        setPassword("")
     }
     return (
         <>
-        <Navbar />
+        <LoginNav />
         <div className='register-container'>
             <h1>Register</h1>
 
@@ -95,7 +96,6 @@ const Register = () => {
                 /> 
 
                 <button className='submit-button' onClick={registerUser}>Sign Up</button>
-
         </div>
         </>
     )

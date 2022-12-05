@@ -25,9 +25,6 @@ import './style/index.css';
 import LandingPage from "./pages/LandingPage";
 
 function App() {
-  const [name, setName] = useState("")
-
-function App() {
 
   return (
     <Router>
@@ -38,19 +35,23 @@ function App() {
             Sample:
               instead of http://localhost:3000/login, http://localhost:3000/#/login
         */}
-        <Route path="/">
-          <Route index element={<LandingPage />} />
-          <Route path="dashboard" element={<Dashboard name={name} />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="add_session" element={<AddSession />} />
-          <Route path="session" element={<SessionRoom />} />
-          <Route path="search_session" element={<Session />} />
-          <Route path="rating_session" element={<RatingSession />} />
-          <Route path="joinsession/:id" element={<JoinSession />} />
-          <Route path="insession/:id" element={<InSession />} />
-          <Route path="profile" element={<Profile />} />
-        </Route>
+          <Route path="/">
+            <Route index element={<LandingPage />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="add_session" element={<AddSession />} />
+              <Route path="session" element={<SessionRoom />} />
+              <Route path="search_session" element={<Session />} />
+              <Route path="rating_session" element={<RatingSession />} />
+              <Route path="joinsession/:id" element={<JoinSession />} />
+              <Route path="insession/:id" element={<InSession />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
+            
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            
+          </Route>
         </Routes>
       </AuthProvider>
     </Router>

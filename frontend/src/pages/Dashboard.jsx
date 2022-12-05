@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, axios } from 'react'
 import { useEffect } from 'react'
 import { useContext } from 'react'
 import {Link} from 'react-router-dom'
@@ -23,7 +23,6 @@ const Dashboard = () => {
     
     return (
       <>
-        <Navbar />
         <div>
             <Navbar/>
             <h1>Dashboard</h1>

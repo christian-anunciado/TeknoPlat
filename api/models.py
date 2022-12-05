@@ -65,12 +65,6 @@ class UserModel(AbstractUser):
 #     USERNAME_FIELD = 'email'
 #     REQUIRED_FIELDS = []
 
-    USERNAME_FIELD = 'username'
-
-    def __str__(self):
-        return self.username
-
-
 class SessionModel(models.Model):
     STATUS = [
         (1, "Active"),

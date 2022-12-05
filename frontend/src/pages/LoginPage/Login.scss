@@ -1,11 +1,15 @@
-.login-container{
-    color: black;
+.login-container {
+    margin-top: 7em;
     display: flex;
+    float: right;
+    margin-right: 24em;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 2px;
-    padding-top: 2%;
+    gap: 1px;
+    border:solid;
+    border-width: thin;
+    padding: 5em;
 
     input {
         width: 250px;
@@ -14,11 +18,19 @@
 
     .submit-button {
         color: white;
-        background-color: black;
         font-size: medium;
-        padding: 8px 8px;
-        width: 150px;
-        text-align: center;
+        background-color: black;
+        padding: 14px 10px;
+        width: 200px;
         cursor: pointer;
     }
+    
+    
 }
+
+img{
+        width: 50%;
+        height: auto;
+        object-position: 90px 50px;
+        float: left;
+    }

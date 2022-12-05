@@ -8,8 +8,8 @@ export default AuthContext;
 
 export const AuthProvider = ({children}) => {
     
-    let [user,setUser] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
-    let [authToken,setAuthToken] = useState(() => localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
+    let [user,setUser] = useState(() => localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
+    let [authToken,setAuthToken] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [loading,setLoading] = useState(true)
 
     const history = useNavigate()
@@ -66,7 +66,8 @@ export const AuthProvider = ({children}) => {
     }
 
     let contextData = {
-        user:user,      
+        user:user,
+        authToken:authToken,    
         loginUser:loginUser,
         logoutUser:logoutUser
     }
@@ -76,7 +77,7 @@ export const AuthProvider = ({children}) => {
             updateToken()
         }
         let time = 1000 * 60 * 4
-        let interval = setInterval(()=>{
+        let interval = setInterval(()=> {
             if(authToken){
                 updateToken()
             }

@@ -2,9 +2,10 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useState, useContext } from 'react'
-import Navbar from '../../components/Navbar-Out/Navbar-Out'
+import LoginNav from '../../components/Nav/LoginNav'
 import "./Login.scss"
 import AuthContext from '../../context/AuthContext'
+import header from '../../assets/img/header.png'
 
 const Login = () => {
 
@@ -24,25 +25,27 @@ const Login = () => {
 
     return (
         <>
-        <Navbar />
-            <div className='login-container'>
-            <h1>Login</h1> <br/>
-               <form onSubmit={loginUser}>
-                    <input 
-                    type="text"
-                    placeholder="Enter email"
-                    name="email"
-                    /> <br/>
+        <LoginNav />
+            <div>
+                <div>
+                    <img src={header} width='900' height='700'></img>
+                </div>
+                <form onSubmit={loginUser} className='login-container'>
+                    <h1>Login</h1> 
+                        <input 
+                        type="text"
+                        placeholder="Enter email"
+                        name="email"
+                        /> <br/>
 
-                    <input 
-                    type="password"
-                    placeholder="Enter password"
-                    name="password"
-                    /> <br/>
-                    <button className='submit-button' type='submit'>Login</button>
-                </form>
+                        <input 
+                        type="password"
+                        placeholder="Enter password"
+                        name="password"
+                        /> <br/>
+                        <button className='submit-button' >Login</button>
+                    </form>
             </div>
-                
         </>
     )
 }
