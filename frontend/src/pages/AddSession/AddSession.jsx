@@ -100,7 +100,7 @@ const AddSession = () => {
 
       <Navbar />
       <div className="add-session">
-        <div className="container">
+        <div className="container_box">
           <div className="title">Create Session</div>
           <div className="content">
             <form >
