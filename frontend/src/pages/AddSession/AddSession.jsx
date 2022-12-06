@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import AuthContext, { AuthProvider } from '../../context/AuthContext'
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import "./AddSession.scss"
 const shortid = require('shortid')
 
@@ -83,17 +85,33 @@ const AddSession = () => {
         session.sessionDescription = ''
         session.sessionPassword = ''
         session.startsAt = ''
-        alert('Succesfully Created')
+        toast.success("Session Created Successfully",{
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
 
       } catch (err) {
-        alert('Fail to create session')
-      }
+       toast.error("Session Creation Failed",{
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      })
+    }
     } catch (err) {
       alert(err)
     }
 
   }
-
+  
   console.log(session);
   return (
     <>
@@ -124,7 +142,11 @@ const AddSession = () => {
                 </div>
               </div>
               <div className="button">
-                <input type="submit" value="Create" onClick={handleSubmit} />
+               
+                <input type="submit" value="Create" onClick={handleSubmit}
+                />
+                <ToastContainer/>
+                
               </div>
             </form>
           </div>
