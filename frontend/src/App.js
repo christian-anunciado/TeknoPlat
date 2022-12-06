@@ -16,6 +16,7 @@ import JoinSession from "./pages/JoinSession/JoinSession";
 import InSession from "./pages/JoinSession/InSession";
 import Profile from "./pages/Profile/Profile";
 import RatingSession from "./pages/Rating/RatingSession";
+import AverageSession from "./pages/Rating/AverageSession";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style/flexboxgrid.min.css";
@@ -40,6 +41,7 @@ function App() {
             <Route path="session" element={<SessionRoom />} />
             <Route path="search_session" element={<Session />} />
             <Route path="rating_session" element={<RatingSession />} />
+            <Route path="average_session" element={<AverageSession />} />
             <Route path="joinsession/:id" element={<JoinSession />} />
             <Route path="insession/:id" element={<InSession />} />
             <Route path="profile" element={<Profile />} />

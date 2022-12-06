@@ -14,6 +14,9 @@ from .serializers import UserModelSerializer
 from .serializers import SessionModelSerializer
 from .models import RatingModel
 from .serializers import RatingModelSerializer
+from .models import AverageRatingModel
+from .serializers import AverageRatingModelSerializer
+from django.db.models import Avg
 import jwt
 import datetime
 import uuid
@@ -191,6 +194,34 @@ def addRateModel(request):
         serializeUser.save()
         return Response(200)
     return Response(serializeUser.errors)
+
+@api_view(['GET'])
+def getAverageRatingModel(request):
+    userModel = AverageRatingModel.objects.all()
+    serializer = AverageRatingModelSerializer(userModel, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def setAverageRatingModel(request):
+
+    rate = RatingModel.objects.filter(sessionID= 1).all()
+
+    if rate is None:
+        raise AuthenticationError("There are no rating in this session")
+
+    avePunctionality = RatingModel.objects.filter(sessionID= 1).all().aggregate(Avg('punctuality'))
+    avePresentation = RatingModel.objects.filter(sessionID= 1).all().aggregate(Avg('presentation'))
+    aveDelivery = RatingModel.objects.filter(sessionID= 1).all().aggregate(Avg('delivery'))
+    aveInnovativeness = RatingModel.objects.filter(sessionID= 1).all().aggregate(Avg('innovativeness'))
+    sID = SessionModel.objects.get(sessionID = 1)
+
+    print(aveInnovativeness)
+    serializeUser = AverageRatingModel(AveragePunctuality = avePunctionality.get('punctuality__avg'), AveragePresentation = avePresentation.get('presentation__avg'),
+                                AverageDelivery = aveDelivery.get('delivery__avg'), AverageInnovativeness = aveInnovativeness.get('innovativeness__avg'), sessionID = sID)
+
+    serializeUser.save()
+    return Response()
 
 
 @api_view(['GET'])

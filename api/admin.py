@@ -4,6 +4,7 @@ from .models import SampleModel
 from .models import UserModel
 from .models import SessionModel
 from .models import RatingModel
+from .models import AverageRatingModel
 
 # Customize your Admin Model here.
 
@@ -40,3 +41,4 @@ admin.site.register(SampleModel)
 admin.site.register(SessionModel, SessionAdminConfig)
 admin.site.register(RatingModel)
 admin.site.register(UserModel,UserAdminConfig)
+admin.site.register(AverageRatingModel)
