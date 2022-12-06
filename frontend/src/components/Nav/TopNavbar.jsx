@@ -50,11 +50,11 @@ export default function TopNavbar() {
             </li>
             <li className="semiBold font15 pointer">
               <Link activeClass="active" style={{ padding: "10px 15px" }} to="projects" spy={true} smooth={true} offset={-80}>
-              Team
+                Team
               </Link>
             </li>
-        
-           
+
+
             <li className="semiBold font15 pointer">
               <Link activeClass="active" style={{ padding: "10px 15px" }} to="contact" spy={true} smooth={true} offset={-80}>
                 Contact
@@ -63,15 +63,15 @@ export default function TopNavbar() {
           </UlWrapper>
           <UlWrapperRight className="flexNullCenter">
             <li className="semiBold font15 pointer">
-              <a onClick={()=>{
+              <a onClick={() => {
                 navigate("/login")
               }} style={{ padding: "10px 30px 10px 0" }}>
                 Log in
               </a>
             </li>
             <li className="semiBold font15 pointer flexCenter">
-              <a onClick={()=>{
-                navigate("/login")
+              <a onClick={() => {
+                navigate("/register")
               }} className="radius8 lightBg" style={{ padding: "10px 15px" }}>
                 Get Started
               </a>

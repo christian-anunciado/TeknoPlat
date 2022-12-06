@@ -57,37 +57,37 @@ const AddSession = () => {
   return (
     <>
 
-      <Navbar/>
+      <Navbar />
       <div className="add-session">
-      <div className="container">
-    <div className="title">Create Session</div>
-    <div className="content">
-      <form >
-        <div className="user-details">
-          <div className="input-box">
-            <span className="details">Session Name</span>
-            <input type="text" name='sessionName' value={session.sessionName} placeholder="Name" onChange={handleChange} required/>
-          </div>
-          <div className="input-box">
-            <span className="details">Date and Time</span>
-            <input type="datetime-local" name="startsAt" value={session.startsAt}placeholder="Select date and time" onChange={handleChange} required/>
-          </div>
-          <div className="input-box">
-            <span className="details">Password</span>
-            <input type="password" name="sessionPassword" value={session.sessionPassword} placeholder="Set password" onChange={handleChange}  required/>
-            
-          </div>
-          <div className="input-box">
-            <span className="details">Session Details</span>
-            <input type="text" name="sessionDescription" value={session.sessionDescription} placeholder="Enter session details" onChange={handleChange}required/>
+        <div className="container">
+          <div className="title">Create Session</div>
+          <div className="content">
+            <form >
+              <div className="user-details">
+                <div className="input-box">
+                  <span className="details">Session Name</span>
+                  <input type="text" name='sessionName' value={session.sessionName} placeholder="Name" onChange={handleChange} required />
+                </div>
+                <div className="input-box">
+                  <span className="details">Date and Time</span>
+                  <input type="datetime-local" name="startsAt" value={session.startsAt} placeholder="Select date and time" onChange={handleChange} min={new Date().toISOString().split('T')[0]} required />
+                </div>
+                <div className="input-box">
+                  <span className="details">Password</span>
+                  <input type="password" name="sessionPassword" value={session.sessionPassword} placeholder="Set password" onChange={handleChange} required />
+
+                </div>
+                <div className="input-box">
+                  <span className="details">Session Details</span>
+                  <input type="text" name="sessionDescription" value={session.sessionDescription} placeholder="Enter session details" onChange={handleChange} required />
+                </div>
+              </div>
+              <div className="button">
+                <input type="submit" value="Create" onClick={handleSubmit} />
+              </div>
+            </form>
           </div>
         </div>
-        <div className="button">
-          <input type="submit" value="Create" onClick={handleSubmit}/>
-        </div>
-      </form>
-    </div>
-  </div>
 
       </div>
     </>
