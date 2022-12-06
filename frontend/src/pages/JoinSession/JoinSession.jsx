@@ -34,7 +34,7 @@ function JoinSession(props) {
     const handlePasswordSubmit = (e) => {
         e.preventDefault()
         if (password === api[0].sessionPassword) {
-            navigate(`/session`)
+            navigate(`/session`, { state: { sessionID: api[0].sessionID } })
         } else {
             alert("Incorrect Password!")
         }
@@ -44,7 +44,7 @@ function JoinSession(props) {
     return (
         <div>
             <Navbar />
-            
+
             <Link to={`/session`} ><button>Go back</button></Link>
             {
                 api.map((apis) => {

@@ -101,7 +101,7 @@ def authUser(request):
     if user is None:
         raise AuthenticationError("User not found")
 
-    #if not user.password:
+    # if not user.password:
      #   raise AuthenticationError("Incorrect Password")
 
     payload = {
@@ -127,7 +127,6 @@ def authUser(request):
 @api_view(['GET'])
 def getAuthUser(request):
     token = request.COOKIES.get('jwt')
-    print(token)
 
     if not token:
         raise AuthenticationError("Unauthenticated")
@@ -204,9 +203,8 @@ def get100MsKeys(request):
 
 @api_view(['GET'])
 def generateManagementToken(request):
-    app_access_key = '6372de82a04fa8bc9163c888'
-    app_secret = 'nH6grEk7yAMdjtvp3JEpSHDa0w95Iv_DkiC_ylkAmhM6xmx5TRkaIswO-TN1t-55uoRV5CqFavbvW3jzcM9yr8W81D009tMUYZR0JDVjAYt_BKwX2HDy1FFtuqCsS5dMg5DfmKOo8VrLMiFgmuiibnfHoCKjIXN_BrjXjzSHAto='
-    expires = 24 * 3600
+    app_access_key = settings.APP_KEY_100MS
+    app_secret = settings.SECRET_KEY_100MS
     now = datetime.datetime.utcnow()
     exp = now + datetime.timedelta(seconds=expires)
 
@@ -221,6 +219,33 @@ def generateManagementToken(request):
     }, key=app_secret)
 
     return Response(management_token)
+
+
+@api_view(['POST'])
+def generateAppToken(request):
+    res = request.data
+    app_access_key = settings.APP_KEY_100MS
+    app_secret = settings.SECRET_KEY_100MS
+    expires = 24 * 3600
+    now = datetime.datetime.utcnow()
+    exp = now + datetime.timedelta(seconds=expires)
+
+    app_token = jwt.encode(payload={
+        "access_key": app_access_key,
+        "type": "app",
+        "version": 2,
+        "room_id": res['room_id'],
+        "user_id": res['user_id'],
+        "role": res['role'],
+        "jti": str(uuid.uuid4()),
+        "exp": exp,
+        "iat": now,
+        "nbf": now,
+    }, key=app_secret)
+
+    return Response(app_token)
+
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, usermodel):
@@ -233,6 +258,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # ...
 
         return token
+
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
