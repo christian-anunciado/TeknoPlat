@@ -205,7 +205,7 @@ def getAverageRatingModel(request):
 @api_view(['POST'])
 def setAverageRatingModel(request):
 
-    rate = RatingModel.objects.filter(sessionID= 1).all()
+    rate = RatingModel.objects.filter(sessionID = 1).all()
 
     if rate is None:
         raise AuthenticationError("There are no rating in this session")
@@ -216,13 +216,11 @@ def setAverageRatingModel(request):
     aveInnovativeness = RatingModel.objects.filter(sessionID= 1).all().aggregate(Avg('innovativeness'))
     sID = SessionModel.objects.get(sessionID = 1)
 
-    print(aveInnovativeness)
     serializeUser = AverageRatingModel(AveragePunctuality = avePunctionality.get('punctuality__avg'), AveragePresentation = avePresentation.get('presentation__avg'),
                                 AverageDelivery = aveDelivery.get('delivery__avg'), AverageInnovativeness = aveInnovativeness.get('innovativeness__avg'), sessionID = sID)
 
     serializeUser.save()
     return Response()
-
 
 @api_view(['GET'])
 def get100MsKeys(request):
