@@ -70,7 +70,7 @@ const AddSession = () => {
                 </div>
                 <div className="input-box">
                   <span className="details">Date and Time</span>
-                  <input type="datetime-local" name="startsAt" value={session.startsAt} placeholder="Select date and time" onChange={handleChange} min={new Date().toISOString().split('T')[0]} required />
+                  <input type="datetime-local" name="startsAt" value={session.startsAt} placeholder="Select date and time" onKeyDown={(e) => e.preventDefault()} onChange={handleChange} min={new Date().toISOString().slice(0, 16)} required/>
                 </div>
                 <div className="input-box">
                   <span className="details">Password</span>
