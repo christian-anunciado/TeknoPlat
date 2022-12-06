@@ -1,10 +1,15 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
+import AuthContext, { AuthProvider } from '../../context/AuthContext'
 import "./AddSession.scss"
 const shortid = require('shortid')
 
 const AddSession = () => {
+  const { user } = useContext(AuthContext)
+
+  console.log(user);
+  console.log(user.userID);
   const baseURL = `http://localhost:8000`
   const [session, setSession] = useState({
     // *** BASED ON MODELS *** //
@@ -25,6 +30,16 @@ const AddSession = () => {
 
   })
 
+  const [managementToken, setManagementToken] = useState("")
+
+  useEffect(() => {
+    const unsub = async (e) => {
+      const req = await axios.get("http://localhost:8000/api/managementToken")
+      setManagementToken(req.data)
+    }
+    unsub()
+  }, [])
+
   const handleChange = (e) => {
     e.preventDefault()
     setSession((prev) => (
@@ -32,23 +47,49 @@ const AddSession = () => {
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault()
     const form = new FormData()
     const searchID = shortid.generate()
     console.log("id: ", searchID);
 
-    form.append('sessionName', session.sessionName)
-    form.append('sessionPassword', session.sessionPassword)
-    form.append('sessionDescription', session.sessionDescription)
-    form.append('startsAt', session.startsAt)
-    form.append('searchID', searchID)
-
     try {
+      const req = await axios.post('https://api.100ms.live/v2/rooms', {
+        "name": session.sessionName,
+        "description": session.sessionDescription,
+        "enabled": true,
+        "recording_info": {
+          "enabled": false
+        },
+        "region": "in"
+      }, {
+        headers: {
+          'Authorization': `Bearer ${managementToken}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      console.log(req.data, req.data.id);
+      form.append('sessionName', session.sessionName)
+      form.append('sessionPassword', session.sessionPassword)
+      form.append('sessionDescription', session.sessionDescription)
+      form.append('startsAt', session.startsAt)
+      form.append('searchID', searchID)
+      form.append('sessionID', req.data.id)
+      form.append('creator', user.userID)
 
-      const req = await axios.post(`${baseURL}/api/addSession`, form)
-      console.log(req.data);
-      alert('Succesfully Created')
+      try {
+        const req = await axios.post(`${baseURL}/api/addSession`, form)
+        console.log("data", req.data);
+        session.sessionName = ''
+        session.sessionDescription = ''
+        session.sessionPassword = ''
+        session.startsAt = ''
+        alert('Succesfully Created')
+
+      } catch (err) {
+        alert('Fail to create session')
+      }
     } catch (err) {
-      alert('Fail to create session')
+      alert(err)
     }
 
   }
@@ -70,7 +111,7 @@ const AddSession = () => {
                 </div>
                 <div className="input-box">
                   <span className="details">Date and Time</span>
-                  <input type="datetime-local" name="startsAt" value={session.startsAt} placeholder="Select date and time" onKeyDown={(e) => e.preventDefault()} onChange={handleChange} min={new Date().toISOString().slice(0, 16)} required/>
+                  <input type="datetime-local" name="startsAt" value={session.startsAt} placeholder="Select date and time" onKeyDown={(e) => e.preventDefault()} onChange={handleChange} min={new Date().toISOString().slice(0, 16)} required />
                 </div>
                 <div className="input-box">
                   <span className="details">Password</span>

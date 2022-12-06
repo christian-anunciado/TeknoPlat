@@ -4,13 +4,11 @@ import SessionNav from './SessionNav'
 import Video from './Video'
 
 
-function Stream({ peers }) {
-
-
+function Stream({ peers, role }) {
 
     return (
         <div className='sessionStream-container'>
-            <SessionNav />
+            <SessionNav role={role} />
             <div className='sessionStream-content'>
                 <Video peers={peers} />
                 <Chats />
