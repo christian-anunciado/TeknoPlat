@@ -3,5 +3,4 @@
 env/
 *.pyc
 pycache/
-*.json
 .env
