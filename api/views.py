@@ -205,6 +205,7 @@ def get100MsKeys(request):
 def generateManagementToken(request):
     app_access_key = settings.APP_KEY_100MS
     app_secret = settings.SECRET_KEY_100MS
+    expires = 24 * 3600
     now = datetime.datetime.utcnow()
     exp = now + datetime.timedelta(seconds=expires)
 
