@@ -24,6 +24,8 @@ urlpatterns = [
     path('sessions', views.getAllSessionModel, name="sessions"),
     path('managementToken', views.generateManagementToken,
          name="getManagementToken"),
+    path('generateAppToken', views.generateAppToken,
+         name="generateAppToken"),
     path('get100MsKeys', views.get100MsKeys,
          name="get100MsKeys"),
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),

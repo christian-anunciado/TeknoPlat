@@ -1,6 +1,6 @@
 from unittest.util import _MAX_LENGTH
 from django.db import models
-from django.contrib.auth.models import AbstractUser,BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 # Create your models here.
 
@@ -12,7 +12,6 @@ class SampleModel(models.Model):
 
     def __str__(self):
         return self.modelBody[0:50]
-
 
 
 class CustomUserManager(BaseUserManager):
@@ -42,7 +41,7 @@ class CustomUserManager(BaseUserManager):
 
 class UserModel(AbstractUser):
     email = models.CharField(max_length=80, unique=True)
-    username = models.CharField(max_length=45,null=True)
+    username = models.CharField(max_length=45, null=True)
     institute = models.CharField(max_length=45, null=True)
 
     objects = CustomUserManager()
@@ -71,7 +70,8 @@ class SessionModel(models.Model):
         (0, "Inactive"),
     ]
     id = models.AutoField(primary_key=True)
-    creator = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
+    creator = models.ForeignKey(
+        UserModel, on_delete=models.CASCADE, null=True)
     sessionID = models.CharField(max_length=250, null=False)
     sessionName = models.CharField(max_length=30, null=False)
     sessionDescription = models.TextField(max_length=250, null=False)
@@ -104,3 +104,4 @@ class AverageRatingModel(models.Model):
     AverageInnovativeness = models.FloatField(null=True)
     #id = models.ForeignKey(UserModel, on_delete = models.CASCADE, null = True)
     sessionID = models.ForeignKey(SessionModel, on_delete = models.CASCADE, null = True)
+    

@@ -6,24 +6,24 @@
   padding: 5rem;
 }
 
-.container {
+.container_box {
   max-width: 700px;
   width: 100%;
   background-color: #fff;
   padding: 25px 30px;
   border-radius: 5px;
-  box-shadow: 0 5px 10px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 
 }
 
-.container .title {
+.container_box .title {
   font-size: 25px;
   font-weight: 500;
   position: relative;
   justify-content: center;
 }
 
-.container .title::before {
+.container_box .title::before {
   content: "";
   position: absolute;
   left: 0;

@@ -8,7 +8,7 @@ import PrivateRoute from "./utils/PrivateRoute"
 //Components or Pages Here
 import Login from "./pages/LoginPage/Login";
 import Register from "./pages/Registration/Register";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import AddSession from "./pages/AddSession/AddSession";
 import Session from "./pages/JoinSession/Session";
 import SessionRoom from "./pages/Session/SessionRoom";

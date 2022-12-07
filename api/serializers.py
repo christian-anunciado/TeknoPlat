@@ -12,6 +12,7 @@ class SampleModelSerializer(ModelSerializer):
         model = SampleModel
         fields = '__all__'
 
+
 class UserModelSerializer(ModelSerializer):
     id = serializers.UUIDField(read_only=True)
     first_name = serializers.CharField(max_length=45)
@@ -22,7 +23,8 @@ class UserModelSerializer(ModelSerializer):
 
     class Meta:
         model = UserModel
-        fields = ['id','first_name','last_name','email','username','institute','password']
+        fields = ['id', 'first_name', 'last_name',
+                  'email', 'username', 'institute', 'password']
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
@@ -34,20 +36,26 @@ class UserModelSerializer(ModelSerializer):
         return instance
 
 
-
 class SessionModelSerializer(ModelSerializer):
     class Meta:
         model = SessionModel
         fields = '__all__'
 
+    def create(self, validated_data):
+        creatorID = validated_data.pop('creator')
+        creator_instance = UserModel.objects.get(id=creatorID.id)
+        session_instance = self.Meta.model(
+            **validated_data, creator=creator_instance)
+        session_instance.save()
+        return session_instance
+
+
 class RatingModelSerializer(ModelSerializer):
     class Meta:
         model = RatingModel
-    #    field = ('punctuality', 'presentation', 'delivery', 'innovativeness', 'feedback')
         fields = '__all__'
 
 class AverageRatingModelSerializer(ModelSerializer):
     class Meta:
         model = AverageRatingModel
-    #    field = ('punctuality', 'presentation', 'delivery', 'innovativeness', 'feedback')
         fields = '__all__'
