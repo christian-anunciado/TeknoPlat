@@ -22,6 +22,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./style/flexboxgrid.min.css";
 import './style/index.css';
 import LandingPage from "./pages/LandingPage";
+import Loading from "./components/Loading/Loading";
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="add_session" element={<AddSession />} />
-            <Route path="session" element={<SessionRoom />} />
+            <Route path="session/:id" element={<SessionRoom />} />
             <Route path="search_session" element={<Session />} />
             <Route path="rating_session" element={<RatingSession />} />
             <Route path="average_session" element={<AverageSession />} />
@@ -49,6 +50,7 @@ function App() {
 
 
           <Route path="login" element={<Login />} />
+          <Route path="loading" element={<Loading />} />
           <Route path="register" element={<Register />} />
         </Route>
 
