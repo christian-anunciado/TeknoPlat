@@ -22,7 +22,6 @@ import "slick-carousel/slick/slick-theme.css";
 import "./style/flexboxgrid.min.css";
 import './style/index.css';
 import LandingPage from "./pages/LandingPage";
-import Loading from "./components/Loading/Loading";
 
 function App() {
 
@@ -48,9 +47,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
           </Route>
 
-
           <Route path="login" element={<Login />} />
-          <Route path="loading" element={<Loading />} />
           <Route path="register" element={<Register />} />
         </Route>
 
