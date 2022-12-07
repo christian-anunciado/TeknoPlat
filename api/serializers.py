@@ -3,6 +3,7 @@ from .models import SampleModel
 from .models import UserModel
 from .models import SessionModel
 from .models import RatingModel
+from .models import AverageRatingModel
 from rest_framework import serializers
 
 
@@ -52,5 +53,9 @@ class SessionModelSerializer(ModelSerializer):
 class RatingModelSerializer(ModelSerializer):
     class Meta:
         model = RatingModel
-    #    field = ('punctuality', 'presentation', 'delivery', 'innovativeness', 'feedback')
+        fields = '__all__'
+
+class AverageRatingModelSerializer(ModelSerializer):
+    class Meta:
+        model = AverageRatingModel
         fields = '__all__'
