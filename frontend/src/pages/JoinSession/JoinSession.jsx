@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
@@ -6,35 +6,77 @@ import { Link } from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar'
 import { useNavigate, useParams } from 'react-router-dom'
 import "./JoinSessionModal.scss";
+import AuthContext from '../../context/AuthContext'
+import { useHMSActions } from '@100mslive/react-sdk'
 
 
-function JoinSession(props) {
+function JoinSession({ role, setRole }) {
+    const { user } = useContext(AuthContext)
     const [api, setApi] = useState([])
     const [passwordStatus, setPasswordStatus] = useState(false)
     const [password, setPassword] = useState("")
+    const hmsActions = useHMSActions();
     const { id } = useParams();
-    const navigate = useNavigate()
+
     useEffect(() => {
+        const fetchApi = async () => {
+            const response = await axios.get(`http://127.0.0.1:8000/api/joinsession/${id}`)
+            const data = await response.data
+            setApi(data)
+
+        }
         fetchApi()
     }, [])
 
-    const fetchApi = async () => {
-        const response = await axios.get(`http://127.0.0.1:8000/api/joinsession/${id}`)
-        const data = await response.data
-        setApi(data)
-    }
 
-    const handleJoin = (e) => {
+
+    useEffect(() => {
+        const unsub = () => {
+            if (api.length > 0) {
+                api[0].creator === user.userID ? setRole('creator') : setRole('participant')
+            }
+        }
+
+        return (
+            unsub()
+        )
+    }, [api.length])
+
+
+
+    const handleJoinButton = (e) => {
         e.preventDefault()
 
         setPasswordStatus(true)
 
     }
 
+    const joinRoom = async () => {
+        const capitalizedName =
+            user.first_name.charAt(0).toUpperCase()
+            + user.first_name.slice(1)
+        try {
+            const req = await axios.post('http://localhost:8000/api/generateAppToken', {
+                "room_id": api[0].sessionID,
+                "role": role,
+                "user_id": capitalizedName
+            })
+            if (req) {
+                await hmsActions.join({
+                    userName: capitalizedName,
+                    authToken: req.data
+                });
+            }
+        } catch (err) {
+            alert(err)
+        }
+    }
+
+
     const handlePasswordSubmit = (e) => {
         e.preventDefault()
         if (password === api[0].sessionPassword) {
-            navigate(`/session`, { state: { sessionID: api[0].sessionID } })
+            joinRoom()
         } else {
             alert("Incorrect Password!")
         }
@@ -43,15 +85,14 @@ function JoinSession(props) {
 
     return (
         <div>
-            <Navbar />
-
-            <Link to={`/session`} ><button>Go back</button></Link>
+            <Link to={`/search_session`} ><button>Go back</button></Link>
             {
                 api.map((apis) => {
                     return <div key={apis.id}>
                         <h1 >{apis.sessionName}</h1>
                         <p >{apis.sessionDescription}</p>
-                        <button onClick={handleJoin}>Join</button>
+                        <p >{apis.creator}</p>
+                        <button onClick={handleJoinButton}>Join</button>
                         <Link to={`/sessionLobby/${apis.searchID}`} ><button disabled>Leave</button></Link>
                         <br /><br />
                         {passwordStatus &&

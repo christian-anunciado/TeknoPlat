@@ -3,20 +3,40 @@ import Navbar from '../../components/Navbar/Navbar'
 import './sessionRoom.scss'
 import Settings from '../../components/SessionRoom/Settings'
 import Stream from '../../components/SessionRoom/Stream'
-import { selectIsConnectedToRoom, selectPeers, selectRemotePeers, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
-import JoinForm from './JoinForm';
+import { selectIsConnectedToRoom, selectLocalPeer, selectRemotePeers, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
+import JoinSession from '../JoinSession/JoinSession'
+import Loading from '../../components/Loading/Loading'
 
 function SessionRoom() {
     const [role, setRole] = useState("creator")
-    const [peer, setPeer] = useState([])
-    const localPeer = useHMSStore(selectPeers);
-    const remotePeer = useHMSStore(selectRemotePeers);
     const isConnected = useHMSStore(selectIsConnectedToRoom);
     const hmsActions = useHMSActions();
+    const [loading, setLoading] = useState(true)
+    const [peers, setPeers] = useState([])
+    const localPeer = useHMSStore(selectLocalPeer)
+    const remotePeer = useHMSStore(selectRemotePeers)
 
-    console.log("Local Peer: ", localPeer);
-    console.log("Remote Peer: ", remotePeer);
+    useEffect(() => {
+        if (isConnected) {
+            if (role === 'creator') {
+                const length = Object.keys(localPeer).length
+                if (length > 0) {
+                    if (localPeer.videoTrack) {
+                        setPeers(localPeer)
+                        setLoading(false)
+                    }
+                }
+            }
 
+            if (role === 'participant') {
+                const length = Object.keys(remotePeer).length
+                if (length > 0) {
+                    setPeers(remotePeer[0])
+                    setLoading(false)
+                }
+            }
+        }
+    }, [localPeer, remotePeer, isConnected])
 
     useEffect(() => {
         window.onunload = () => {
@@ -30,17 +50,23 @@ function SessionRoom() {
     return (
         <div className='main-content'>
             <Navbar />
-            {isConnected ? (
-                <div className='sessionRoom'>
-                    <div className="sessionRoom-container">
-                        <Settings role={role} />
-                        <Stream peers={role === 'creator' ? localPeer : remotePeer} role={role} />
+            {isConnected ?
+                loading === false ? (
+                    <>
 
-                    </div>
-                </div>
-            ) : (
-                <JoinForm setRole={setRole} role={role} />
-            )
+                        <div className='sessionRoom'>
+                            <div className="sessionRoom-container">
+                                <Settings role={role} />
+                                <Stream peers={peers} role={role} />
+
+                            </div>
+                        </div>
+                    </>) : (<Loading />)
+                : (
+                    <>
+                        <JoinSession setRole={setRole} role={role} />
+                    </>
+                )
             }
         </div>
 
