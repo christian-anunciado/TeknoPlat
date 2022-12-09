@@ -21,11 +21,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style/flexboxgrid.min.css";
 import './style/index.css';
+import "./style/dark.scss";
 import LandingPage from "./pages/LandingPage";
-
+import { DarkModeContext } from "./context/darkModeContext";
+import { useContext } from "react";
 function App() {
-
+  const { darkMode } = useContext(DarkModeContext);
   return (
+    <div className={darkMode ? "app dark" : "app"}>
+    
     <Router>
       <Routes>
         {/* NOTE KAY MGA GWAPO MAN TA 
@@ -53,6 +57,7 @@ function App() {
 
       </Routes>
     </Router>
+    </div>
   );
 }
 
