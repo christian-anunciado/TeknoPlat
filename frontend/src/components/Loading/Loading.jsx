@@ -1,10 +1,14 @@
 import React from 'react'
 import ReactLoading from 'react-loading';
 import './Loading.scss'
-function Loading() {
+function Loading({ text }) {
     return (
         <div className='loading'>
-            <ReactLoading color='#000' type='bubbles' />
+            <div className="loading-wrapper">
+
+                <ReactLoading color='#000' type='bubbles' />
+                <h3>{text}</h3>
+            </div>
         </div>
     )
 }

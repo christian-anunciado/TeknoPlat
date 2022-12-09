@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { selectIsSomeoneScreenSharing, useHMSActions, useHMSStore, useVideo } from "@100mslive/react-sdk";
 import { useEffect } from 'react';
+import SessionContext from '../../context/SessionContext';
 
 
-function Video({ peers }) {
+function Video() {
     const screenShareOn = useHMSStore(selectIsSomeoneScreenSharing)
     const hmsActions = useHMSActions()
+    const { session } = useContext(SessionContext)
 
     const { videoRef } = useVideo(
         {
-            trackId: screenShareOn ? peers.auxiliaryTracks[0] : peers.videoTrack
+            trackId: screenShareOn ? session.peer.auxiliaryTracks[0] : session.peer.videoTrack
         }
     )
 

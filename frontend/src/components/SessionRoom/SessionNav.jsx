@@ -1,8 +1,14 @@
 import { useHMSActions } from '@100mslive/react-sdk';
-import React from 'react'
+import React, { useContext } from 'react'
+import SessionContext from '../../context/SessionContext';
 
-function SessionNav({ role, sessionID }) {
+function SessionNav({ role }) {
     const hmsActions = useHMSActions();
+
+    // Ari dri ang context pher
+    const { session } = useContext(SessionContext)
+
+    console.log("Session: ", session);
 
     const endRoom = async () => {
         try {

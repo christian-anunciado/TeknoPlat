@@ -8,6 +8,8 @@ import { Button } from '@mui/material';
 import { blueGrey, pink } from '@mui/material/colors'
 
 import { selectIsConnectedToRoom, selectIsSomeoneScreenSharing, useAVToggle, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
+import { useContext } from 'react';
+import SessionContext from '../../context/SessionContext';
 
 function Settings({ role }) {
     const {
@@ -19,9 +21,11 @@ function Settings({ role }) {
     const hmsActions = useHMSActions()
     const isConnected = useHMSStore(selectIsConnectedToRoom)
     const screenShareOn = useHMSStore(selectIsSomeoneScreenSharing)
+    const { dispatch } = useContext(SessionContext)
 
     const handleLeave = (e) => {
         if (isConnected) {
+            dispatch({ type: "LEAVE" })
             hmsActions.leave()
         }
     }
