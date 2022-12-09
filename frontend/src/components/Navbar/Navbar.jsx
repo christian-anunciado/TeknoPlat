@@ -8,12 +8,17 @@ import Backdrop from "../Elements/Backdrop";
 // Assets
 import LogoIcon from "../../assets/svg/Logo";
 import BurgerIcon from "../../assets/svg/BurgerIcon";
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import SideNav from "./SideNav";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
+import { DarkModeContext } from "../../context/darkModeContext";
+import { useContext } from "react";
+import './Navbar.scss'
 
 const Navbar = () => {
+  const { dispatch } = useContext(DarkModeContext);
+
   const [y, setY] = useState(window.scrollY);
   const [sidebarOpen, toggleSidebar] = useState(false);
 
@@ -38,29 +43,34 @@ const Navbar = () => {
         <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
           <BurgerIcon />
         </BurderWrapper>
-        <UlWrapper className="flexNullCenter">
-          <li className="semiBold font15 pointer">
-            <Link activeClass="active" style={{ padding: "10px 15px" }} to="/dashboard" spy={true} smooth={true} offset={-80}>
-          Dashboard
-            </Link>
-          </li>
-          <li className="semiBold font15 pointer">
-            <Link activeClass="active" style={{ padding: "10px 15px" }} to="/add_session" spy={true} smooth={true} offset={-80}>
-            Create Session
-            </Link>
-          </li>
-          <li className="semiBold font15 pointer">
-            <Link activeClass="active" style={{ padding: "10px 15px" }} to="/search_session" spy={true} smooth={true} offset={-80}>
-             My Session
-            </Link>
-          </li>
-          
-        </UlWrapper>
-        <UlWrapperRight className="flexNullCenter">
-        <NotificationsOutlinedIcon />
-        <SettingsOutlinedIcon />
-         <Link to="/profile"><PersonOutlineOutlinedIcon/></Link>  
-        </UlWrapperRight>
+        <div className="navbar">
+      <div className="wrapper">
+        
+        <div className="items">
+          <div className="item">
+            <LanguageOutlinedIcon className="icon" />
+            English
+          </div>
+          <div className="item">
+            <DarkModeOutlinedIcon
+              className="icon"
+              onClick={() => dispatch({ type: "TOGGLE_DARK_MODE" })}
+            />
+          </div>
+         
+          <div className="item">
+            <ListOutlinedIcon className="icon" />
+          </div>
+          <Link to="/profile"className="item">
+            <img
+              src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              alt=""
+              className="avatar"
+            />
+          </Link>
+        </div>
+      </div>
+    </div>
       </NavInner>
     </Wrapper>
   </>
@@ -88,27 +98,6 @@ const BurderWrapper = styled.button`
   display: none;
   @media (max-width: 760px) {
     display: block;
-  }
-`;
-const UlWrapper = styled.ul`
-  display: flex;
-  @media (max-width: 760px) {
-    display: none;
-  }
-`;
-const UlWrapperRight = styled.ul`
-display: flex;
-align-items: center;
-cursor: pointer;
-transition-duration: 0.3s;
-transition-property: transform;
-gap: 30px;
-margin-right: 5rem;  
-
-
-@media (max-width: 760px) {
-  display: none;
-  
   }
 `;
 

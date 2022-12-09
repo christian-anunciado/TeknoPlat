@@ -109,7 +109,7 @@ const AddSession = () => {
     } catch (err) {
       alert(err)
     }
-
+   window.location("/dashboard").reload()
   }
   
   console.log(session);
