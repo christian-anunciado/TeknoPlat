@@ -1,7 +1,13 @@
 .loading {
-    min-height: 100vh;
-    display: flex;
-    background-color: white;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    height: calc(100vh - 80px);
+
+    .loading-wrapper {
+        display: flex;
+        background-color: white;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+    }
 }

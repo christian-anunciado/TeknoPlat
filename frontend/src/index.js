@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { HMSRoomProvider } from "@100mslive/react-sdk";
 import { AuthProvider } from './context/AuthContext';
+import { SessionContextProvider } from './context/SessionContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -11,8 +12,10 @@ root.render(
 
     <React.StrictMode>
       <HMSRoomProvider>
+        <SessionContextProvider>
 
-        <App />
+          <App />
+        </SessionContextProvider>
       </HMSRoomProvider>
     </React.StrictMode>
   </AuthProvider>

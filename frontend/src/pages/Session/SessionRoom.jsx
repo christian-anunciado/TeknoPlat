@@ -1,42 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import './sessionRoom.scss'
 import Settings from '../../components/SessionRoom/Settings'
 import Stream from '../../components/SessionRoom/Stream'
-import { selectIsConnectedToRoom, selectLocalPeer, selectRemotePeers, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
+import { useHMSActions } from "@100mslive/react-sdk";
 import JoinSession from '../JoinSession/JoinSession'
 import Loading from '../../components/Loading/Loading'
+import SessionContext from '../../context/SessionContext'
+import useGetPeer from '../../hooks/useGetPeer'
 
 function SessionRoom() {
-    const [role, setRole] = useState("creator")
-    const isConnected = useHMSStore(selectIsConnectedToRoom);
-    const hmsActions = useHMSActions();
-    const [loading, setLoading] = useState(true)
-    const [peers, setPeers] = useState([])
-    const localPeer = useHMSStore(selectLocalPeer)
-    const remotePeer = useHMSStore(selectRemotePeers)
+    const { session } = useContext(SessionContext)
+    const loading = session.loading
+    const role = session.role
 
-    useEffect(() => {
-        if (isConnected) {
-            if (role === 'creator') {
-                const length = Object.keys(localPeer).length
-                if (length > 0) {
-                    if (localPeer.videoTrack) {
-                        setPeers(localPeer)
-                        setLoading(false)
-                    }
-                }
-            }
 
-            if (role === 'participant') {
-                const length = Object.keys(remotePeer).length
-                if (length > 0) {
-                    setPeers(remotePeer[0])
-                    setLoading(false)
-                }
-            }
-        }
-    }, [localPeer, remotePeer, isConnected])
+    const hmsActions = useHMSActions()
+    const { isConnected } = useGetPeer({ role })
+    const [loadingText, setloadingText] = useState('')
 
     useEffect(() => {
         window.onunload = () => {
@@ -46,6 +27,21 @@ function SessionRoom() {
         };
     }, [hmsActions, isConnected]);
 
+    useEffect(() => {
+        const unSub = () => {
+            if (role === 'creator' && session.peer === null) {
+                setloadingText("We are now preparing your session...")
+            }
+            if (role === 'participant' && session.peer === null) {
+                setloadingText("Waiting for host to enter the session...")
+            }
+        }
+
+        return (
+            unSub()
+        )
+    }, [role, session.peer])
+
 
     return (
         <div className='main-content'>
@@ -53,18 +49,17 @@ function SessionRoom() {
             {isConnected ?
                 loading === false ? (
                     <>
-
                         <div className='sessionRoom'>
                             <div className="sessionRoom-container">
                                 <Settings role={role} />
-                                <Stream peers={peers} role={role} />
+                                <Stream role={role} />
 
                             </div>
                         </div>
-                    </>) : (<Loading />)
+                    </>) : (<Loading text={loadingText} />)
                 : (
                     <>
-                        <JoinSession setRole={setRole} role={role} />
+                        <JoinSession />
                     </>
                 )
             }

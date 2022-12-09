@@ -3,20 +3,28 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Navbar from '../../components/Navbar/Navbar'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import "./JoinSessionModal.scss";
 import AuthContext from '../../context/AuthContext'
 import { useHMSActions } from '@100mslive/react-sdk'
+import SessionContext from '../../context/SessionContext'
 
 
-function JoinSession({ role, setRole }) {
+function JoinSession() {
+    // Context
     const { user } = useContext(AuthContext)
+    const { dispatch } = useContext(SessionContext)
+
+
+    // Local Variables
+    const [role, setRole] = useState('')
     const [api, setApi] = useState([])
     const [passwordStatus, setPasswordStatus] = useState(false)
     const [password, setPassword] = useState("")
     const hmsActions = useHMSActions();
     const { id } = useParams();
+
+    // Hooks
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -66,6 +74,20 @@ function JoinSession({ role, setRole }) {
                     userName: capitalizedName,
                     authToken: req.data
                 });
+
+                dispatch({
+                    type: "UPDATE_SESSION",
+                    payload: {
+                        session: api
+                    }
+                })
+
+                dispatch({
+                    type: "UPDATE_ROLE",
+                    payload: {
+                        role: role
+                    }
+                })
             }
         } catch (err) {
             alert(err)
