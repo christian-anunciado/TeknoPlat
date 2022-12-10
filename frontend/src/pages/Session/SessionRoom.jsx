@@ -8,9 +8,11 @@ import JoinSession from '../JoinSession/JoinSession'
 import Loading from '../../components/Loading/Loading'
 import SessionContext from '../../context/SessionContext'
 import useGetPeer from '../../hooks/useGetPeer'
+import useNotification from '../../hooks/useNotification'
+import Notification from '../../components/Notifcation/Notifcation'
 
 function SessionRoom() {
-    const { session } = useContext(SessionContext)
+    const { session, dispatch } = useContext(SessionContext)
     const loading = session.loading
     const role = session.role
 
@@ -18,21 +20,25 @@ function SessionRoom() {
     const hmsActions = useHMSActions()
     const { isConnected } = useGetPeer({ role })
     const [loadingText, setloadingText] = useState('')
+    const notification = useNotification()
+
+
 
     useEffect(() => {
         window.onunload = () => {
             if (isConnected) {
                 hmsActions.leave();
+                dispatch({ type: "LEAVE" })
             }
         };
     }, [hmsActions, isConnected]);
 
     useEffect(() => {
         const unSub = () => {
-            if (role === 'creator' && session.peer === null) {
+            if (role === 'creator' && session.loading === true) {
                 setloadingText("We are now preparing your session...")
             }
-            if (role === 'participant' && session.peer === null) {
+            if (role === 'participant' && session.loading === true) {
                 setloadingText("Waiting for host to enter the session...")
             }
         }
@@ -40,7 +46,7 @@ function SessionRoom() {
         return (
             unSub()
         )
-    }, [role, session.peer])
+    }, [role, session.loading, isConnected])
 
 
     return (
@@ -53,8 +59,8 @@ function SessionRoom() {
                             <div className="sessionRoom-container">
                                 <Settings role={role} />
                                 <Stream role={role} />
-
                             </div>
+                            <Notification />
                         </div>
                     </>) : (<Loading text={loadingText} />)
                 : (

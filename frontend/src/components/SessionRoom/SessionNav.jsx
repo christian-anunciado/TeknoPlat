@@ -7,8 +7,7 @@ function SessionNav({ role }) {
 
     // Ari dri ang context pher
     const { session } = useContext(SessionContext)
-
-    console.log("Session: ", session);
+    console.log(session.session[0]);
 
     const endRoom = async () => {
         try {
@@ -24,7 +23,7 @@ function SessionNav({ role }) {
         <div className='sessionNav-container'>
             <div className="sessionNav-controls">
                 <div className="pitch-title">
-                    <span>Pitch Title</span>
+                    <h2>{session.session[0].sessionName}</h2>
                 </div>
                 {role === 'creator' ? (
                     <div className="sessionNav-buttons">

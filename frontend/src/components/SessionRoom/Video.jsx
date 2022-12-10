@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { selectIsSomeoneScreenSharing, useHMSActions, useHMSStore, useVideo } from "@100mslive/react-sdk";
 import { useEffect } from 'react';
 import SessionContext from '../../context/SessionContext';
+import ReactLoading from 'react-loading';
 
 
 function Video() {
@@ -36,12 +37,17 @@ function Video() {
                 <button>Rate</button>
             </div>
             <div className="video-container">
-                <video className='videoPlayer'
-                    ref={videoRef}
-                    autoPlay
-                    muted
-                    playsInline
-                />
+                {!session.hostJoined && session.role === 'participant' ?
+                    <div className='video-loading'>
+                        <ReactLoading color='#000' type='bubbles' />
+                        <h3>Waiting for host to reconnect...</h3>
+                    </div> : <video className='videoPlayer'
+                        ref={videoRef}
+                        autoPlay
+                        muted
+                        playsInline
+                    />}
+
 
             </div>
         </div>
