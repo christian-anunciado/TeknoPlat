@@ -13,6 +13,7 @@ export function SessionContextProvider({ children }) {
                     peer: action.payload.peer,
                     loading: action.payload.loading,
                     isConnected: action.payload.isConnected,
+                    hostJoined: action.payload.hostJoined
                 }
 
                 return state
@@ -22,6 +23,13 @@ export function SessionContextProvider({ children }) {
                     ...state,
                     session: action.payload.session
                 }
+
+            case "UPDATE_HOSTJOINED":
+                return {
+                    ...state,
+                    hostJoined: action.payload.hostJoined
+                }
+
 
             case "UPDATE_ROLE":
                 return {
@@ -35,7 +43,8 @@ export function SessionContextProvider({ children }) {
                     role: null,
                     peer: null,
                     loading: true,
-                    isConnected: false
+                    isConnected: false,
+                    hostJoined: false
                 }
 
             default:
@@ -49,7 +58,8 @@ export function SessionContextProvider({ children }) {
         role: null,
         peer: null,
         participants: 0,
-        loading: true
+        loading: true,
+        hostJoined: false
     }
 
     const [state, dispatch] = useReducer(sessionReducer, INITIAL_STATE)

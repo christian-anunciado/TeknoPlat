@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { AiOutlineSetting } from 'react-icons/ai';
 import { BsCameraVideo, BsPeople, BsCameraVideoOff } from 'react-icons/bs';
 import { BiMicrophone, BiMicrophoneOff } from 'react-icons/bi';
-import { MdOutlineScreenShare, MdOutlineStopScreenShare } from 'react-icons/md';
+import { MdOutlineScreenShare, MdOutlineStopScreenShare, MdOutlineFrontHand, MdOutlineWavingHand } from 'react-icons/md';
+
 import { ImExit } from 'react-icons/im';
 import { Button } from '@mui/material';
 import { blueGrey, pink } from '@mui/material/colors'
 
-import { selectIsConnectedToRoom, selectIsSomeoneScreenSharing, useAVToggle, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
+import { selectIsConnectedToRoom, selectIsSomeoneScreenSharing, selectLocalPeerID, selectPeerMetadata, useAVToggle, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
 import { useContext } from 'react';
 import SessionContext from '../../context/SessionContext';
 
@@ -22,6 +23,9 @@ function Settings({ role }) {
     const isConnected = useHMSStore(selectIsConnectedToRoom)
     const screenShareOn = useHMSStore(selectIsSomeoneScreenSharing)
     const { dispatch } = useContext(SessionContext)
+    const localPeerId = useHMSStore(selectLocalPeerID);
+    const metaData = useHMSStore(selectPeerMetadata(localPeerId));
+
 
     const handleLeave = (e) => {
         if (isConnected) {
@@ -35,6 +39,11 @@ function Settings({ role }) {
             await hmsActions.setScreenShareEnabled(true)
         else await hmsActions.setScreenShareEnabled(false)
     }
+
+    const toggleRaiseHand = useCallback(async () => {
+        const newMetadata = { ...metaData, isHandRaised: !metaData.isHandRaised };
+        await hmsActions.changeMetadata(newMetadata);
+    }, [hmsActions, metaData]);
 
     return (
         <div className='sessionSettings-container'>
@@ -62,7 +71,12 @@ function Settings({ role }) {
                                 <MdOutlineStopScreenShare className='button-setting' />
                             }
                         </Button>
-                    </>) : (null)
+                    </>) : (<Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }} onClick={toggleRaiseHand}>
+                        {metaData.isHandRaised ?
+                            <MdOutlineWavingHand className='button-setting active' /> :
+                            <MdOutlineFrontHand className='button-setting' />
+                        }
+                    </Button>)
                 }
                 <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }}>
                     <BsPeople className='button-setting' />
