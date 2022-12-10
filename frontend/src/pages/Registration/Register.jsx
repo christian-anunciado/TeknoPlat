@@ -3,6 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import LoginNav from '../../components/Nav/LoginNav'
 import "./Register.scss"
+import {useNavigate} from 'react-router-dom'
 
 
 const Register = () => {
@@ -12,8 +13,12 @@ const Register = () => {
     const [email, setEmail] = useState("")
     const [institute, setInstitute] = useState("")
     const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [error, setError] = useState("")
 
     const [username, setUN] = useState("")
+
+    const navigate = useNavigate()
 
 
     const registerUser = async () => {
@@ -33,7 +38,14 @@ const Register = () => {
             data: formField
         }).then((response) => {
             console.log(response.data);
+            if(response.data == '200'){
+                alert('User Successfuly Created')
+                navigate('/login')
+            }else{
+                alert('Something went wrong. Please try again')
+            }
         })
+        
         setFN("")
         setLN("")
         setEmail("")
@@ -41,6 +53,17 @@ const Register = () => {
         setUN("")
         setPassword("")
     }
+
+    const checkPassword = (e) =>{
+        const confPass = e.target.value
+        setConfirmPassword(confPass);
+        if (password != confPass){
+            setError("Passwords do not match");
+        } else {
+            setError(" ");
+        }
+    };
+
     return (
         <>
         <LoginNav />
@@ -95,6 +118,14 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)} 
                 /> 
 
+                <input 
+                type="password"
+                placeholder="Confirm password"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => checkPassword(e)} 
+                />
+                <div style={{color: "red", fontSize: 15}}>{error}</div> 
                 <button className='submit-button' onClick={registerUser}>Sign Up</button>
         </div>
         </>
