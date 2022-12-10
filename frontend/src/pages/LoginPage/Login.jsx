@@ -16,7 +16,7 @@ const Login = () => {
                 <LoginNav />
                 <div>
                     <div>
-                        <img src={header} width='900' height='700'></img>
+                        <img src={header} width='900' height='700' className='login-image'></img>
                     </div>
                     <form onSubmit={loginUser} className='login-container'>
                         <h1>Login</h1>

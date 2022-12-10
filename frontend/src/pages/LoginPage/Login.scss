@@ -7,7 +7,7 @@
     justify-content: center;
     flex-direction: column;
     gap: 1px;
-    border:solid;
+    border: solid;
     border-width: thin;
     padding: 5em;
 
@@ -24,13 +24,12 @@
         width: 200px;
         cursor: pointer;
     }
-    
-    
-img{
+
+}
+
+.login-image {
     width: 50%;
     height: auto;
     object-position: 90px 50px;
     float: left;
-}
-
 }
