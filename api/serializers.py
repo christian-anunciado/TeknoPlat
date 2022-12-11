@@ -55,6 +55,15 @@ class RatingModelSerializer(ModelSerializer):
         model = RatingModel
         fields = '__all__'
 
+    # def create(self, validated_data):
+    #     creatorID = validated_data.pop('creator')
+    #     creator_instance = UserModel.objects.get(id=creatorID.id)
+    #     rating_instance = self.Meta.model(
+    #         **validated_data, creator=creator_instance)
+    #     rating_instance.save()
+    #     return rating_instance
+
+
 class AverageRatingModelSerializer(ModelSerializer):
     class Meta:
         model = AverageRatingModel

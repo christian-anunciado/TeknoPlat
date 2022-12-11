@@ -15,7 +15,8 @@ export const userColumns = [
   {
     field: "details",
     headerName: "Details",
-    width: 230,
+    width: "700",
+    editable: true,
   
   },
 
@@ -24,6 +25,7 @@ export const userColumns = [
     headerName: "Date & Time",
     width: 250,
   },
+
   {
     field: "status",
     headerName: "Status",
@@ -37,4 +39,5 @@ export const userColumns = [
     },
   },
 ];
+
  

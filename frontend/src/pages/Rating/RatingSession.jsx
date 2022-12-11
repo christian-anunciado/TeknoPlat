@@ -4,14 +4,40 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate, useParams } from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar'
+import { IconButton } from '@mui/material';
+
 import "./RatingSession.scss"
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { Rating } from '@mui/material';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '50%',
+  bgcolor: 'background.paper',
+  // border: '2px solid #000',
+  boxShadow: 24,
+  borderRadius: '16px',
+  p: 4,
+};
+
 
 const RatingSession = () => {
-    const [punctuality, setPunctuality] = useState("")
-    const [presentation, setPresentation] = useState("")
-    const [delivery, setDelivery] = useState("")
-    const [innovativeness, setInnovativeness] = useState("")
+    const [value, setValue] = React.useState(2)
+    const [punctuality, setPunctuality] = useState(0)
+    const [presentation, setPresentation] = useState(0)
+    const [delivery, setDelivery] = useState(0)
+    const [innovativeness, setInnovativeness] = useState(0)
     const [feedback, setFeedback] = useState("")
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const [modal, setModal] = useState(false);
 
@@ -33,20 +59,13 @@ const RatingSession = () => {
           alert('Fail to create session')
         }
 
-        await axios({
-            method: 'post',
-            url: 'http://localhost:8000/api/rateSession ',
-            data: formField
-        }).then((response) => {
-            console.log(response.data);
-        })
-        setPunctuality("")
-        setPresentation("")
-        setDelivery("")
-        setInnovativeness("")
-        setFeedback("")
 
-        
+        // setPunctuality(0)
+        // setPresentation(0)
+        // setDelivery(0)
+        // setInnovativeness(0)
+        // setFeedback("") 
+
     }
 
     const toggleModal = () =>{
@@ -65,94 +84,93 @@ const RatingSession = () => {
         toggleModal()
 
     }
-
+    
   
   return (
     <>
     <Navbar/>
-    <div className='session-2-2-3-1 button-shaded'>
-    <button onClick={handleJoin}>Join</button>
-
-      {modal && (
-          <div className="modal">
-              <div className="overlay">
-                  <div className="modal-content">
-                      <div className="verifypassword">
-                          <div className="rating-space">
-                            <div className="rating-container">
-                              <div className = "items-1 item">
-                                <div className = "items-1-1 item">Rate</div>
-                                <div className = "items-1-2 item">
-                                  <button onClick={toggleModal}>Close</button>
-                                </div>
-                              </div>
-                              <div className = "items-2 item">Session Title</div>
-                              <div className = "items-3 item">
-                                <div className = "items-3-1 item item-direction">
-                                  <label for="punctuality">Goal</label>
-                                  <select name="Punctuality" id="punctuality" required onChange={(e) => setPunctuality(e.target.value)} >
-                                  <option disabled selected hidden color required>Select Option</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                  </select>
-                                </div>
-                                <div className = "items-3-2 item item-direction">
-                                  <label label for="presentation">Plan</label>
-                                  <select name="Presentation" id="presentation" onChange={(e) => setPresentation(e.target.value)} >
-                                  <option disabled selected hidden color required>Select Option</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div className = "items-4 item">
-                                <div className = "items-4-1 item item-direction">
-                                  <label for="delivery">Resources</label>
-                                  <select name="Delivery" id="delivery" onChange={(e) => setDelivery(e.target.value)} >
-                                  <option disabled selected hidden color required>Select Option</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                  </select>
-                                </div>
-                                <div className = "items-4-2 item item-direction">
-                                  <label for="innovativeness">Relevance</label>
-                                  <select name="Innovativeness" id="innovativeness" onChange={(e) => setInnovativeness(e.target.value)} >
-                                  <option disabled selected hidden color required>Select Option</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div className = "items-5 item">
-                                <div className = "items-5-1 item item-direction">
-                                  <label className="details">Feedback</label>
-                                  <textarea type="text" name="Feedback" placeholder="Feedback here" onChange={(e) => setFeedback(e.target.value)}/>
-                                </div>
-                              </div>
-                              <div className = "items-6 item button">
-                                <input type="submit" value="Submit" onClick = {rateSession}/>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
-                  </div>
+    <Button onClick={handleOpen}>Open modal</Button>
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <Typography id="modal-modal-description">
+          <div className="rating-space">
+            <div className="rating-container">
+              <div className = "items-1 item">
+                <div className = "items-1-1 item">Rate</div>
+                <div className = "items-1-2 item rating-logo">
+                  <IconButton onClick = {handleClose} >
+                  <HighlightOffIcon/>
+                  </IconButton>
+                </div>
               </div>
+              <div className = "items-2 items">Session Title</div>
+              <span className = "rating-line"></span>
+              <Box
+                  display="flex"
+                  flexDirection="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  sx={{
+                    '& > legend': { 
+                      mt: 2 ,
+                    },
+                  }}
+                  >
+                  <Typography component="legend">Goals and Significance</Typography>
+                  <Rating
+                    component="legend"
+                    name="goal"
+                    value={punctuality}
+                    onChange={(event, newValue) => {
+                      setPunctuality(newValue);
+                    }}
+                  />
+                  <Typography component="legend">Plan and Timeline</Typography>
+                  <Rating
+                    name="plan"
+                    value={presentation}
+                    onChange={(event, newValue) => {
+                      setPresentation(newValue);
+                    }}
+                  />
+                  <Typography component="legend">Resource Request</Typography>
+                  <Rating
+                    name="resource"
+                    value={delivery}
+                    onChange={(event, newValue) => {
+                      setDelivery(newValue);
+                    }}
+                  />
+                  <Typography component="legend">Relevant Experience</Typography>
+                  <Rating
+                    name="relevant"
+                    value={innovativeness}
+                    onChange={(event, newValue) => {
+                      setInnovativeness(newValue);
+                    }}
+                  />
+                </Box>
+              <div className = "items-5 item">
+                <div className = "items-5-1 item item-direction">
+                  <label className="details">Feedback</label>
+                  <textarea type="text" name="Feedback" placeholder="Feedback here" onChange={(e) => setFeedback(e.target.value)}/>
+                </div>
+              </div>
+              <div className = "items-6 item button">
+                <input type="submit" value="Submit" onClick = {rateSession}/>
+              </div>
+            </div>
           </div>
-      )}
-      </div>    
+          </Typography>
+        </Box>
+      </Modal>
     </>
   )
 }
+
 export default RatingSession

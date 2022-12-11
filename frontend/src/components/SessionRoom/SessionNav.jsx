@@ -19,6 +19,7 @@ function SessionNav({ role }) {
             console.error(error);
         }
     };
+    
     return (
         <div className='sessionNav-container'>
             <div className="sessionNav-controls">

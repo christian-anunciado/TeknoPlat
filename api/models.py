@@ -75,7 +75,7 @@ class SessionModel(models.Model):
     sessionID = models.CharField(max_length=250, null=False)
     sessionName = models.CharField(max_length=30, null=False)
     sessionDescription = models.TextField(max_length=250, null=False)
-    sessionPassword = models.CharField(max_length=30)
+    sessionPassword = models.CharField(max_length=30, blank=True, null=True)
     searchID = models.TextField(max_length=30, blank=True, null=True)
     status = models.IntegerField(null=True, choices=STATUS, default=0)
     startsAt = models.DateTimeField(null=True)
@@ -94,14 +94,14 @@ class RatingModel(models.Model):
     delivery = models.IntegerField(null=True)
     innovativeness = models.IntegerField(null=True)
     feedback = models.CharField(max_length=500)
-    #id = models.ForeignKey(UserModel, on_delete = models.CASCADE, null = True)
-    sessionID = models.ForeignKey(SessionModel, on_delete = models.CASCADE, null = True)
+    # creator = models.ForeignKey(UserModel, on_delete = models.CASCADE, null = True)
+    # sessionID = models.ForeignKey(SessionModel, on_delete = models.CASCADE, null = True)
 
 class AverageRatingModel(models.Model):
     AveragePunctuality = models.FloatField(null=True)
     AveragePresentation = models.FloatField(null=True)
     AverageDelivery = models.FloatField(null=True)
     AverageInnovativeness = models.FloatField(null=True)
-    #id = models.ForeignKey(UserModel, on_delete = models.CASCADE, null = True)
     sessionID = models.ForeignKey(SessionModel, on_delete = models.CASCADE, null = True)
+
     

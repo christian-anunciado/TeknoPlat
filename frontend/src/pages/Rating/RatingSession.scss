@@ -2,6 +2,7 @@
 
 
 .rating-space {
+  width: 400;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,17 +15,18 @@
 
 .rating-space div{
   font-family: 'Mulish', sans-serif;
+  
 }
 
 
 .rating-container{
-  max-width: 700px;
   width: 100%;
   border-radius: 5px;
   padding: 10px;
-  margin: 10px;
+  margin: 5px;
   display: flex;
   flex-direction: column;
+
   }
 
 .item{
@@ -32,8 +34,52 @@
   color: #000;
   font-size: 25px;
   padding: 0px;
-  margin: 20px;
+  margin: 0px;
   flex-grow: 1;
+}
+
+
+.items{
+  //background-color: #ff0037;
+  color: #000;
+  font-weight: bold;
+  font-size: 25px;
+  padding: 0px;
+  margin: 5px;
+  flex-grow: 1;
+}
+
+.item-session{
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.item-session-close{
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.item-session-description{
+  color: black;
+  font-size: 15px;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .item-direction{
@@ -71,6 +117,17 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  
+}
+
+.items-3-2{
+  padding: 0px;
+  margin: 0px;
+
+}
+
+.items-3-2 .font-weight-lighter{
+  font-weight: normal;
 }
 
 .items-4{
@@ -79,6 +136,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  
 }
 
 .items-5{
@@ -90,6 +148,7 @@
 }
 
 .items-6{
+  margin: 20px 0px 0px 0px;
   align-self: flex-start;
 }
 
@@ -104,16 +163,22 @@
 
 .rating-space .rating-container select{
   font-family: 'Mulish', sans-serif;
+  font-size: large;
   color: #808080;
-  padding: 2px 20px 2px 2px;
+  padding: 15px 10px 15px 10px;
   border: 1px solid #ccc;
+  text-align: center;
+}
+
+.rating-space .rating-container option{
+  text-align: center;
 }
 
 .rating-space .rating-container textarea{
   font-family: 'Mulish', sans-serif;
   border: 1px solid #ccc;
   font-size: 16px;
-  padding: 2px 20px 2px 2px;
+  padding: 20px 20px 40px 20px;
   resize: vertical;
   display: flex;
   justify-content: stretch;
@@ -122,4 +187,17 @@
 .rating-space .rating-container label{
   font-family: 'Mulish', sans-serif;
   margin: 0px 0px 5px 5px;
+}
+
+.rating-line{
+  display: inline-block;
+  width: 100%;
+  border-top: 0.2px solid black;
+}
+
+.charts{
+  margin: 0px 40px 0px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

@@ -16,6 +16,8 @@ function SessionRoom() {
     const loading = session.loading
     const role = session.role
 
+    console.log(session);
+
 
     const hmsActions = useHMSActions()
     const { isConnected } = useGetPeer({ role })
