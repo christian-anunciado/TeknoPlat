@@ -17,6 +17,7 @@ import InSession from "./pages/JoinSession/InSession";
 import Profile from "./pages/Profile/Profile";
 import RatingSession from "./pages/Rating/RatingSession";
 import AverageSession from "./pages/Rating/AverageSession";
+import RatingDetails from "./pages/Rating/RatingDetails";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style/flexboxgrid.min.css";

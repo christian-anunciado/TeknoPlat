@@ -9,7 +9,7 @@ function Video() {
     const screenShareOn = useHMSStore(selectIsSomeoneScreenSharing)
     const hmsActions = useHMSActions()
     const { session } = useContext(SessionContext)
-
+    console.log(session, screenShareOn);
     const { videoRef } = useVideo(
         {
             trackId: screenShareOn ? session.peer.auxiliaryTracks[0] : session.peer.videoTrack

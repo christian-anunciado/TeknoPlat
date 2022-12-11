@@ -11,6 +11,7 @@ const AverageSession = () => {
     const averageSession = async () => {
         let formField = new FormData()
 
+        //Return Session ID or pass to View.py
         formField.append('sessionID', 1)
 
 
