@@ -142,8 +142,7 @@ const Datatable = () => {
             creator: sessions.creator,
             details: sessions.sessionDescription,
             date: sessions.startsAt,
-            status: sessions.status,
-            actions: sessions.searchID,
+            status: sessions.status === 1 ? "Active" : "Inactive",
           }
         })}
         columns={userColumns.concat(actionColumn)}
