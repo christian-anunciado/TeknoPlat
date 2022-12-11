@@ -3,6 +3,10 @@ import { selectIsSomeoneScreenSharing, useHMSActions, useHMSStore, useVideo } fr
 import { useEffect } from 'react';
 import SessionContext from '../../context/SessionContext';
 import ReactLoading from 'react-loading';
+import Tabs from '@mui/joy/Tabs';
+import TabList from '@mui/joy/TabList';
+import Tab from '@mui/joy/Tab';
+import TabPanel from '@mui/joy/TabPanel';
 
 
 function Video() {
@@ -31,11 +35,22 @@ function Video() {
 
     return (
         <div className='sessionVideo-container'>
-            <div className="videoFunctions-container">
-                <button className='active'>Conference</button>
-                <button>Details</button>
-                <button>Rate</button>
-            </div>
+            <Tabs aria-label="Basic tabs" defaultValue={0} sx={{ borderRadius: 'lg' }}>
+                <TabList>
+                    <Tab>First tab</Tab>
+                    <Tab>Second tab</Tab>
+                    <Tab>Third tab</Tab>
+                </TabList>
+                <TabPanel value={0} sx={{ p: 2 }}>
+                    <b>First</b> tab panel
+                </TabPanel>
+                <TabPanel value={1} sx={{ p: 2 }}>
+                    <b>Second</b> tab panel
+                </TabPanel>
+                <TabPanel value={2} sx={{ p: 2 }}>
+                    <b>Third</b> tab panel
+                </TabPanel>
+            </Tabs>
             <div className="video-container">
                 {!session.hostJoined && session.role === 'participant' ?
                     <div className='video-loading'>
