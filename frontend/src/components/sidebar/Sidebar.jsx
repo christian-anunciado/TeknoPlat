@@ -5,10 +5,8 @@ import {  useNavigate } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
-import {Link} from 'react-router-dom'
-import StoreIcon from "@mui/icons-material/Store";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
+import {Link} from 'react-router-dom';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 const Sidebar = () => {
@@ -31,21 +29,10 @@ const Sidebar = () => {
           </li>
           <Link to="/add_session" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <MeetingRoomIcon className="icon" />
               <span>Add Session</span>
             </li>
           </Link>
-          
-          <li>
-            <NotificationsNoneIcon className="icon" />
-            <span>Notifications</span>
-          </li>
-        
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
-          <p className="title">USER</p>
           <li>
             <Link to="/profile" style={{ textDecoration: "none" }}>
             <AccountCircleOutlinedIcon className="icon" />
