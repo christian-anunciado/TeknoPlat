@@ -4,10 +4,8 @@ import SessionContext from '../../context/SessionContext';
 
 function SessionNav({ role }) {
     const hmsActions = useHMSActions();
-
     // Ari dri ang context pher
     const { session } = useContext(SessionContext)
-    console.log(session.session[0]);
 
     const endRoom = async () => {
         try {
@@ -19,7 +17,7 @@ function SessionNav({ role }) {
             console.error(error);
         }
     };
-    
+
     return (
         <div className='sessionNav-container'>
             <div className="sessionNav-controls">
