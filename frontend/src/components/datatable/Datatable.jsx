@@ -107,10 +107,15 @@ const Datatable = () => {
           authToken: req.data
         });
 
+        const responseUser = await axios.get('http://127.0.0.1:8000/api/users')
+
+        const dataUser = await responseUser.data.filter(user => parseInt(user.id) === parseInt(filteredSession[0].creator))
+
         dispatch({
           type: "UPDATE_SESSION",
           payload: {
-            session: filteredSession
+            session: filteredSession,
+            hostName: dataUser[0].first_name.charAt(0).toUpperCase() + dataUser[0].first_name.slice(1)
           }
         })
 
@@ -143,6 +148,7 @@ const Datatable = () => {
             details: sessions.sessionDescription,
             date: sessions.startsAt,
             status: sessions.status === 1 ? "Active" : "Inactive",
+            actions: sessions.searchID
           }
         })}
         columns={userColumns.concat(actionColumn)}

@@ -21,7 +21,8 @@ export function SessionContextProvider({ children }) {
             case "UPDATE_SESSION":
                 return {
                     ...state,
-                    session: action.payload.session
+                    session: action.payload.session,
+                    hostName: action.payload.hostName
                 }
 
             case "UPDATE_HOSTJOINED":
@@ -59,7 +60,9 @@ export function SessionContextProvider({ children }) {
         peer: null,
         participants: 0,
         loading: true,
-        hostJoined: false
+        hostJoined: false,
+        hostName: null
+
     }
 
     const [state, dispatch] = useReducer(sessionReducer, INITIAL_STATE)

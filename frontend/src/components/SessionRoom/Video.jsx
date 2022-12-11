@@ -1,19 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { selectIsSomeoneScreenSharing, useHMSActions, useHMSStore, useVideo } from "@100mslive/react-sdk";
 import { useEffect } from 'react';
 import SessionContext from '../../context/SessionContext';
 import ReactLoading from 'react-loading';
-import Tabs from '@mui/joy/Tabs';
+import Tabs, { tabsClasses } from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
-import TabPanel from '@mui/joy/TabPanel';
-
+import Box from '@mui/joy/Box';
+import SessionDetails from '../SessionDetails/SessionDetails';
 
 function Video() {
     const screenShareOn = useHMSStore(selectIsSomeoneScreenSharing)
     const hmsActions = useHMSActions()
     const { session } = useContext(SessionContext)
-    console.log(session, screenShareOn);
+    const [index, setIndex] = useState(0);
+    const [detailsModalState, setDetailsModalState] = useState(false)
     const { videoRef } = useVideo(
         {
             trackId: screenShareOn ? session.peer.auxiliaryTracks[0] : session.peer.videoTrack
@@ -33,24 +34,56 @@ function Video() {
     }, [screenShareOn, hmsActions])
 
 
+    useEffect(() => {
+        if (index === 1) {
+            setDetailsModalState(true)
+
+        }
+    }, [index])
+
+    useEffect(() => {
+        if (detailsModalState === false && index === 1) {
+            setIndex(0)
+
+        }
+    }, [detailsModalState])
+
+
     return (
         <div className='sessionVideo-container'>
-            <Tabs aria-label="Basic tabs" defaultValue={0} sx={{ borderRadius: 'lg' }}>
-                <TabList>
-                    <Tab>First tab</Tab>
-                    <Tab>Second tab</Tab>
-                    <Tab>Third tab</Tab>
-                </TabList>
-                <TabPanel value={0} sx={{ p: 2 }}>
-                    <b>First</b> tab panel
-                </TabPanel>
-                <TabPanel value={1} sx={{ p: 2 }}>
-                    <b>Second</b> tab panel
-                </TabPanel>
-                <TabPanel value={2} sx={{ p: 2 }}>
-                    <b>Third</b> tab panel
-                </TabPanel>
-            </Tabs>
+            <SessionDetails setDetailsModalState={setDetailsModalState} detailsModalState={detailsModalState} />
+            <Box sx={{ display: 'flex', gap: 2, flexDirection: 'column', borderRadius: '10px', alignSelf: 'start', marginLeft: '50px', height: '50px', justifyContent: 'center', alignItems: 'center' }}>
+                <Tabs
+                    aria-label="Outlined tabs"
+                    value={index}
+                    onChange={(event, value) => setIndex(value)}
+                    sx={{ borderRadius: 'lg' }}
+                >
+                    <TabList variant='outlined'>
+                        <Tab
+                            sx={{ width: '125px' }}
+                            variant={index === 0 ? 'outlined' : 'plain'}
+                            color={index === 0 ? 'primary' : 'neutral'}
+                        >
+                            Conference
+                        </Tab>
+                        <Tab
+                            sx={{ width: '125px' }}
+                            variant={index === 1 ? 'outlined' : 'plain'}
+                            color={index === 1 ? 'info' : 'neutral'}
+                        >
+                            Details
+                        </Tab>
+                        <Tab
+                            sx={{ width: '125px' }}
+                            variant={index === 2 ? 'outlined' : 'plain'}
+                            color={index === 2 ? 'warning' : 'neutral'}
+                        >
+                            Rate
+                        </Tab>
+                    </TabList>
+                </Tabs>
+            </Box>
             <div className="video-container">
                 {!session.hostJoined && session.role === 'participant' ?
                     <div className='video-loading'>
