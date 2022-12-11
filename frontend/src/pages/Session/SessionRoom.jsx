@@ -4,27 +4,22 @@ import './sessionRoom.scss'
 import Settings from '../../components/SessionRoom/Settings'
 import Stream from '../../components/SessionRoom/Stream'
 import { useHMSActions } from "@100mslive/react-sdk";
-import JoinSession from '../JoinSession/JoinSession'
 import Loading from '../../components/Loading/Loading'
 import SessionContext from '../../context/SessionContext'
 import useGetPeer from '../../hooks/useGetPeer'
 import useNotification from '../../hooks/useNotification'
 import Notification from '../../components/Notifcation/Notifcation'
+import { Navigate } from 'react-router'
 
 function SessionRoom() {
     const { session, dispatch } = useContext(SessionContext)
     const loading = session.loading
     const role = session.role
 
-    console.log(session);
-
-
     const hmsActions = useHMSActions()
     const { isConnected } = useGetPeer({ role })
     const [loadingText, setloadingText] = useState('')
     const notification = useNotification()
-
-
 
     useEffect(() => {
         window.onunload = () => {
@@ -67,7 +62,7 @@ function SessionRoom() {
                     </>) : (<Loading text={loadingText} />)
                 : (
                     <>
-                        <JoinSession />
+                        <Navigate to={'/dashboard'} />
                     </>
                 )
             }
