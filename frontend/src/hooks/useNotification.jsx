@@ -10,7 +10,8 @@ function useNotification() {
     const peer = raisedHandNotif?.data
     const raisedHand = useRef([])
     const isHandRaised = useHMSStore(selectPeerMetadata(peer?.id ?? ""))?.isHandRaised
-    const { session } = useContext(SessionContext)
+    const isRatingOpened = useHMSStore(selectPeerMetadata(peer?.id ?? ""))?.openRating
+    const { session, dispatch } = useContext(SessionContext)
 
 
     useEffect(() => {
@@ -62,14 +63,29 @@ function useNotification() {
                         }
 
                     }
+
+                    if (isRatingOpened && peer && !peer.isLocal) {
+                        toast.info("Rating is now open")
+                        dispatch({
+                            type: 'UPDATE_RATING', payload: {
+                                isRatingOpen: true
+                            }
+                        })
+                    }
+
+                    if (!isRatingOpened && peer && !peer.isLocal) {
+                        toast.info("Rating is now closed")
+                        dispatch({
+                            type: 'UPDATE_RATING', payload: {
+                                isRatingOpen: false
+                            }
+                        })
+                    }
                     break;
 
                 case 'TRACK_DEGRADED':
                     toast.warning('Slow Internet Connection')
                     break;
-
-                case 'TRACK_RESTORED':
-                    toast.success('Internet restored')
 
                 default:
                     break;

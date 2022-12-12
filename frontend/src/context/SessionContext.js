@@ -39,6 +39,12 @@ export function SessionContextProvider({ children }) {
                     role: action.payload.role,
                 }
 
+            case "UPDATE_RATING":
+                return {
+                    ...state,
+                    isRatingOpen: action.payload.isRatingOpen,
+                }
+
             case "LEAVE":
                 return {
                     session: null,
@@ -47,7 +53,8 @@ export function SessionContextProvider({ children }) {
                     loading: true,
                     isConnected: false,
                     hostJoined: false,
-                    hostName: null
+                    hostName: null,
+                    isRatingOpen: false
                 }
 
             default:
@@ -63,8 +70,8 @@ export function SessionContextProvider({ children }) {
         participants: 0,
         loading: true,
         hostJoined: false,
-        hostName: null
-
+        hostName: null,
+        isRatingOpen: false,
     }
 
     const [state, dispatch] = useReducer(sessionReducer, INITIAL_STATE)

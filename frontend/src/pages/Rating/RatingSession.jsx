@@ -9,7 +9,7 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Rating } from '@mui/material';
 import SessionContext from '../../context/SessionContext';
 import AuthContext from '../../context/AuthContext';
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 
 const style = {
   position: 'absolute',
@@ -29,16 +29,13 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
   // Context
   const { user } = useContext(AuthContext)
   const { session } = useContext(SessionContext)
-  
+
   const [punctuality, setPunctuality] = useState(0)
   const [presentation, setPresentation] = useState(0)
   const [delivery, setDelivery] = useState(0)
   const [innovativeness, setInnovativeness] = useState(0)
   const [feedback, setFeedback] = useState("")
   const [fetchedData, setFetchedData] = useState(null)
-
-  console.log(fetchedData);
-  const [modal, setModal] = useState(false);
 
   const rateSession = async () => {
     let formField = new FormData()
@@ -52,33 +49,17 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
     formField.append('sessionID', session.session[0].id)
 
     try {
-      if(fetchedData == null){
+      if (fetchedData == null) {
         const req = await axios.post(`http://localhost:8000/api/rateSession`, formField)
-        console.log(req.data);
         setFetchedData(req.data);
         toast.success('Succesfully Created')
-      }else{
+      } else {
         const req = await axios.put(`http://localhost:8000/api/updateRating/${fetchedData.id}`, formField)
         toast.success('Succesfully Updated')
       }
     } catch (err) {
-        toast.error('Fail to create session')
+      toast.error('Fail to create session')
     }
-  }
-
-  const toggleModal = () => {
-    setModal(!modal);
-  };
-
-  if (modal) {
-    document.body.classList.add('active-modal')
-  } else {
-    document.body.classList.remove('active-modal')
-  }
-
-  const handleJoin = (e) => {
-    e.preventDefault()
-    toggleModal()
   }
 
   const handleClose = () => {
@@ -94,7 +75,7 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-      >
+    >
       <Box sx={style}>
         <Typography id="modal-modal-description">
           <div className="rating-space">
@@ -119,7 +100,7 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
                     mt: 2,
                   },
                 }}
-                >
+              >
                 <Typography component="legend">Goals and Significance</Typography>
                 <Rating
                   component="legend"
