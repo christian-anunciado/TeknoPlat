@@ -10,13 +10,10 @@ import Login from "./pages/LoginPage/Login";
 import Register from "./pages/Registration/Register";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import AddSession from "./pages/AddSession/AddSession";
-import Session from "./pages/JoinSession/Session";
 import SessionRoom from "./pages/Session/SessionRoom";
 import JoinSession from "./pages/JoinSession/JoinSession";
 import Profile from "./pages/Profile/Profile";
-import RatingSession from "./pages/Rating/RatingSession";
 import AverageSession from "./pages/Rating/AverageSession";
-import RatingDetails from "./pages/Rating/RatingDetails";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style/flexboxgrid.min.css";
@@ -44,8 +41,6 @@ function App() {
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="add_session" element={<AddSession />} />
               <Route path="session/:id" element={<SessionRoom />} />
-              <Route path="search_session" element={<Session />} />
-              <Route path="rating_session" element={<RatingSession />} />
               <Route path="average_session" element={<AverageSession />} />
               <Route path="joinsession/:id" element={<JoinSession />} />
               <Route path="profile" element={<Profile />} />

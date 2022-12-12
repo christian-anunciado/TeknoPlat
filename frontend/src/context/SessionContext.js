@@ -22,7 +22,8 @@ export function SessionContextProvider({ children }) {
                 return {
                     ...state,
                     session: action.payload.session,
-                    hostName: action.payload.hostName
+                    hostName: action.payload.hostName,
+                    isConnected: action.payload.isConnected
                 }
 
             case "UPDATE_HOSTJOINED":
@@ -45,7 +46,8 @@ export function SessionContextProvider({ children }) {
                     peer: null,
                     loading: true,
                     isConnected: false,
-                    hostJoined: false
+                    hostJoined: false,
+                    hostName: null
                 }
 
             default:

@@ -50,12 +50,6 @@ function useGetPeer({ role }) {
             }
 
         }
-
-        if (!isConnected && Object.keys(remotePeer).length == 0) {
-            dispatch({
-                type: "LEAVE"
-            })
-        }
     }, [localPeer, remotePeer, isConnected, role])
 
     return {

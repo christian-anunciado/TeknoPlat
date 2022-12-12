@@ -57,18 +57,19 @@ function useNotification() {
                     if (!isHandRaised && peer) {
                         const index = raisedHand.current.findIndex(obj => obj.toastCreator === peer.id)
                         if (index != -1) {
-                            console.log("ASDSAD");
-                            console.log(typeof (raisedHand.current[index].toastID.toString()));
                             toast.dismiss(raisedHand.current[index].toastID.toString())
                             raisedHand.current = raisedHand.current.filter((item) => item.toastCreator !== peer.id)
-                            console.log(raisedHand);
-
-
                         }
 
                     }
-
                     break;
+
+                case 'TRACK_DEGRADED':
+                    toast.warning('Slow Internet Connection')
+                    break;
+
+                case 'TRACK_RESTORED':
+                    toast.success('Internet restored')
 
                 default:
                     break;
