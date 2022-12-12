@@ -16,6 +16,7 @@ import SessionContext from "../../context/SessionContext";
 import axios from "axios";
 import { useHMSActions } from "@100mslive/react-sdk";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 
 const Datatable = () => {
@@ -63,6 +64,8 @@ const Datatable = () => {
   }, [filteredSession.length])
 
 
+
+
   const actionColumn = [
     {
       field: "actions",
@@ -89,6 +92,16 @@ const Datatable = () => {
   const handleOpen = (searchID) => {
     setOpen(true);
     setSearch(searchID);
+  }
+
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault()
+    if (joinPassword === filteredSession[0].sessionPassword) {
+      joinRoom()
+    } else {
+      toast.error("Incorrect Password!")
+    }
+
   }
 
   const joinRoom = async () => {
@@ -178,7 +191,7 @@ const Datatable = () => {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={joinRoom}>Join</Button>
+            <Button onClick={handlePasswordSubmit}>Join</Button>
           </DialogActions>
         </Dialog> : null}
     </div>
