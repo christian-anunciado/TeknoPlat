@@ -94,8 +94,8 @@ class RatingModel(models.Model):
     delivery = models.IntegerField(null=True)
     innovativeness = models.IntegerField(null=True)
     feedback = models.CharField(max_length=500)
-    # creator = models.ForeignKey(UserModel, on_delete = models.CASCADE, null = True)
-    # sessionID = models.ForeignKey(SessionModel, on_delete = models.CASCADE, null = True)
+    creator = models.ForeignKey(UserModel, on_delete = models.CASCADE, null = True)
+    sessionID = models.ForeignKey(SessionModel, on_delete = models.CASCADE, null = True)
 
 class AverageRatingModel(models.Model):
     AveragePunctuality = models.FloatField(null=True)

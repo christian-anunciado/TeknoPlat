@@ -60,7 +60,7 @@ export default function TopNavbar() {
 
 const Wrapper = styled.nav`
   width: 100%;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   z-index: 999;
