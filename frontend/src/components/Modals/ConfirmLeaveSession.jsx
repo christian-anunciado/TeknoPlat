@@ -7,36 +7,17 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 import { useHMSActions } from '@100mslive/react-sdk';
 import SessionContext from '../../context/SessionContext';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 
-function ConfirmEndRoom({ endRoom, setEndRoom }) {
+function ConfirmLeaveSession({ leaveSessionModal, setLeaveSessionModal }) {
     const { session, dispatch } = useContext(SessionContext)
-    const hmsActions = useHMSActions();
-    const handleEndRoom = async () => {
-        try {
-            const lock = false; // set to true to disallow rejoins
-            const reason = 'Host ended the session';
-            await hmsActions.endRoom(lock, reason);
-            try {
-                const response = await toast.promise(axios.post(`http://localhost:8000/api/averageRatingsSession`, {
-                    sessionID: session.session[0].id
-                }), {
-                    pending: 'Saving session',
-                    success: 'Session saved 👌',
-                    error: 'Failed to save session 🤯'
-                })
-                if (response.status === 200) {
-                    dispatch({ type: "LEAVE" })
-                }
+    const hmsActions = useHMSActions()
 
-            } catch (err) {
-                toast('Fail to create session')
-            }
-
-        } catch (error) {
-            // Permission denied or not connected to room
-            console.error(error);
+    const handleLeaveSession = () => {
+        if (session.isConnected) {
+            toast.info('You just left the session')
+            dispatch({ type: "LEAVE" })
+            hmsActions.leave()
         }
     }
     return (
@@ -44,8 +25,8 @@ function ConfirmEndRoom({ endRoom, setEndRoom }) {
             <Modal
                 aria-labelledby="alert-dialog-modal-title"
                 aria-describedby="alert-dialog-modal-description"
-                open={endRoom}
-                onClose={() => setEndRoom(false)}
+                open={leaveSessionModal}
+                onClose={() => setLeaveSessionModal(false)}
                 sx={{ padding: '2px 20px 2px 10px' }}
             >
                 <ModalDialog variant="outlined" role="alertdialog" sx={{ backgroundColor: '#09090d', color: '#d8d8df' }}>
@@ -56,7 +37,7 @@ function ConfirmEndRoom({ endRoom, setEndRoom }) {
                         fontSize="1.25em"
                         mb="0.25em"
                     >
-                        That's a wrap!
+                        Are you sure you want to leave the session?
                     </Typography>
                     <Divider sx={{ my: 2 }} />
                     <Typography
@@ -65,16 +46,14 @@ function ConfirmEndRoom({ endRoom, setEndRoom }) {
                         fontWeight='light'
                         sx={{ color: '#d8d8df', fontWeight: 'light', lineHeight: '2' }}
                     >
-                        Done with your pitch presentation? Let's end the session.
-                        {<br />}
-                        Note: Participants can't join if you end the session.
+                        Note: If the session has not yet ended, you can rejoin it at any time.
                     </Typography>
                     <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
-                        <Button variant="plain" color="neutral" onClick={() => setEndRoom(false)}>
+                        <Button variant="plain" color="neutral" onClick={() => setLeaveSessionModal(false)}>
                             Cancel
                         </Button>
-                        <Button variant="solid" color="danger" onClick={handleEndRoom} sx={{ backgroundColor: '#a10e25', "&:hover": { backgroundColor: "#a10e25" } }}>
-                            End Session
+                        <Button variant="solid" color="danger" onClick={handleLeaveSession} sx={{ backgroundColor: '#a10e25', "&:hover": { backgroundColor: "#a10e25" } }}>
+                            Leave Session
                         </Button>
                     </Box>
                 </ModalDialog>
@@ -83,4 +62,4 @@ function ConfirmEndRoom({ endRoom, setEndRoom }) {
     );
 }
 
-export default ConfirmEndRoom
+export default ConfirmLeaveSession

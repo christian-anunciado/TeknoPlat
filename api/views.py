@@ -194,17 +194,20 @@ def addRateModel(request):
         return Response(serializeUser.data)
     return Response(serializeUser.errors)
 
+
 @api_view(['PUT'])
 def update_Rating(request, pk):
-    rate = RatingModel.objects.get(id = pk)
-    
-    rateSerializer = RatingModelSerializer(rate, data = request.data, partial = True)
+    rate = RatingModel.objects.get(id=pk)
+
+    rateSerializer = RatingModelSerializer(
+        rate, data=request.data, partial=True)
     if not rateSerializer.is_valid():
         print(rateSerializer.error)
         return Response(rateSerializer.error)
 
     rateSerializer.save()
     return Response(200)
+
 
 @api_view(['GET'])
 def getAverageRatingModel(request):
@@ -215,23 +218,19 @@ def getAverageRatingModel(request):
 
 @api_view(['POST'])
 def setAverageRatingModel(request):
-
-    rate = RatingModel.objects.filter(sessionID = 1).all()
+    sessionId = request.data['sessionID']
+    rate = RatingModel.objects.filter(sessionID=sessionId).all()
 
     if rate is None:
         raise AuthenticationError("There are no rating in this session")
 
-    avePunctionality = RatingModel.objects.filter(sessionID= 1).all().aggregate(Avg('punctuality'))
-    avePresentation = RatingModel.objects.filter(sessionID= 1).all().aggregate(Avg('presentation'))
-    aveDelivery = RatingModel.objects.filter(sessionID= 1).all().aggregate(Avg('delivery'))
-    aveInnovativeness = RatingModel.objects.filter(sessionID= 1).all().aggregate(Avg('innovativeness'))
-    sID = SessionModel.objects.get(sessionID = 1)
+    serializer = AverageRatingModelSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
 
-    serializeUser = AverageRatingModel(AveragePunctuality = avePunctionality.get('punctuality__avg'), AveragePresentation = avePresentation.get('presentation__avg'),
-                                AverageDelivery = aveDelivery.get('delivery__avg'), AverageInnovativeness = aveInnovativeness.get('innovativeness__avg'), sessionID = sID)
+    return Response(serializer.errors)
 
-    serializeUser.save()
-    return Response()
 
 @api_view(['GET'])
 def get100MsKeys(request):

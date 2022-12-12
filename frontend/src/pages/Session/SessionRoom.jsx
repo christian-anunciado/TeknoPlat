@@ -8,7 +8,6 @@ import Loading from '../../components/Loading/Loading'
 import SessionContext from '../../context/SessionContext'
 import useGetPeer from '../../hooks/useGetPeer'
 import useNotification from '../../hooks/useNotification'
-import Notification from '../../components/Notifcation/Notifcation'
 import { Navigate } from 'react-router'
 
 function SessionRoom() {
@@ -56,7 +55,6 @@ function SessionRoom() {
                                 <Settings role={role} />
                                 <Stream role={role} />
                             </div>
-                            <Notification />
                         </div>
                     </>) : (<Loading text={loadingText} />)
                 : (
