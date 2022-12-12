@@ -191,8 +191,20 @@ def addRateModel(request):
     serializeUser = RatingModelSerializer(data=request.data)
     if serializeUser.is_valid():
         serializeUser.save()
-        return Response(200)
+        return Response(serializeUser.data)
     return Response(serializeUser.errors)
+
+@api_view(['PUT'])
+def update_Rating(request, pk):
+    rate = RatingModel.objects.get(id = pk)
+    
+    rateSerializer = RatingModelSerializer(rate, data = request.data, partial = True)
+    if not rateSerializer.is_valid():
+        print(rateSerializer.error)
+        return Response(rateSerializer.error)
+
+    rateSerializer.save()
+    return Response(200)
 
 @api_view(['GET'])
 def getAverageRatingModel(request):

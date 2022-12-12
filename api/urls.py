@@ -15,6 +15,7 @@ urlpatterns = [
     path('authUser', views.getAuthUser, name="authUser"),
     path('addSession', views.setSessionModel, name="addSession"),
     path('getRatings', views.getRateModel, name="getRatings"),
+    path('updateRating/<str:pk>', views.update_Rating, name="updateRating"),
     path('rateSession', views.addRateModel, name="rateSession"),
     path('getAverageRatings', views.getAverageRatingModel, name="getAverageRatings"),
     path('AverageRatingsSession', views.setAverageRatingModel, name="AverageRatingsSession"),

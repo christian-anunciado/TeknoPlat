@@ -8,6 +8,8 @@ import Modal from '@mui/material/Modal';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Rating } from '@mui/material';
 import SessionContext from '../../context/SessionContext';
+import AuthContext from '../../context/AuthContext';
+import {toast} from 'react-toastify'
 
 const style = {
   position: 'absolute',
@@ -25,14 +27,17 @@ const style = {
 const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, setRoomEnded, roomEndedNotif }) => {
 
   // Context
+  const { user } = useContext(AuthContext)
   const { session } = useContext(SessionContext)
-
+  
   const [punctuality, setPunctuality] = useState(0)
   const [presentation, setPresentation] = useState(0)
   const [delivery, setDelivery] = useState(0)
   const [innovativeness, setInnovativeness] = useState(0)
   const [feedback, setFeedback] = useState("")
+  const [fetchedData, setFetchedData] = useState(null)
 
+  console.log(fetchedData);
   const [modal, setModal] = useState(false);
 
   const rateSession = async () => {
@@ -43,22 +48,22 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
     formField.append('delivery', delivery)
     formField.append('innovativeness', innovativeness)
     formField.append('feedback', feedback)
+    formField.append('creator', user.userID)
+    formField.append('sessionID', session.session[0].id)
 
     try {
-      const req = await axios.post(`http://localhost:8000/api/rateSession`, formField)
-      console.log(req.data);
-      alert('Succesfully Created')
+      if(fetchedData == null){
+        const req = await axios.post(`http://localhost:8000/api/rateSession`, formField)
+        console.log(req.data);
+        setFetchedData(req.data);
+        toast.success('Succesfully Created')
+      }else{
+        const req = await axios.put(`http://localhost:8000/api/updateRating/${fetchedData.id}`, formField)
+        toast.success('Succesfully Updated')
+      }
     } catch (err) {
-      alert('Fail to create session')
+        toast.error('Fail to create session')
     }
-
-
-    // setPunctuality(0)
-    // setPresentation(0)
-    // setDelivery(0)
-    // setInnovativeness(0)
-    // setFeedback("") 
-
   }
 
   const toggleModal = () => {
@@ -73,9 +78,7 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
 
   const handleJoin = (e) => {
     e.preventDefault()
-
     toggleModal()
-
   }
 
   const handleClose = () => {
@@ -91,7 +94,7 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-    >
+      >
       <Box sx={style}>
         <Typography id="modal-modal-description">
           <div className="rating-space">
@@ -116,7 +119,7 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
                     mt: 2,
                   },
                 }}
-              >
+                >
                 <Typography component="legend">Goals and Significance</Typography>
                 <Rating
                   component="legend"
