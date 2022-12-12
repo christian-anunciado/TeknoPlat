@@ -112,21 +112,22 @@ const Datatable = () => {
         const dataUser = await responseUser.data.filter(user => parseInt(user.id) === parseInt(filteredSession[0].creator))
 
         dispatch({
-          type: "UPDATE_SESSION",
-          payload: {
-            session: filteredSession,
-            hostName: dataUser[0].first_name.charAt(0).toUpperCase() + dataUser[0].first_name.slice(1)
-          }
-        })
-
-        dispatch({
           type: "UPDATE_ROLE",
           payload: {
             role: role
           }
         })
 
-        navigate(`/session/${filteredSession[0].sessionID}`)
+        dispatch({
+          type: "UPDATE_SESSION",
+          payload: {
+            session: filteredSession,
+            hostName: dataUser[0].first_name.charAt(0).toUpperCase() + dataUser[0].first_name.slice(1),
+            isConnected: true
+          }
+        })
+
+        navigate(`/session/${filteredSession[0].searchID}`)
 
 
       }

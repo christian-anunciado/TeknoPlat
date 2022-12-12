@@ -89,6 +89,7 @@
                     display: flex;
                     align-items: center;
                     flex-direction: row;
+                    align-self: baseline;
                     height: 50px;
                     // border-bottom: 1px solid gray;
 
@@ -152,7 +153,7 @@
                     }
 
                     .sessionNav-endSession {
-                        margin-right: 1em;
+                        height: 50px;
 
                         button {
                             font-size: .6rem;
@@ -247,6 +248,28 @@
                         flex-direction: column;
                         justify-content: center;
                         overflow: hidden;
+
+                        .sessionNav-endSession {
+                            height: 50px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 8px 16px;
+
+                            button {
+                                font-size: .6rem;
+                                font-weight: 200;
+                                height: 1.5rem;
+                                border-radius: 50px;
+                                border: none;
+                                background-color: #BA6451;
+                                color: whitesmoke;
+                                font-weight: 700;
+                                width: 125px;
+                                cursor: pointer;
+
+                            }
+                        }
 
 
                         .sessionChats-controls {

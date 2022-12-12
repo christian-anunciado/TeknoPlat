@@ -27,8 +27,6 @@ function SessionDetails({ detailsModalState, setDetailsModalState }) {
     const { session } = useContext(SessionContext)
     const [link, setLink] = useState('')
 
-    console.log(session);
-
     useEffect(() => {
         if (detailsModalState) {
             setLink(`http://localhost:3000/#/session/${session.session[0].searchID}`)

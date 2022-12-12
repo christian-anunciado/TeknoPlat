@@ -15,20 +15,20 @@ function SessionRoom() {
     const { session, dispatch } = useContext(SessionContext)
     const loading = session.loading
     const role = session.role
+    useNotification()
 
     const hmsActions = useHMSActions()
     const { isConnected } = useGetPeer({ role })
     const [loadingText, setloadingText] = useState('')
-    const notification = useNotification()
 
     useEffect(() => {
         window.onunload = () => {
-            if (isConnected) {
+            if (session.isConnected) {
                 hmsActions.leave();
                 dispatch({ type: "LEAVE" })
             }
         };
-    }, [hmsActions, isConnected]);
+    }, [hmsActions, session.isConnected]);
 
     useEffect(() => {
         const unSub = () => {
@@ -43,13 +43,12 @@ function SessionRoom() {
         return (
             unSub()
         )
-    }, [role, session.loading, isConnected])
-
+    }, [role, session.loading, session.isConnected])
 
     return (
         <div className='main-content'>
             <Navbar />
-            {isConnected ?
+            {session.isConnected ?
                 loading === false ? (
                     <>
                         <div className='sessionRoom'>
