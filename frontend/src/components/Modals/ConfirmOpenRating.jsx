@@ -5,20 +5,30 @@ import Divider from '@mui/joy/Divider';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
+import { selectLocalPeerID, selectPeerMetadata, useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import SessionContext from '../../context/SessionContext';
+import { toast } from 'react-toastify';
 
-function ConfirmRatingSubmit({ roomEnded, setRoomEnded }) {
+function ConfirmOpenRating({ openRatingModalState, setOpenRatingModalState }) {
     const { dispatch } = useContext(SessionContext)
+    const hmsActions = useHMSActions()
+    const localPeerId = useHMSStore(selectLocalPeerID);
+    const metaData = useHMSStore(selectPeerMetadata(localPeerId));
 
-    const handleSubmit = async () => {
-        dispatch({ type: "LEAVE" })
+    const handleProceed = async () => {
+        const newMetadata = { ...metaData, openRating: true };
+        await hmsActions.changeMetadata(newMetadata);
+        dispatch({ type: 'UPDATE_RATING', payload: { isRatingOpen: true } })
+        setOpenRatingModalState(false)
+        toast.success("Participants can now rate your session")
     }
     return (
         <React.Fragment>
             <Modal
                 aria-labelledby="alert-dialog-modal-title"
                 aria-describedby="alert-dialog-modal-description"
-                open={roomEnded}
+                open={openRatingModalState}
+                onClose={() => setOpenRatingModalState(false)}
                 sx={{ padding: '2px 20px 2px 10px' }}
             >
                 <ModalDialog variant="outlined" role="alertdialog" sx={{ backgroundColor: '#09090d', color: '#d8d8df' }}>
@@ -29,7 +39,7 @@ function ConfirmRatingSubmit({ roomEnded, setRoomEnded }) {
                         fontSize="1.25em"
                         mb="0.25em"
                     >
-                        Host just ended the session!
+                        Confirm opening rating?
                     </Typography>
                     <Divider sx={{ my: 2 }} />
                     <Typography
@@ -38,13 +48,14 @@ function ConfirmRatingSubmit({ roomEnded, setRoomEnded }) {
                         fontWeight='light'
                         sx={{ color: '#d8d8df', fontWeight: 'light', lineHeight: '2' }}
                     >
-                        Thank you for your staying with us!
-                        {<br />}
-                        We appreciate your participation!
+                        Opens rating for everyone
                     </Typography>
                     <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
-                        <Button variant="solid" color="danger" onClick={handleSubmit} sx={{ backgroundColor: '#a10e25', "&:hover": { backgroundColor: "#a10e25" } }}>
-                            Back to Dashboard
+                        <Button variant="plain" color="neutral" onClick={() => setOpenRatingModalState(false)}>
+                            Cancel
+                        </Button>
+                        <Button variant="solid" color="info" onClick={handleProceed} sx={{ backgroundColor: '#054da7', "&:hover": { backgroundColor: "#054da7" } }}>
+                            Proceed
                         </Button>
                     </Box>
                 </ModalDialog>
@@ -53,4 +64,4 @@ function ConfirmRatingSubmit({ roomEnded, setRoomEnded }) {
     );
 }
 
-export default ConfirmRatingSubmit
+export default ConfirmOpenRating

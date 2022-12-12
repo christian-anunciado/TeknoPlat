@@ -11,6 +11,7 @@ import SessionDetails from '../SessionDetails/SessionDetails';
 import RatingSession from '../../pages/Rating/RatingSession';
 import RatingDetails from '../../pages/Rating/RatingDetails';
 import ConfirmRatingSubmit from '../Modals/ConfirmRatingSubmit';
+import ConfirmOpenRating from '../Modals/ConfirmOpenRating';
 
 function Video() {
     const screenShareOn = useHMSStore(selectIsSomeoneScreenSharing)
@@ -20,13 +21,14 @@ function Video() {
     const [index, setIndex] = useState(0);
     const [detailsModalState, setDetailsModalState] = useState(false)
     const [ratingsModalState, setRatingsModalState] = useState(false)
+    const [openRatingModalState, setOpenRatingModalState] = useState(false)
     const [roomEnded, setRoomEnded] = useState(false)
+
     const { videoRef } = useVideo(
         {
             trackId: screenShareOn ? session.peer.auxiliaryTracks[0] : session.peer.videoTrack
         }
     )
-
 
     useEffect(() => {
         const unsub = async (e) => {
@@ -64,15 +66,26 @@ function Video() {
         }
     }, [roomEndedNotif])
 
+    const handleOpenRating = () => {
+        setOpenRatingModalState(true)
+    }
+
 
     return (
         <div className='sessionVideo-container'>
 
             <SessionDetails setDetailsModalState={setDetailsModalState} detailsModalState={detailsModalState} />
-            {session.role === 'creator' ? <RatingDetails setRatingsModalState={setRatingsModalState} ratingsModalState={ratingsModalState} />
-                : <RatingSession setRatingsModalState={setRatingsModalState} ratingsModalState={ratingsModalState} roomEnded={roomEnded} setRoomEnded={setRoomEnded} roomEndedNotif={roomEndedNotif} />
+            {session.role === 'creator'
+                ? <>
+                    <RatingDetails setRatingsModalState={setRatingsModalState} ratingsModalState={ratingsModalState} />
+                    <ConfirmOpenRating openRatingModalState={openRatingModalState} setOpenRatingModalState={setOpenRatingModalState} />
+                </>
+                : <>
+                    <RatingSession setRatingsModalState={setRatingsModalState} ratingsModalState={ratingsModalState} />
+                    <ConfirmRatingSubmit roomEnded={roomEnded} setRoomEnded={setRoomEnded} />
+                </>
+
             }
-            {session.role === 'participant' ? <ConfirmRatingSubmit roomEnded={roomEnded} setRoomEnded={setRoomEnded} setRatingsModalState={setRatingsModalState} /> : null}
 
             <div className='sessionNav-container'>
                 <div className="sessionNav-controls">
@@ -83,7 +96,8 @@ function Video() {
                         <div className="sessionNav-buttons">
                             <button className='askPro-button'>Ask a Pro</button>
                             <button className='uploadFiles-button'>Upload Files</button>
-                            <button className='openRating-button'>Open Rating</button>
+                            {session.isRatingOpen ? <button className='openRating-button' disabled>Rating is opened</button> : <button className='openRating-button' onClick={handleOpenRating}>Open Rating</button>}
+
                         </div>
                     ) : (null)
                     }
@@ -112,13 +126,18 @@ function Video() {
                         >
                             Details
                         </Tab>
-                        <Tab
+                        {session.isRatingOpen ? <Tab
                             sx={{ width: '125px' }}
                             variant={index === 2 ? 'outlined' : 'plain'}
                             color={index === 2 ? 'warning' : 'neutral'}
-                        >
-                            {session.role === 'creator' ? 'Rate Details' : 'Rate'}
-                        </Tab>
+                        > {session.role === 'creator' ? 'Rate Details' : 'Rate'}
+                        </Tab> : <Tab
+                            sx={{ width: '125px' }}
+                            variant={index === 2 ? 'outlined' : 'plain'}
+                            color={index === 2 ? 'warning' : 'neutral'}
+                            disabled
+                        > {session.role === 'creator' ? 'Rate Details' : 'Rate'}
+                        </Tab>}
                     </TabList>
                 </Tabs>
             </Box>
