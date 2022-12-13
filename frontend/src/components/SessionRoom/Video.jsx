@@ -5,7 +5,6 @@ import SessionContext from '../../context/SessionContext';
 import ReactLoading from 'react-loading';
 import SessionDetails from '../SessionDetails/SessionDetails';
 import RatingSession from '../../pages/Rating/RatingSession';
-import RatingDetails from '../../pages/Rating/RatingDetails';
 import ConfirmRatingSubmit from '../Modals/ConfirmRatingSubmit';
 import ConfirmOpenRating from '../Modals/ConfirmOpenRating';
 
@@ -73,7 +72,6 @@ function Video() {
             <SessionDetails setDetailsModalState={setDetailsModalState} detailsModalState={detailsModalState} />
             {session.role === 'creator'
                 ? <>
-                    <RatingDetails setRatingsModalState={setRatingsModalState} ratingsModalState={ratingsModalState} />
                     <ConfirmOpenRating openRatingModalState={openRatingModalState} setOpenRatingModalState={setOpenRatingModalState} />
                 </>
                 : <>

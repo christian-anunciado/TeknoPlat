@@ -1,3 +1,5 @@
+
+
 export const userColumns = [
   {
     field: "room",
@@ -43,11 +45,6 @@ export const userColumns = [
       let statusText = ''
       let statusClass = ''
       switch (params.row.status) {
-        case 0:
-          statusClass = 'Inactive'
-          statusText = 'Inactive'
-          break;
-
         case 1:
           statusClass = 'Active'
           statusText = 'Active'
@@ -66,11 +63,20 @@ export const userColumns = [
         default:
           break;
       }
-      return (
-        <div className={`cellWithStatus ${statusClass}`}>
-          {statusText}
-        </div>
-      );
+
+      if (statusText === 'Active' && params.row.creator === params.row.user) {
+        return (
+          <div className={`cellWithStatus Host`}>
+            Host
+          </div>
+        );
+      } else {
+        return (
+          <div className={`cellWithStatus ${statusClass}`}>
+            {statusText}
+          </div>
+        );
+      }
     },
   },
 ];

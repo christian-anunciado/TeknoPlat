@@ -194,8 +194,8 @@ def updateSession(request, pk):
 
 
 @api_view(['GET'])
-def getRateModel(request):
-    userModel = RatingModel.objects.all()
+def getRateModel(request, pk):
+    userModel = RatingModel.objects.filter(sessionID=pk)
     serializer = RatingModelSerializer(userModel, many=True)
     return Response(serializer.data)
 

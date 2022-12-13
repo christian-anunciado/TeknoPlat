@@ -10,8 +10,8 @@ import SessionContext from '../../context/SessionContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-function ConfirmEndRoom({ endRoom, setEndRoom }) {
-    const { session, dispatch } = useContext(SessionContext)
+function ConfirmEndRoom({ endRoom, setEndRoom, setRatingsModalState }) {
+    const { session } = useContext(SessionContext)
     const hmsActions = useHMSActions();
     const handleEndRoom = async () => {
         try {
@@ -30,7 +30,8 @@ function ConfirmEndRoom({ endRoom, setEndRoom }) {
                     error: 'Failed to save session 🤯'
                 })
                 if (response.status === 200) {
-                    dispatch({ type: "LEAVE" })
+                    setEndRoom(false)
+                    setRatingsModalState(true)
                 }
 
             } catch (err) {
@@ -39,7 +40,7 @@ function ConfirmEndRoom({ endRoom, setEndRoom }) {
 
         } catch (error) {
             // Permission denied or not connected to room
-            console.error(error);
+            toast.error(error);
         }
     }
     return (
