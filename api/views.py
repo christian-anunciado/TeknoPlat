@@ -179,6 +179,20 @@ def setSessionModel(request):
     return Response(serializeUser.errors)
 
 
+@api_view(['PUT'])
+def updateSession(request, pk):
+    session = SessionModel.objects.get(id=pk)
+
+    serializer = SessionModelSerializer(
+        session, data=request.data, partial=True)
+    if not serializer.is_valid():
+        print(serializer.error)
+        return Response(serializer.error)
+
+    serializer.save()
+    return Response(200)
+
+
 @api_view(['GET'])
 def getRateModel(request):
     userModel = RatingModel.objects.all()

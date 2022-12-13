@@ -136,7 +136,9 @@ const Datatable = () => {
           payload: {
             session: filteredSession,
             hostName: dataUser[0].first_name.charAt(0).toUpperCase() + dataUser[0].first_name.slice(1),
-            isConnected: true
+            isConnected: true,
+            isRatingOpen: filteredSession[0].ratingOpen === 1 ? true : false
+
           }
         })
 

@@ -14,6 +14,7 @@ urlpatterns = [
     path('auth', views.authUser, name="auth"),
     path('authUser', views.getAuthUser, name="authUser"),
     path('addSession', views.setSessionModel, name="addSession"),
+    path('updateSession/<str:pk>', views.updateSession, name="updateSession"),
     path('getRatings', views.getRateModel, name="getRatings"),
     path('updateRating/<str:pk>', views.update_Rating, name="updateRating"),
     path('rateSession', views.addRateModel, name="rateSession"),
