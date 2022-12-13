@@ -68,6 +68,8 @@ class SessionModel(models.Model):
     STATUS = [
         (1, "Active"),
         (0, "Inactive"),
+        (2, "Live"),
+        (3, "Ended"),
     ]
     RATING_STATUS = [
         (1, "Open"),
@@ -83,7 +85,8 @@ class SessionModel(models.Model):
     searchID = models.TextField(max_length=30, blank=True, null=True)
     status = models.IntegerField(null=True, choices=STATUS, default=0)
     startsAt = models.DateTimeField(null=True)
-    ratingOpen = models.IntegerField(null=True, choices=RATING_STATUS, default=0)
+    ratingOpen = models.IntegerField(
+        null=True, choices=RATING_STATUS, default=0)
 
     def __str__(self):
         return self.sessionName

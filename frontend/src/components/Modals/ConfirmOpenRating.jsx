@@ -20,11 +20,15 @@ function ConfirmOpenRating({ openRatingModalState, setOpenRatingModalState }) {
         try {
             const newMetadata = { ...metaData, openRating: true };
             await hmsActions.changeMetadata(newMetadata);
+
             const formField = new FormData()
             formField.append('ratingOpen', 1)
             await axios.put(`http://localhost:8000/api/updateSession/${session.session[0].id}`, formField)
+
             dispatch({ type: 'UPDATE_RATING', payload: { isRatingOpen: true } })
+
             setOpenRatingModalState(false)
+
             toast.success("Participants can now rate your session")
         } catch (e) {
             toast.error('Something went wrong')

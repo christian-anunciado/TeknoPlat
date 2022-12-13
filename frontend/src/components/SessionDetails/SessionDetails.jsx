@@ -26,6 +26,8 @@ const style = {
 function SessionDetails({ detailsModalState, setDetailsModalState }) {
     const { session } = useContext(SessionContext)
     const [link, setLink] = useState('')
+    var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    var formattedDate = new Date(session.session[0].startsAt)
 
     useEffect(() => {
         if (detailsModalState) {
@@ -65,7 +67,7 @@ function SessionDetails({ detailsModalState, setDetailsModalState }) {
                                         </div>
                                     </Grid>
                                     <Grid item xs={4}>
-                                        <div className="item-session">Date</div>
+                                        <div className="item-session">Start Date</div>
                                     </Grid>
                                     <Grid item xs={4}>
                                         <div className="item-session">Visiblity</div>
@@ -75,7 +77,7 @@ function SessionDetails({ detailsModalState, setDetailsModalState }) {
                                     </Grid>
                                     <Grid item xs={4}>
                                         <div className="item-session-description">
-                                            <p> {session.session[0].startsAt}</p>
+                                            <p> {formattedDate.toLocaleDateString("en-US", options)}</p>
                                         </div>
                                     </Grid>
                                     <Grid item xs={4}>

@@ -72,12 +72,37 @@ const Datatable = () => {
       headerName: "Actions",
       width: 200,
       renderCell: (params) => {
+        let statusClass = ''
+        switch (params.row.status) {
+          case 0:
+            statusClass = 'Inactive'
+            break;
+
+          case 1:
+            statusClass = 'Active'
+            break;
+
+          case 2:
+            statusClass = 'Active'
+            break;
+
+          case 3:
+            statusClass = 'Inactive'
+            break;
+
+          default:
+            break;
+        }
         return (
           <div className="cellAction">
-            <div className={`viewButton ${params.row.actions}`} onClick={() => handleOpen(params.row.actions)}>
-
-              Join
-            </div>
+            {statusClass === 'Active'
+              ? <button className={`viewButton ${params.row.actions}`} onClick={() => handleOpen(params.row.actions)}>
+                Join
+              </button>
+              : <p>
+                Joining Disabled
+              </p>
+            }
           </div>
         );
       },
@@ -119,6 +144,10 @@ const Datatable = () => {
           userName: capitalizedName,
           authToken: req.data
         });
+
+        const formField = new FormData()
+        formField.append('status', 2)
+        await axios.put(`http://localhost:8000/api/updateSession/${filteredSession[0].id}`, formField)
 
         const responseUser = await axios.get('http://127.0.0.1:8000/api/users')
 
@@ -163,7 +192,7 @@ const Datatable = () => {
             creator: sessions.creator,
             details: sessions.sessionDescription,
             date: sessions.startsAt,
-            status: sessions.status === 1 ? "Active" : "Inactive",
+            status: sessions.status,
             actions: sessions.searchID
           }
         })}

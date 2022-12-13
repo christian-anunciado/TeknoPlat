@@ -3,7 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import LoginNav from '../../components/Nav/LoginNav'
 import "./Register.scss"
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const Register = () => {
@@ -24,28 +24,27 @@ const Register = () => {
     const registerUser = async () => {
         let formField = new FormData()
 
-        formField.append('first_name',first_name)
-        formField.append('last_name',last_name)
-        formField.append('email',email)
-        
-        formField.append('username',username)
-        formField.append('institute',institute)
-        formField.append('password',password)
+        formField.append('first_name', first_name)
+        formField.append('last_name', last_name)
+        formField.append('email', email)
+
+        formField.append('username', username)
+        formField.append('institute', institute)
+        formField.append('password', password)
 
         await axios({
             method: 'post',
             url: 'http://127.0.0.1:8000/api/signup',
             data: formField
         }).then((response) => {
-            console.log(response.data);
-            if(response.data == '200'){
+            if (response.data == '200') {
                 alert('User Successfuly Created')
                 navigate('/login')
-            }else{
+            } else {
                 alert('Something went wrong. Please try again')
             }
         })
-        
+
         setFN("")
         setLN("")
         setEmail("")
@@ -54,10 +53,10 @@ const Register = () => {
         setPassword("")
     }
 
-    const checkPassword = (e) =>{
+    const checkPassword = (e) => {
         const confPass = e.target.value
         setConfirmPassword(confPass);
-        if (password != confPass){
+        if (password != confPass) {
             setError("Passwords do not match");
         } else {
             setError(" ");
@@ -66,68 +65,68 @@ const Register = () => {
 
     return (
         <>
-        <LoginNav />
-        <div className='register-container'>
-            <h1>Register</h1>
+            <LoginNav />
+            <div className='register-container'>
+                <h1>Register</h1>
 
-                <input 
-                type="text"
-                placeholder="Enter firstname"
-                name="first_name"
-                value={first_name}
-                onChange={(e) => setFN(e.target.value)} 
-                /> 
-
-                <input 
-                type="text"
-                placeholder="Enter lastname"
-                name="last_name"
-                value={last_name}
-                onChange={(e) => setLN(e.target.value)} 
-                /> 
-
-                <input 
-                type="text"
-                placeholder="Enter email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)} 
-                /> 
-
-                <input 
-                type="text"
-                placeholder="Enter username"
-                name="username"
-                value={username}
-                onChange={(e) => setUN(e.target.value)} 
+                <input
+                    type="text"
+                    placeholder="Enter firstname"
+                    name="first_name"
+                    value={first_name}
+                    onChange={(e) => setFN(e.target.value)}
                 />
 
-                <input 
-                type="text"
-                placeholder="Enter institute"
-                name="institute"
-                value={institute}
-                onChange={(e) => setInstitute(e.target.value)} 
-                /> 
-
-                <input 
-                type="password"
-                placeholder="Enter password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)} 
-                /> 
-
-                <input 
-                type="password"
-                placeholder="Confirm password"
-                name="confirmPassword"
-                value={confirmPassword}
-                onChange={(e) => checkPassword(e)} 
+                <input
+                    type="text"
+                    placeholder="Enter lastname"
+                    name="last_name"
+                    value={last_name}
+                    onChange={(e) => setLN(e.target.value)}
                 />
-                <div style={{color: "red", fontSize: 15}}>{error}</div> 
+
+                <input
+                    type="text"
+                    placeholder="Enter email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+
+                <input
+                    type="text"
+                    placeholder="Enter username"
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUN(e.target.value)}
+                />
+
+                <input
+                    type="text"
+                    placeholder="Enter institute"
+                    name="institute"
+                    value={institute}
+                    onChange={(e) => setInstitute(e.target.value)}
+                />
+
+                <input
+                    type="password"
+                    placeholder="Enter password"
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+
+                <input
+                    type="password"
+                    placeholder="Confirm password"
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={(e) => checkPassword(e)}
+                />
+                <div style={{ color: "red", fontSize: 15 }}>{error}</div>
                 <button className='submit-button' onClick={registerUser}>Sign Up</button>
-        </div>
+            </div>
         </>
     )
 }

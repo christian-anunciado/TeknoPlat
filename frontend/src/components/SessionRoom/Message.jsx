@@ -3,8 +3,6 @@ import React, { useEffect, useRef } from 'react'
 const Message = ({ message, author, role }) => {
     const ref = useRef()
 
-    console.log(author);
-
     useEffect(() => {
         ref.current?.scrollIntoView({ behavior: "smooth" })
     }, [message])
