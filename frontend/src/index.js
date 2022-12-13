@@ -4,6 +4,7 @@ import App from './App';
 import { HMSRoomProvider } from "@100mslive/react-sdk";
 import { AuthProvider } from './context/AuthContext';
 import { SessionContextProvider } from './context/SessionContext';
+import Notification from './components/Notifcation/Notifcation';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,8 +14,8 @@ root.render(
     <React.StrictMode>
       <HMSRoomProvider>
         <SessionContextProvider>
-
           <App />
+          <Notification />
         </SessionContextProvider>
       </HMSRoomProvider>
     </React.StrictMode>

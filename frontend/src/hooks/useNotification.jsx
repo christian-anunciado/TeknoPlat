@@ -72,15 +72,6 @@ function useNotification() {
                             }
                         })
                     }
-
-                    if (!isRatingOpened && peer && !peer.isLocal) {
-                        toast.info("Rating is now closed")
-                        dispatch({
-                            type: 'UPDATE_RATING', payload: {
-                                isRatingOpen: false
-                            }
-                        })
-                    }
                     break;
 
                 case 'TRACK_DEGRADED':

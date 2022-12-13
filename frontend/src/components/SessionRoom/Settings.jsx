@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { AiOutlineSetting } from 'react-icons/ai';
 import { BsCameraVideo, BsPeople, BsCameraVideoOff } from 'react-icons/bs';
 import { BiMicrophone, BiMicrophoneOff } from 'react-icons/bi';
@@ -8,9 +8,8 @@ import { ImExit } from 'react-icons/im';
 import { Button } from '@mui/material';
 import { blueGrey, pink } from '@mui/material/colors'
 
-import { selectIsConnectedToRoom, selectIsSomeoneScreenSharing, selectLocalPeerID, selectPeerMetadata, useAVToggle, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
-import { useContext } from 'react';
-import SessionContext from '../../context/SessionContext';
+import { selectIsSomeoneScreenSharing, selectLocalPeerID, selectPeerMetadata, useAVToggle, useHMSActions, useHMSStore } from "@100mslive/react-sdk";
+import ConfirmLeaveSession from '../Modals/ConfirmLeaveSession';
 
 function Settings({ role }) {
     const {
@@ -20,18 +19,15 @@ function Settings({ role }) {
         toggleVideo,
     } = useAVToggle();
     const hmsActions = useHMSActions()
-    const isConnected = useHMSStore(selectIsConnectedToRoom)
     const screenShareOn = useHMSStore(selectIsSomeoneScreenSharing)
-    const { dispatch } = useContext(SessionContext)
+
     const localPeerId = useHMSStore(selectLocalPeerID);
     const metaData = useHMSStore(selectPeerMetadata(localPeerId));
+    const [leaveSessionModal, setLeaveSessionModal] = useState(false)
 
 
     const handleLeave = (e) => {
-        if (isConnected) {
-            dispatch({ type: "LEAVE" })
-            hmsActions.leave()
-        }
+        setLeaveSessionModal(true)
     }
 
     const toggleShareScreen = async (e) => {
@@ -47,6 +43,7 @@ function Settings({ role }) {
 
     return (
         <div className='sessionSettings-container'>
+            <ConfirmLeaveSession leaveSessionModal={leaveSessionModal} setLeaveSessionModal={setLeaveSessionModal} />
             <div className='setting-icons topIcon'>
                 {role === 'creator' ? (
                     <>
