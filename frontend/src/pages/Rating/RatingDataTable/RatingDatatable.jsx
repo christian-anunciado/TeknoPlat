@@ -8,6 +8,7 @@ import { useEffect} from 'react'
 
 const Datatable = () => {
   const [session, setSession] = useState([]);
+
   useEffect(()=>{
     fetch('http://127.0.0.1:8000/api/getRatings?format=json')
     .then((data)=>data.json()).then((data)=>setSession(data))

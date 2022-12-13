@@ -108,7 +108,7 @@ function SessionDetails({ detailsModalState, setDetailsModalState }) {
                                         <Button
                                             size="medium"
                                             sx={{
-                                                width: 300
+                                                width: "100%"
                                             }}
                                             color="success"
                                             variant="contained"
