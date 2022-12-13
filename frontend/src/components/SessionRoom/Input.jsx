@@ -15,7 +15,6 @@ function Input() {
 
     const handleSend = async (e) => {
         hmsActions.sendBroadcastMessage(msg)
-        console.log("Sent");
         setMsg("")
     }
 

@@ -20,8 +20,6 @@ function useNotification() {
         }
         const unsub = () => {
 
-            console.log('notification type', notification.type);
-            console.log('data', notification.data);
             switch (notification.type) {
                 case 'PEER_JOINED':
                     if (session.role === 'creator')

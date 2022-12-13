@@ -3,15 +3,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import AuthContext, { AuthProvider } from '../../context/AuthContext'
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 import "./AddSession.scss"
 const shortid = require('shortid')
 
 const AddSession = () => {
   const { user } = useContext(AuthContext)
 
-  console.log(user);
-  console.log(user.userID);
   const baseURL = `http://localhost:8000`
   const [session, setSession] = useState({
     // *** BASED ON MODELS *** //
@@ -52,7 +50,6 @@ const AddSession = () => {
     e.preventDefault()
     const form = new FormData()
     const searchID = shortid.generate()
-    console.log("id: ", searchID);
 
     try {
       const req = await axios.post('https://api.100ms.live/v2/rooms', {
@@ -69,7 +66,6 @@ const AddSession = () => {
           'Content-Type': 'application/json'
         }
       })
-      console.log(req.data, req.data.id);
       form.append('sessionName', session.sessionName)
       form.append('sessionPassword', session.sessionPassword)
       form.append('sessionDescription', session.sessionDescription)
@@ -80,12 +76,11 @@ const AddSession = () => {
 
       try {
         const req = await axios.post(`${baseURL}/api/addSession`, form)
-        console.log("data", req.data);
         session.sessionName = ''
         session.sessionDescription = ''
         session.sessionPassword = ''
         session.startsAt = ''
-        toast.success("Session Created Successfully",{
+        toast.success("Session Created Successfully", {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -96,7 +91,7 @@ const AddSession = () => {
         })
 
       } catch (err) {
-       toast.error("Session Creation Failed",{
+        toast.error("Session Creation Failed", {
           position: "top-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -104,15 +99,14 @@ const AddSession = () => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-      })
-    }
+        })
+      }
     } catch (err) {
       alert(err)
     }
-   window.location("/dashboard").reload()
+    window.location("/dashboard").reload()
   }
-  
-  console.log(session);
+
   return (
     <>
 
@@ -142,11 +136,11 @@ const AddSession = () => {
                 </div>
               </div>
               <div className="button_create">
-               
+
                 <input type="submit" value="Create" onClick={handleSubmit}
                 />
-                <ToastContainer/>
-                
+                <ToastContainer />
+
               </div>
             </form>
           </div>

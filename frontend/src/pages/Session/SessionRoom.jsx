@@ -16,7 +16,6 @@ function SessionRoom() {
     const role = session.role
     useNotification()
 
-    console.log(session);
 
     const hmsActions = useHMSActions()
     const { isConnected } = useGetPeer({ role })

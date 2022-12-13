@@ -18,6 +18,9 @@ function ConfirmEndRoom({ endRoom, setEndRoom }) {
             const lock = false; // set to true to disallow rejoins
             const reason = 'Host ended the session';
             await hmsActions.endRoom(lock, reason);
+            const formField = new FormData()
+            formField.append('status', 3)
+            await axios.put(`http://localhost:8000/api/updateSession/${session.session[0].id}`, formField)
             try {
                 const response = await toast.promise(axios.post(`http://localhost:8000/api/averageRatingsSession`, {
                     sessionID: session.session[0].id

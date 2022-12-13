@@ -7,8 +7,6 @@ import {
 function Messages() {
     const allMessages = useHMSStore(selectHMSMessages)
 
-    console.log(allMessages);
-
     return (
         <div className='sessionChats-messages'>
             {allMessages.map((msg) =>

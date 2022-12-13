@@ -38,6 +38,7 @@ class UserModelSerializer(ModelSerializer):
 
 
 class SessionModelSerializer(ModelSerializer):
+
     class Meta:
         model = SessionModel
         fields = '__all__'
