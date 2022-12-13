@@ -3,10 +3,6 @@ import { HMSNotificationTypes, selectIsSomeoneScreenSharing, useHMSActions, useH
 import { useEffect } from 'react';
 import SessionContext from '../../context/SessionContext';
 import ReactLoading from 'react-loading';
-import Tabs from '@mui/joy/Tabs';
-import TabList from '@mui/joy/TabList';
-import Tab from '@mui/joy/Tab';
-import Box from '@mui/joy/Box';
 import SessionDetails from '../SessionDetails/SessionDetails';
 import RatingSession from '../../pages/Rating/RatingSession';
 import RatingDetails from '../../pages/Rating/RatingDetails';
@@ -104,43 +100,13 @@ function Video() {
                 </div>
             </div>
 
-            <Box sx={{ display: 'flex', gap: 2, flexDirection: 'column', borderRadius: '10px', alignSelf: 'start', marginLeft: '50px', height: '50px', justifyContent: 'center', alignItems: 'center' }}>
-                <Tabs
-                    aria-label="Outlined tabs"
-                    value={index}
-                    onChange={(event, value) => setIndex(value)}
-                    sx={{ borderRadius: 'lg' }}
-                >
-                    <TabList variant='outlined'>
-                        <Tab
-                            sx={{ width: '125px' }}
-                            variant={index === 0 ? 'outlined' : 'plain'}
-                            color={index === 0 ? 'primary' : 'neutral'}
-                        >
-                            Conference
-                        </Tab>
-                        <Tab
-                            sx={{ width: '125px' }}
-                            variant={index === 1 ? 'outlined' : 'plain'}
-                            color={index === 1 ? 'info' : 'neutral'}
-                        >
-                            Details
-                        </Tab>
-                        {session.isRatingOpen ? <Tab
-                            sx={{ width: '125px' }}
-                            variant={index === 2 ? 'outlined' : 'plain'}
-                            color={index === 2 ? 'warning' : 'neutral'}
-                        > {session.role === 'creator' ? 'Rate Details' : 'Rate'}
-                        </Tab> : <Tab
-                            sx={{ width: '125px' }}
-                            variant={index === 2 ? 'outlined' : 'plain'}
-                            color={index === 2 ? 'warning' : 'neutral'}
-                            disabled
-                        > {session.role === 'creator' ? 'Rate Details' : 'Rate'}
-                        </Tab>}
-                    </TabList>
-                </Tabs>
-            </Box>
+            <div className="videoFunctions-container">
+                <button className={index === 0 ? 'active' : ""} onClick={() => setIndex(0)}>Discussion</button>
+                <button className={index === 1 ? 'active' : ""} onClick={() => setIndex(1)} >Session Details</button>
+                {session.role === 'participant' ? <button className={index === 2 ? 'active' : ""} onClick={() => setIndex(2)} disabled={session.isRatingOpen ? false : true} >Rate</button> : null}
+
+            </div>
+
             <div className="video-container">
                 {!session.hostJoined && session.role === 'participant' ?
                     <div className='video-loading'>

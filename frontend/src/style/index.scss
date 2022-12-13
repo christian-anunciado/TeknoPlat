@@ -1,50 +1,48 @@
  /* Variables */
- :root {
-   /* Colors */
-   --dark-color: #0B093B;
-   --purple-color: #7620FF;
-   --orange-color: #F2B300;
-   --light-color: #F5F5F5;
-   --coral-color: #C4FFFF;
-   --green-color: #49CB86;
-   --gray-color: #707070;
-   --white-color: #fff;
+ /* Colors */
+ $dark-color: #0B093B;
+ $purple-color: #7620FF;
+ $orange-color: #F2B300;
+ $light-color: #F5F5F5;
+ $coral-color: #C4FFFF;
+ $green-color: #49CB86;
+ $gray-color: #707070;
+ $white-color: #fff;
 
-   /* Background Colors */
-   --dark-bgColor: #0B093B;
-   --purple-bgColor: #7620FF;
-   --orange-bgColor: #F2B300;
-   --light-bgColor: #F5F5F5;
-   --coral-bgColor: #C4FFFF;
-   --green-bgColor: #49CB86;
-   --gray-bgColor: #707070;
-   --white-bgColor: #fff;
+ /* Background Colors */
+ $dark-bgColor: #0B093B;
+ $purple-bgColor: #7620FF;
+ $orange-bgColor: #F2B300;
+ $light-bgColor: #F5F5F5;
+ $coral-bgColor: #C4FFFF;
+ $green-bgColor: #49CB86;
+ $gray-bgColor: #707070;
+ $white-bgColor: #fff;
 
-   /* HOVER */
-   --hover-color: #7620FF;
+ /* HOVER */
+ $hover-color: #7620FF;
 
-   /* FONT-WEIGHTS */
-   --regular-fontWeight: 400 !important;
-   --semiBold-fontWeight: 600 !important;
-   --extraBold-fontWeight: 800 !important;
+ /* FONT-WEIGHTS */
+ $regular-fontWeight: 400 !important;
+ $semiBold-fontWeight: 600 !important;
+ $extraBold-fontWeight: 800 !important;
 
-   /* FONT SIZES */
-   --fontSize-11: 0.688rem;
-   --fontSize-12: 0.75rem;
-   --fontSize-13: 0.813rem;
-   --fontSize-14: 0.875rem;
-   --fontSize-15: 0.938rem;
-   --fontSize-18: 1.125rem;
-   --fontSize-20: 1.25rem;
-   --fontSize-25: 1.563rem;
-   --fontSize-30: 1.875rem;
-   --fontSize-30: 2.5rem;
+ /* FONT SIZES */
+ $fontSize-11: 0.688rem;
+ $fontSize-12: 0.75rem;
+ $fontSize-13: 0.813rem;
+ $fontSize-14: 0.875rem;
+ $fontSize-15: 0.938rem;
+ $fontSize-18: 1.125rem;
+ $fontSize-20: 1.25rem;
+ $fontSize-25: 1.563rem;
+ $fontSize-30: 1.875rem;
+ $fontSize-30: 2.5rem;
 
-   /* BORDER RADIUS */
-   --borderRadius-6: 0.6rem;
-   --borderRadius-8: 1rem;
+ /* BORDER RADIUS */
+ $borderRadius-6: 0.6rem;
+ $borderRadius-8: 1rem;
 
- }
 
  html,
  body,
@@ -405,67 +403,66 @@
 
  /* COLORS */
  .darkColor {
-   color: var(--dark-color);
+   color: var($dark-color);
  }
 
  .purpleColor {
-   color: var(--purple-color);
+   color: var($purple-color);
  }
 
  .orangeColor {
-   color: var(--orange-color);
+   color: var($orange-color);
  }
 
  .lightColor {
-   color: var(--light-color);
+   color: var($light-color);
  }
 
  .coralColor {
-   color: var(--coral-color);
+   color: var($coral-color);
  }
 
  .greenColor {
-   color: var(--green-color);
+   color: var($green-color);
  }
 
  .greyColor {
-   color: var(--gray-color);
+   color: var($gray-color);
  }
 
  .whiteColor {
-   color: var(--white-color);
+   color: var($white-color);
  }
 
  /* BACKGROUNDS */
  .darkBg {
-   background-color: var(--dark-bgColor);
+   background-color: var($dark-bgColor);
  }
 
  .purpleBg {
-   background-color: var(--purple-bgColor);
+   background-color: var($purple-bgColor);
  }
 
  .orangeBg {
-   background-color: var(--orange-bgColor);
+   background-color: var($orange-bgColor);
  }
 
  .lightBg {
-   background-color: var(--light-bgColor);
+   background-color: var($light-bgColor);
  }
 
  .coralBg {
-   background-color: var(--coral-bgColor);
+   background-color: var($coral-bgColor);
  }
 
  .greenBg {
-   background-color: var(--green-bgColor);
+   background-color: var($green-bgColor);
  }
 
  .greyBg {
-   background-color: var(--gray-bgColor);
+   background-color: var($gray-bgColor);
  }
 
  .whiteBg {
-   background-color: var(--white-bgColor);
+   background-color: var($white-bgColor);
  }
- 

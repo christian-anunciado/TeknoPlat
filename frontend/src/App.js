@@ -16,7 +16,7 @@ import Profile from "./pages/Profile/Profile";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style/flexboxgrid.min.css";
-import './style/index.css';
+import './style/index.scss';
 import "./style/dark.scss";
 import LandingPage from "./pages/LandingPage";
 import { DarkModeContext } from "./context/darkModeContext";
