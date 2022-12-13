@@ -6,7 +6,6 @@ import Datatable from '../../components/datatable/Datatable'
 const Dashboard = () => {
   return (
     <>
-
       <div className="home">
         <Sidebar />
         <div className="homeContainer">

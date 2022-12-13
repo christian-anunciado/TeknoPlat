@@ -67,7 +67,6 @@ class UserModel(AbstractUser):
 class SessionModel(models.Model):
     STATUS = [
         (1, "Active"),
-        (0, "Inactive"),
         (2, "Live"),
         (3, "Ended"),
     ]
@@ -83,7 +82,7 @@ class SessionModel(models.Model):
     sessionDescription = models.TextField(max_length=250, null=False)
     sessionPassword = models.CharField(max_length=30, blank=True, null=True)
     searchID = models.TextField(max_length=30, blank=True, null=True)
-    status = models.IntegerField(null=True, choices=STATUS, default=0)
+    status = models.IntegerField(null=True, choices=STATUS, default=1)
     startsAt = models.DateTimeField(null=True)
     ratingOpen = models.IntegerField(
         null=True, choices=RATING_STATUS, default=0)

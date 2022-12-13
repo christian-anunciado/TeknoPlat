@@ -1,21 +1,16 @@
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useNavigate, useParams } from 'react-router-dom'
-import Navbar from '../../components/Navbar/Navbar'
 import { IconButton } from '@mui/material';
-import { PieChart, Pie, Sector, Cell, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, ResponsiveContainer } from 'recharts'
+import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, ResponsiveContainer } from 'recharts'
 import Datatable from '../../pages/Rating/RatingDataTable/RatingDatatable'
 import "./RatingSession.scss"
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Tab from '@mui/material/Tab';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
-import { fontWeight } from '@mui/system'
 import SessionContext from '../../context/SessionContext'
 const style = {
   position: 'absolute',
@@ -32,8 +27,6 @@ const style = {
 
 
 const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
-  const [api, setApi] = useState([])
-  const [ratingApi, setRatingApi] = useState([])
   const [punctuality, setPunctuality] = useState("")
   const [presentation, setPresentation] = useState("")
   const [delivery, setDelivery] = useState("")
@@ -50,16 +43,15 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
     const fetchApi = async () => {
       const response = await axios.get(`http://127.0.0.1:8000/api/getAverageRatings`)
       const data = await response.data
-      setApi(data)
 
       setPunctuality(data[0].AveragePunctuality)
       setPresentation(data[0].AveragePresentation)
       setDelivery(data[0].AverageDelivery)
       setInnovativeness(data[0].AverageInnovativeness)
 
-      const ratingResponse = await axios.get(`http://127.0.0.1:8000/api/getRatings`)
+      const ratingResponse = await axios.get(`http://127.0.0.1:8000/api/getRatings/${session.session[0].id}`)
       const ratingData = await ratingResponse.data
-      setRatingApi(ratingData)
+      setFeedback(ratingData)
     }
     fetchApi()
   }, [])
@@ -93,7 +85,7 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
                   </IconButton>
                 </div>
               </div>
-              <div className="items-2 items">{session.session[0].sessionName}</div>
+              <div className="items-2 items">{session.session[0].sessionName} Session Results</div>
               <span className="rating-line"></span>
               <div className="items-3">
                 <Box sx={{ width: '100%', typography: 'body1' }}>
@@ -105,8 +97,8 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
                       </TabList>
                     </Box>
                     <TabPanel value="1">
-                    <ResponsiveContainer width="95%" height={300}>
-                    <BarChart width={1000} height={250} data={data}>
+                      <ResponsiveContainer width="95%" height={300}>
+                        <BarChart width={1000} height={250} data={data}>
                           <CartesianGrid strokeDasharray="3 3" />
                           <XAxis dataKey="name" />
                           <YAxis domain={[0, 5]} ticks={[0, 1, 2, 3, 4, 5]} />
@@ -114,10 +106,10 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
                           <Legend />
                           <Bar dataKey="value" barSize={100} fill="#8884d8" name='Session Rating' />
                         </BarChart>
-                    </ResponsiveContainer>
+                      </ResponsiveContainer>
                     </TabPanel>
                     <TabPanel value="2">
-                      <Datatable />
+                      <Datatable feedback={feedback} />
                     </TabPanel>
                   </TabContext>
                 </Box>

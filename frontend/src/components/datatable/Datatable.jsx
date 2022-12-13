@@ -23,8 +23,8 @@ const Datatable = () => {
 
   // Context
   const hmsActions = useHMSActions();
-  const { user } = useContext(AuthContext)
   const { dispatch } = useContext(SessionContext)
+  const { user } = useContext(AuthContext)
   const navigate = useNavigate()
 
   // UseState
@@ -34,7 +34,7 @@ const Datatable = () => {
   const [modal, setModal] = useState(false);
   const [password, setPassword] = useState(false);
   const [joinPassword, setJoinPassword] = useState([])
-  const [session, setSession] = useState([]); //QUERY DATA 
+  const [sessions, setSession] = useState([]); //QUERY DATA 
   const [filteredSession, setFilteredSession] = useState([]);
   const [role, setRole] = useState(null)
 
@@ -45,11 +45,11 @@ const Datatable = () => {
   }, [])
 
   useEffect(() => {
-    const fetchFilter = () => setFilteredSession(() => session.filter(item => item.searchID === search))
+    const fetchFilter = () => setFilteredSession(() => sessions.filter(item => item.searchID === search))
     return (
       fetchFilter()
     )
-  }, [search, session])
+  }, [search, sessions])
 
   useEffect(() => {
     const unsub = () => {
@@ -74,20 +74,16 @@ const Datatable = () => {
       renderCell: (params) => {
         let statusClass = ''
         switch (params.row.status) {
-          case 0:
-            statusClass = 'Inactive'
-            break;
-
           case 1:
             statusClass = 'Active'
             break;
 
           case 2:
-            statusClass = 'Active'
+            statusClass = 'Live'
             break;
 
           case 3:
-            statusClass = 'Inactive'
+            statusClass = 'Ended'
             break;
 
           default:
@@ -95,7 +91,7 @@ const Datatable = () => {
         }
         return (
           <div className="cellAction">
-            {statusClass === 'Active'
+            {(statusClass === 'Live' || params.row.creator === user.userID) && statusClass !== 'Ended'
               ? <button className={`viewButton ${params.row.actions}`} onClick={() => handleOpen(params.row.actions)}>
                 Join
               </button>
@@ -185,7 +181,7 @@ const Datatable = () => {
 
       <DataGrid
         className="datagrid"
-        rows={session.map((sessions) => {
+        rows={sessions.map((sessions) => {
           return {
             id: sessions.id,
             room: sessions.sessionName,
@@ -193,7 +189,8 @@ const Datatable = () => {
             details: sessions.sessionDescription,
             date: sessions.startsAt,
             status: sessions.status,
-            actions: sessions.searchID
+            actions: sessions.searchID,
+            user: user.userID
           }
         })}
         columns={userColumns.concat(actionColumn)}
