@@ -105,8 +105,8 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
                       </TabList>
                     </Box>
                     <TabPanel value="1">
-                      <div className="items-3-1 charts">
-                        <BarChart width={1000} height={250} data={data}>
+                    <ResponsiveContainer width="95%" height={300}>
+                    <BarChart width={1000} height={250} data={data}>
                           <CartesianGrid strokeDasharray="3 3" />
                           <XAxis dataKey="name" />
                           <YAxis domain={[0, 5]} ticks={[0, 1, 2, 3, 4, 5]} />
@@ -114,9 +114,7 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
                           <Legend />
                           <Bar dataKey="value" barSize={100} fill="#8884d8" name='Session Rating' />
                         </BarChart>
-                      </div>
-                      <div className="items-3-2">
-                      </div>
+                    </ResponsiveContainer>
                     </TabPanel>
                     <TabPanel value="2">
                       <Datatable />
