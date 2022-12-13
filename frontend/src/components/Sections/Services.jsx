@@ -32,21 +32,21 @@ export default function Services() {
               <ServiceBox
                 icon="monitor"
                 title="History"
-                subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore."
+                subtitle="View your past pitching sessions and their ratings."
               />
             </ServiceBoxWrapper>
             <ServiceBoxWrapper>
               <ServiceBox
                 icon="browser"
                 title="Rate Pitches"
-                subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
+                subtitle="Rate pitches and give feedback to the presenters."
               />
             </ServiceBoxWrapper>
             <ServiceBoxWrapper>
               <ServiceBox
                 icon="browser"
                 title="View feedback"
-                subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
+                subtitle="View the feedback you have received from your audience."
               />
             </ServiceBoxWrapper>
           </ServiceBoxRow>
