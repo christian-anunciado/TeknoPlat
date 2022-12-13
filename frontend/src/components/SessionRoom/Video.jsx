@@ -62,7 +62,7 @@ function Video() {
         }
     }, [roomEndedNotif])
 
-    const handleOpenRating = () => {
+    const handleOpenRating = async () => {
         setOpenRatingModalState(true)
     }
 

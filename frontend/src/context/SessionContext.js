@@ -23,7 +23,8 @@ export function SessionContextProvider({ children }) {
                     ...state,
                     session: action.payload.session,
                     hostName: action.payload.hostName,
-                    isConnected: action.payload.isConnected
+                    isConnected: action.payload.isConnected,
+                    isRatingOpen: action.payload.isRatingOpen,
                 }
 
             case "UPDATE_HOSTJOINED":
