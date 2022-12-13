@@ -141,7 +141,7 @@ const AddSession = () => {
                   <input type="text" name="sessionDescription" value={session.sessionDescription} placeholder="Enter session details" onChange={handleChange} required />
                 </div>
               </div>
-              <div className="button">
+              <div className="button_create">
                
                 <input type="submit" value="Create" onClick={handleSubmit}
                 />

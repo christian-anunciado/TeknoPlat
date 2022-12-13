@@ -13,9 +13,9 @@ export default function Contact() {
           <HeaderInfo>
             <h1 className="font40 extraBold">Let's get in touch</h1>
             <p className="font13">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+              We are always open to discussing new projects, creative ideas or
               <br />
-              labore et dolore magna aliquyam erat, sed diam voluptua.
+              opportunities to be part of your visions.
             </p>
           </HeaderInfo>
           <div className="row" style={{ paddingBottom: "30px" }}>
@@ -30,7 +30,7 @@ export default function Contact() {
                 <textarea rows="4" cols="50" type="text" id="message" name="message" className="font20 extraBold" />
               </Form>
               <SumbitWrapper className="flex">
-                <ButtonInput type="submit" value="Send Message" className="pointer animate radius8" style={{ maxWidth: "220px" }} />
+                <ButtonInput type="submit" value="Send Message" className="pointer animate radius8" style={{ maxWidth: "220px" }}  />
               </SumbitWrapper>
             </div>
          {  /* <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 flex">

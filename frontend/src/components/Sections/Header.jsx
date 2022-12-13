@@ -14,7 +14,7 @@ export default function Header() {
         <div>
           <h1 className="extraBold font60">TEKNOPLAT</h1>
           <HeaderP className="font13 semiBold">
-          Pursuing a career in entrepreneurship is one of the fastest 
+          Pursuing a career in entrepreneurship is one of the fastest <br/>
           ways to become your own boss and build your own empire.
           </HeaderP>
           <BtnWrapper>

@@ -71,12 +71,12 @@ form .input-box span.details {
 
 }
 
-form .button {
+form .button_create{
   height: 45px;
   margin: 25px 0;
 }
 
-form .button input {
+form .button_create input {
   height: 50px;
   width: 50%;
   border-radius: 5px;
@@ -90,7 +90,7 @@ form .button input {
   background: linear-gradient(135deg, #71b7e6, #3C64B1);
 }
 
-form .button input:hover {
+form .button_create input:hover {
   /* transform: scale(0.99); */
   background: linear-gradient(-135deg, #71b7e6, #3C64B1);
 }
