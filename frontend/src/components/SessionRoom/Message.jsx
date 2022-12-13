@@ -1,12 +1,26 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
-const Message = ({ author, messageContent }) => {
+const Message = ({ message, author, role }) => {
+    const ref = useRef()
+
+    console.log(author);
+
+    useEffect(() => {
+        ref.current?.scrollIntoView({ behavior: "smooth" })
+    }, [message])
+
     return (
-        <div>
-            <div className="message_wrapper">
-                <div className="message_body">
-                    <strong className="message_author">{author}</strong>
-                    <p className="message_text">{messageContent}</p>
+        <div ref={ref}>
+            <div className={`message_wrapper ${author === 'You' && "owner"}`}>
+                <div className="message-content">
+                    <div className="message_author">
+                        {author + " "}
+                        {role === 'creator' ? <p>Host</p>
+                            : null}
+                    </div>
+                    <div className="message_body">
+                        <p className="message_text">{message}</p>
+                    </div>
                 </div>
             </div>
         </div>

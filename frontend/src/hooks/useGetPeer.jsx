@@ -1,9 +1,10 @@
-import { selectIsConnectedToRoom, selectLocalPeer, selectPeersByRole, useHMSStore } from '@100mslive/react-sdk';
+import { selectIsConnectedToRoom, selectLocalPeer, selectPeers, selectPeersByRole, useHMSStore } from '@100mslive/react-sdk';
 import { useContext, useEffect } from 'react'
 import SessionContext from '../context/SessionContext';
 
 function useGetPeer({ role }) {
     const isConnected = useHMSStore(selectIsConnectedToRoom);
+    const participants = useHMSStore(selectPeers)
     const localPeer = useHMSStore(selectLocalPeer)
     const remotePeer = useHMSStore(selectPeersByRole('creator'))
     const { dispatch } = useContext(SessionContext)
@@ -49,8 +50,16 @@ function useGetPeer({ role }) {
                 }
             }
 
+            if (participants) {
+                dispatch({
+                    type: 'UPDATE_PARTICIPANTS', payload: {
+                        participants: participants
+                    }
+                })
+            }
+
         }
-    }, [localPeer, remotePeer, isConnected, role])
+    }, [localPeer, remotePeer, isConnected, role, participants])
 
     return {
         isConnected

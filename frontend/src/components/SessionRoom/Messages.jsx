@@ -7,10 +7,12 @@ import {
 function Messages() {
     const allMessages = useHMSStore(selectHMSMessages)
 
+    console.log(allMessages);
+
     return (
         <div className='sessionChats-messages'>
             {allMessages.map((msg) =>
-                <Message key={msg.id} author={msg.senderName} messageContent={msg.message} />
+                <Message key={msg.id} message={msg.message} author={msg.senderName} role={msg.senderRole} />
             )}
         </div>
     )

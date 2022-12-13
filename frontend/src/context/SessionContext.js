@@ -45,6 +45,12 @@ export function SessionContextProvider({ children }) {
                     isRatingOpen: action.payload.isRatingOpen,
                 }
 
+            case "UPDATE_PARTICIPANTS":
+                return {
+                    ...state,
+                    participants: action.payload.participants,
+                }
+
             case "LEAVE":
                 return {
                     session: null,
@@ -54,7 +60,8 @@ export function SessionContextProvider({ children }) {
                     isConnected: false,
                     hostJoined: false,
                     hostName: null,
-                    isRatingOpen: false
+                    isRatingOpen: false,
+                    participants: null
                 }
 
             default:
@@ -67,7 +74,7 @@ export function SessionContextProvider({ children }) {
         isConnected: false,
         role: null,
         peer: null,
-        participants: 0,
+        participants: null,
         loading: true,
         hostJoined: false,
         hostName: null,
