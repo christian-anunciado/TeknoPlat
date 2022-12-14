@@ -32,7 +32,7 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
   const [delivery, setDelivery] = useState("")
   const [innovativeness, setInnovativeness] = useState("")
   const [feedback, setFeedback] = useState("")
-  const { session } = useContext(SessionContext)
+  const { session, dispatch } = useContext(SessionContext)
   const [value, setValue] = React.useState('1');
 
   const handleChange = (event, newValue) => {
@@ -65,12 +65,12 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
 
   const handleClose = () => {
     setRatingsModalState(false);
+    dispatch({ type: "LEAVE" })
   }
 
   return (
     <Modal
       open={ratingsModalState}
-      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
