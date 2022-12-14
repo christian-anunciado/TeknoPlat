@@ -52,7 +52,7 @@ const AddSession = () => {
 
     try {
       const req = await axios.post('https://api.100ms.live/v2/rooms', {
-        "name": session.sessionName,
+        "name": session.sessionName.replace(/\s/g, ""),
         "description": session.sessionDescription,
         "enabled": true,
         "recording_info": {

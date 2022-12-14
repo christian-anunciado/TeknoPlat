@@ -31,7 +31,9 @@ function ConfirmEndRoom({ endRoom, setEndRoom, setRatingsModalState }) {
                 })
                 if (response.status === 200) {
                     setEndRoom(false)
-                    setRatingsModalState(true)
+                    setTimeout(() => {
+                        setRatingsModalState(true)
+                    }, 1000);
                 }
 
             } catch (err) {
