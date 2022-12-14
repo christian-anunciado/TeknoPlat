@@ -77,7 +77,7 @@ TEMPLATES = [
         'DIRS': [
             # Directory for front-end-react
             # Note: dapat e build sa nmo ang react para ma apply ang imong changes. run lng "npm run build" sa frontend nga directory
-            BASE_DIR / 'frontend/build'
+            BASE_DIR / 'frontend/build/'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -191,6 +191,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = ["teknoplat.com", '127.0.0.1',
+                        'teknoplat-production.up.railway.app']
 
 # GLOBAL VARIABLES
 APP_KEY_100MS = env('APP_KEY_100MS')
