@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
+import Api from '../api/Api';
 
 const AuthContext = createContext()
 
@@ -14,8 +15,7 @@ export const AuthProvider = ({ children }) => {
 
     let loginUser = async (e) => {
         e.preventDefault()
-        let response = await fetch('http://127.0.0.1:8000/api/token/', {
-            method: 'POST',
+        let response = await Api.post('api/token/', {
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -38,8 +38,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     let updateToken = async () => {
-        let response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
-            method: 'POST',
+        let response = await Api.post('api/token/refresh/', {
             headers: {
                 'Content-Type': 'application/json'
             },
