@@ -1,6 +1,4 @@
 from datetime import datetime
-import email
-from msilib.schema import SelfReg
 from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from rest_framework.response import Response
@@ -200,6 +198,7 @@ def getRateModel(request, pk):
     serializer = RatingModelSerializer(userModel, many=True)
     return Response(serializer.data)
 
+
 @api_view(['POST'])
 def addReportModel(request):
     serializeUser = ReportModelSerializer(data=request.data)
@@ -207,6 +206,8 @@ def addReportModel(request):
         serializeUser.save()
         return Response()
     return Response(serializeUser.errors)
+
+
 @api_view(['POST'])
 def addRateModel(request):
     serializeUser = RatingModelSerializer(data=request.data)
