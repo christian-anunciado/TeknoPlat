@@ -1,6 +1,4 @@
 from datetime import datetime
-import email
-from msilib.schema import SelfReg
 from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from rest_framework.response import Response
