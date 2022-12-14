@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
     let loginUser = async (e) => {
         e.preventDefault()
         let response = await Api.post('api/token/', { email: e.target.email.value, password: e.target.password.value })
+        console.log(response.data);
         let data = await response.json()
         if (response.status === 200) {
             setAuthToken(data)
@@ -35,6 +36,7 @@ export const AuthProvider = ({ children }) => {
 
     let updateToken = async () => {
         let response = await Api.post('api/token/refresh/', { refresh: authToken?.refresh })
+        console.log(response.data);
         let data = await response.json()
         if (response.status === 200) {
             setAuthToken(data)
