@@ -105,7 +105,11 @@ class RatingModel(models.Model):
     sessionID = models.ForeignKey(
         SessionModel, on_delete=models.CASCADE, null=True)
 
-
+class ReportModel(models.Model):
+    report = models.CharField(max_length=500)
+    creator = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
+    sessionID = models.ForeignKey(
+        SessionModel, on_delete=models.CASCADE, null=True)
 class AverageRatingModel(models.Model):
     AveragePunctuality = models.FloatField(null=True)
     AveragePresentation = models.FloatField(null=True)

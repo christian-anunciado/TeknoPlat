@@ -16,6 +16,7 @@ from .models import RatingModel
 from .serializers import RatingModelSerializer
 from .models import AverageRatingModel
 from .serializers import AverageRatingModelSerializer
+from .serializers import ReportModelSerializer
 from django.db.models import Avg
 import jwt
 import datetime
@@ -199,7 +200,13 @@ def getRateModel(request, pk):
     serializer = RatingModelSerializer(userModel, many=True)
     return Response(serializer.data)
 
-
+@api_view(['POST'])
+def addReportModel(request):
+    serializeUser = ReportModelSerializer(data=request.data)
+    if serializeUser.is_valid():
+        serializeUser.save()
+        return Response()
+    return Response(serializeUser.errors)
 @api_view(['POST'])
 def addRateModel(request):
     serializeUser = RatingModelSerializer(data=request.data)

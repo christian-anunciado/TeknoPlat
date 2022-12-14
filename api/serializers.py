@@ -4,6 +4,7 @@ from .models import UserModel
 from .models import SessionModel
 from .models import RatingModel
 from .models import AverageRatingModel
+from .models import ReportModel
 from rest_framework import serializers
 from django.db.models import Avg
 
@@ -51,7 +52,22 @@ class SessionModelSerializer(ModelSerializer):
         session_instance.save()
         return session_instance
 
+class ReportModelSerializer(ModelSerializer):
+    class Meta:
+        model = ReportModel
+        fields = '__all__'
 
+    def create(self, validated_data):
+        creatorID = validated_data.pop('creator')
+        sessionID = validated_data.pop('sessionID')
+
+        creator_instance = UserModel.objects.get(id=creatorID.id)
+        session_instance = SessionModel.objects.get(id=sessionID.id)
+
+        report_instance = self.Meta.model(
+            **validated_data, creator=creator_instance, sessionID=session_instance)
+        report_instance.save()
+        return report_instance
 class RatingModelSerializer(ModelSerializer):
     class Meta:
         model = RatingModel

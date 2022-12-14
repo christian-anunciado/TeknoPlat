@@ -54,7 +54,7 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
         setFetchedData(req.data);
         toast.success('Succesfully Created')
       } else {
-        const req = await axios.put(`http://localhost:8000/api/updateRating/${fetchedData.id}`, formField)
+        const req = await axios.put(`http://localhost :8000/api/updateRating/${fetchedData.id}`, formField)
         toast.success('Succesfully Updated')
       }
     } catch (err) {
@@ -77,11 +77,11 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-        <Typography id="modal-modal-description">
-          <div className="rating-space">
-            <div className="rating-container">
-              <div className="items-1 item">
-                <div className="items-1-1 item">Rate</div>
+          <Typography id="modal-modal-description">
+            <div className="rating-space">
+              <div className="rating-container">
+                <div className="items-1 item">
+                  <div className="items-1-1 item">Rate</div>
                 <div className="items-1-2 item rating-logo">
                   <IconButton onClick={handleClose} >
                     <HighlightOffIcon />
@@ -141,7 +141,7 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
                   <textarea type="text" name="Feedback" placeholder="Feedback here" onChange={(e) => setFeedback(e.target.value)} value={feedback} />
                 </div>
               </div>
-              <div className="items-6 item button">
+              <div className="button_rate">
                 <input type="submit" value="Submit" onClick={rateSession} />
               </div>
             </div>
