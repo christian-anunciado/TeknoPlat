@@ -23,8 +23,7 @@ function Chats() {
             {session.role === 'creator' ? (
                 <>
                     <ConfirmEndRoom endRoom={endRoom} setEndRoom={setEndRoom} setRatingsModalState={setRatingsModalState} />
-                    <RatingDetails setRatingsModalState={setRatingsModalState} ratingsModalState={ratingsModalState} />
-
+                    {ratingsModalState && <RatingDetails setRatingsModalState={setRatingsModalState} ratingsModalState={ratingsModalState} />}
                     <div className="sessionNav-endSession">
                         <button onClick={handleEndRoom}>End Session</button>
                     </div>
