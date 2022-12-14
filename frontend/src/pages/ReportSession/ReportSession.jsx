@@ -5,75 +5,71 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-
 import SessionContext from '../../context/SessionContext';
 import AuthContext from '../../context/AuthContext';
 import { toast } from 'react-toastify'
-import axios from 'axios'
-
-
-
+import Api from '../../api/Api';
 
 
 const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '50%',
-    bgcolor: 'background.paper',
-    boxShadow: 24,
-    borderRadius: '16px',
-    p: 4,
-  };
-const ReportSession = ({setReportModal, reportModal, roomEnded,setRoomEnded, roomEndedNotif}) => {
-    const { user } = useContext(AuthContext)
-    const { session } = useContext(SessionContext)
-    const [report, setReport] = useState("")
-    const [fetchedData, setFetchedData] = useState(null)
-  
-    const reportSession = async () => {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '50%',
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  borderRadius: '16px',
+  p: 4,
+};
+const ReportSession = ({ setReportModal, reportModal, roomEnded, setRoomEnded, roomEndedNotif }) => {
+  const { user } = useContext(AuthContext)
+  const { session } = useContext(SessionContext)
+  const [report, setReport] = useState("")
+  const [fetchedData, setFetchedData] = useState(null)
+
+  const reportSession = async () => {
     let formField = new FormData()
 
     formField.append('report', report);
     formField.append('creator', user.userID);
     formField.append('sessionID', session.session[0].id);
-    
+
     try {
-         if ((fetchedData == null)) {
-        const req = await axios.post(`http://localhost:8000/api/addReport`, formField)
+      if ((fetchedData == null)) {
+        const req = await Api.post(`api/addReport`, formField)
         setFetchedData(req.data);
         toast.warning('Reported Succesfully')
-         } else {   
-            toast.error('You have already reported this session')
-         }
-    }catch{
-        toast.error('Something went wrong')
+      } else {
+        toast.error('You have already reported this session')
+      }
+    } catch {
+      toast.error('Something went wrong')
     }
+  }
+
+
+  const handleCancel = () => {
+    setReportModal(false);
+    if (roomEnded && roomEndedNotif) {
+      setRoomEnded(false);
     }
-  
-    
-    const handleCancel = () => {
-        setReportModal(false);
-        if (roomEnded && roomEndedNotif ){
-            setRoomEnded(false);
-        }
-    }
-    
-    
-    return (
+  }
+
+
+  return (
     <Modal
-    open={reportModal}
-    onClose={handleCancel}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
+      open={reportModal}
+      onClose={handleCancel}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
     >
-    <Box sx={style}>
+      <Box sx={style}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-        <div className="rating-space">
-              <div className="rating-container">
-                <div className="items-1 item">
-                  <div className="items-1-1 item">Report Session</div>
+          <div className="rating-space">
+            <div className="rating-container">
+              <div className="items-1 item">
+                <div className="items-1-1 item">Report Session</div>
                 <div className="items-1-2 item rating-logo">
                   <IconButton onClick={handleCancel} >
                     <HighlightOffIcon />
@@ -105,8 +101,8 @@ const ReportSession = ({setReportModal, reportModal, roomEnded,setRoomEnded, roo
               </div>
             </div>
           </div>
-    </Typography>
-    </Box>
+        </Typography>
+      </Box>
     </Modal>
   )
 }

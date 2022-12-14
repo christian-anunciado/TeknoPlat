@@ -13,10 +13,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import AuthContext from "../../context/AuthContext";
 import SessionContext from "../../context/SessionContext";
-import axios from "axios";
 import { useHMSActions } from "@100mslive/react-sdk";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import Api from "../../api/Api";
 
 
 const Datatable = () => {
@@ -40,7 +40,7 @@ const Datatable = () => {
 
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/sessions?format=json')
+    Api.get('api/sessions?format=json')
       .then((data) => data.json()).then((data) => setSession(data))
   }, [])
 
@@ -130,7 +130,7 @@ const Datatable = () => {
       user.first_name.charAt(0).toUpperCase()
       + user.first_name.slice(1)
     try {
-      const req = await axios.post('http://localhost:8000/api/generateAppToken', {
+      const req = await Api.post('api/generateAppToken', {
         "room_id": filteredSession[0].sessionID,
         "role": role,
         "user_id": capitalizedName
@@ -143,9 +143,9 @@ const Datatable = () => {
 
         const formField = new FormData()
         formField.append('status', 2)
-        await axios.put(`http://localhost:8000/api/updateSession/${filteredSession[0].id}`, formField)
+        await Api.put(`api/updateSession/${filteredSession[0].id}`, formField)
 
-        const responseUser = await axios.get('http://127.0.0.1:8000/api/users')
+        const responseUser = await Api.get('api/users')
 
         const dataUser = await responseUser.data.filter(user => parseInt(user.id) === parseInt(filteredSession[0].creator))
 

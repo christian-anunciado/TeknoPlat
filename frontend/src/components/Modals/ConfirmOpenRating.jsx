@@ -8,7 +8,7 @@ import Typography from '@mui/joy/Typography';
 import { selectLocalPeerID, selectPeerMetadata, useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import SessionContext from '../../context/SessionContext';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+import Api from '../../api/Api';
 
 function ConfirmOpenRating({ openRatingModalState, setOpenRatingModalState }) {
     const { session, dispatch } = useContext(SessionContext)
@@ -23,7 +23,7 @@ function ConfirmOpenRating({ openRatingModalState, setOpenRatingModalState }) {
 
             const formField = new FormData()
             formField.append('ratingOpen', 1)
-            await axios.put(`http://localhost:8000/api/updateSession/${session.session[0].id}`, formField)
+            await Api.put(`api/updateSession/${session.session[0].id}`, formField)
 
             dispatch({ type: 'UPDATE_RATING', payload: { isRatingOpen: true } })
 

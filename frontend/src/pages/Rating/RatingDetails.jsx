@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { useEffect } from 'react'
 import { IconButton } from '@mui/material';
@@ -12,6 +11,7 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Tab from '@mui/material/Tab';
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import SessionContext from '../../context/SessionContext'
+import Api from '../../api/Api';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -41,7 +41,7 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
 
   useEffect(() => {
     const fetchApi = async () => {
-      const response = await axios.get(`http://127.0.0.1:8000/api/getAverageRatings`)
+      const response = await Api.get(`api/getAverageRatings`)
       const data = await response.data
 
       setPunctuality(data[0].AveragePunctuality)
@@ -49,7 +49,7 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
       setDelivery(data[0].AverageDelivery)
       setInnovativeness(data[0].AverageInnovativeness)
 
-      const ratingResponse = await axios.get(`http://127.0.0.1:8000/api/getRatings/${session.session[0].id}`)
+      const ratingResponse = await Api.get(`api/getRatings/${session.session[0].id}`)
       const ratingData = await ratingResponse.data
       setFeedback(ratingData)
     }

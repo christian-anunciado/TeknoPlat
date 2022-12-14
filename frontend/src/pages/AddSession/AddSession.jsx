@@ -5,12 +5,11 @@ import AuthContext, { AuthProvider } from '../../context/AuthContext'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./AddSession.scss"
+import Api from '../../api/Api';
 const shortid = require('shortid')
 
 const AddSession = () => {
   const { user } = useContext(AuthContext)
-
-  const baseURL = `http://localhost:8000`
   const [session, setSession] = useState({
     // *** BASED ON MODELS *** //
     // id = models.AutoField(primary_key = True)
@@ -34,7 +33,7 @@ const AddSession = () => {
 
   useEffect(() => {
     const unsub = async (e) => {
-      const req = await axios.get("http://localhost:8000/api/managementToken")
+      const req = await Api.get("api/managementToken")
       setManagementToken(req.data)
     }
     unsub()
@@ -75,7 +74,7 @@ const AddSession = () => {
       form.append('creator', user.userID)
 
       try {
-        const req = await axios.post(`${baseURL}/api/addSession`, form)
+        const req = await Api.post(`api/addSession`, form)
         session.sessionName = ''
         session.sessionDescription = ''
         session.sessionPassword = ''

@@ -7,8 +7,8 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Typography from '@mui/joy/Typography';
 import { useHMSActions } from '@100mslive/react-sdk';
 import SessionContext from '../../context/SessionContext';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import Api from '../../api/Api';
 
 function ConfirmEndRoom({ endRoom, setEndRoom, setRatingsModalState }) {
     const { session } = useContext(SessionContext)
@@ -20,9 +20,9 @@ function ConfirmEndRoom({ endRoom, setEndRoom, setRatingsModalState }) {
             await hmsActions.endRoom(lock, reason);
             const formField = new FormData()
             formField.append('status', 3)
-            await axios.put(`http://localhost:8000/api/updateSession/${session.session[0].id}`, formField)
+            await Api.put(`api/updateSession/${session.session[0].id}`, formField)
             try {
-                const response = await toast.promise(axios.post(`http://localhost:8000/api/averageRatingsSession`, {
+                const response = await toast.promise(Api.post(`api/averageRatingsSession`, {
                     sessionID: session.session[0].id
                 }), {
                     pending: 'Saving session',

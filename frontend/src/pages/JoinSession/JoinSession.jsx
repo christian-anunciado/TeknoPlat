@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import "./JoinSessionModal.scss";
 import AuthContext from '../../context/AuthContext'
 import { useHMSActions } from '@100mslive/react-sdk'
 import SessionContext from '../../context/SessionContext'
+import Api from '../../api/Api'
 
 
 function JoinSession() {
@@ -28,7 +28,7 @@ function JoinSession() {
 
     useEffect(() => {
         const fetchApi = async () => {
-            const response = await axios.get(`http://127.0.0.1:8000/api/joinsession/${id}`)
+            const response = await Api.get(`api/joinsession/${id}`)
             const data = await response.data
             setApi(data)
 
@@ -64,7 +64,7 @@ function JoinSession() {
             user.first_name.charAt(0).toUpperCase()
             + user.first_name.slice(1)
         try {
-            const req = await axios.post('http://localhost:8000/api/generateAppToken', {
+            const req = await Api.post('api/generateAppToken', {
                 "room_id": api[0].sessionID,
                 "role": role,
                 "user_id": capitalizedName
