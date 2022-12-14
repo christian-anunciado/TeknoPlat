@@ -5,7 +5,7 @@ import { HMSRoomProvider } from "@100mslive/react-sdk";
 import { AuthProvider } from './context/AuthContext';
 import { SessionContextProvider } from './context/SessionContext';
 import Notification from './components/Notifcation/Notifcation';
-
+import { DarkModeContextProvider } from "./context/darkModeContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +14,9 @@ root.render(
     <React.StrictMode>
       <HMSRoomProvider>
         <SessionContextProvider>
+          <DarkModeContextProvider>
           <App />
+          </DarkModeContextProvider>
           <Notification />
         </SessionContextProvider>
       </HMSRoomProvider>

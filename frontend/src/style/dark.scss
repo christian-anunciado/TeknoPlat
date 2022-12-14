@@ -14,15 +14,11 @@
       }
     }
   
-    .flexCenter animate whiteBg{
+    .navbar {
       color: #999;
       border-color: #333;
-  
-      .search {
-        border-color: gray;
-      }
     }
-  
+    
     .sidebar {
       background-color: #111;
       border-color: #333;
@@ -45,8 +41,16 @@
           .icon {
             color: #999;
           }
-        }
+         
       }
+      .span{
+        color: #999;
+    }
+    .link{
+        color:#999
+    }
+        }
+       
     }
   
     .datatable {

@@ -6,8 +6,10 @@ import FullButton from "../Buttons/FullButton";
 import HeaderImage from "../../assets/img/header1.png";
 import QuotesIcon from "../../assets/svg/Quotes";
 import Dots from "../../assets/svg/Dots";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate()
   return (
     <Wrapper id="home" className="container flexSpaceCenter">
       <LeftSide className="flexCenter">
@@ -17,7 +19,9 @@ export default function Header() {
           Pursuing a career in entrepreneurship is one of the fastest <br/>
           ways to become your own boss and build your own empire.
           </HeaderP>
-          <BtnWrapper>
+          <BtnWrapper onClick={()=>{
+            navigate("/register")
+          }}>
             <FullButton title="Get Started" />
           </BtnWrapper>
         </div>

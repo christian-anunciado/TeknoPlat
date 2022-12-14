@@ -32,6 +32,7 @@ const Navbar = () => {
     <>
     <SideNav sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
     {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
+           
     <Wrapper className="flexCenter animate whiteBg" style={y > 100 ? { height: "60px" } : { height: "80px" }}>
       <NavInner className="container flexSpaceCenter">
         <Link className="pointer flexNullCenter" to="/dashboard" smooth={true}>
@@ -43,9 +44,9 @@ const Navbar = () => {
         <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
           <BurgerIcon />
         </BurderWrapper>
-        <div className="navbar">
+      <div className="navbar">
       <div className="wrapper">
-        
+   
         <div className="items">
           <div className="item">
             <LanguageOutlinedIcon className="icon" />
@@ -69,10 +70,13 @@ const Navbar = () => {
             />
           </Link>
         </div>
+    
+  
       </div>
     </div>
-      </NavInner>
+    </NavInner>
     </Wrapper>
+   
   </>
   )
 }
@@ -84,6 +88,7 @@ const Wrapper = styled.nav`
   top: 0;
   left: 0;
   z-index: 999;
+
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 const NavInner = styled.div`

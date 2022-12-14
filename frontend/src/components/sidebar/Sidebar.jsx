@@ -23,20 +23,20 @@ const Sidebar = () => {
          
           <li>
             <DashboardIcon className="icon" />
-            <span onClick={()=>{
+            <span className="span" onClick={()=>{
               navigate("/dashboard")
             }}>Dashboard</span>
           </li>
           <Link to="/add_session" style={{ textDecoration: "none" }}>
             <li>
               <MeetingRoomIcon className="icon" />
-              <span>Add Session</span>
+              <span className="span">Add Session</span>
             </li>
           </Link>
           <li>
             <Link to="/profile" style={{ textDecoration: "none" }}>
             <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
+            <span className="span">Profile</span>
             </Link>
           </li>
           
