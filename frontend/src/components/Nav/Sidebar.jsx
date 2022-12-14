@@ -60,7 +60,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             smooth={true}
             offset={-60}
           >
-            Projects
+            Team
           </Link>
         </li>
         <li className="semiBold font15 pointer">
@@ -74,46 +74,20 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             smooth={true}
             offset={-60}
           >
-            Blog
+           Contact
           </Link>
         </li>
-        <li className="semiBold font15 pointer">
-          <Link
-            onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
-            className="whiteColor"
-            style={{ padding: "10px 15px" }}
-            to="pricing"
-            spy={true}
-            smooth={true}
-            offset={-60}
-          >
-            Pricing
-          </Link>
-        </li>
-        <li className="semiBold font15 pointer">
-          <Link
-            onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
-            className="whiteColor"
-            style={{ padding: "10px 15px" }}
-            to="contact"
-            spy={true}
-            smooth={true}
-            offset={-60}
-          >
-            Contact
-          </Link>
-        </li>
+
+   
       </UlStyle>
       <UlStyle className="flexSpaceCenter">
         <li className="semiBold font15 pointer">
-          <a href="/" style={{ padding: "10px 30px 10px 0" }} className="whiteColor">
+          <a href="#/login" style={{ padding: "10px 30px 10px 0" }} className="whiteColor">
             Log in
           </a>
         </li>
         <li className="semiBold font15 pointer flexCenter">
-          <a href="/" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
+          <a href="#/register" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
             Get Started
           </a>
         </li>
