@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-nznh@pu3q@60-^7&1v(f=4=m7d)qnz0dcik-sdq#al8b0z*yc2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["teknoplat.com", '127.0.0.1',
+ALLOWED_HOSTS = ["teknoplat.com", '127.0.0:1',
                  'teknoplat-production.up.railway.app']
 
 
