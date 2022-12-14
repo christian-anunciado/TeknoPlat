@@ -23,5 +23,6 @@ sqlparse==0.4.3
 toml==0.10.2
 tzdata==2022.5
 urllib3==1.26.12
+whitenoise==6.2.0
 yarg==0.1.9
 zope.interface==5.5.0
