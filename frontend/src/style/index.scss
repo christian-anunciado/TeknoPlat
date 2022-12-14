@@ -403,66 +403,66 @@
 
  /* COLORS */
  .darkColor {
-   color: var($dark-color);
+   color: $dark-color;
  }
 
  .purpleColor {
-   color: var($purple-color);
+   color: $purple-color;
  }
 
  .orangeColor {
-   color: var($orange-color);
+   color: $orange-color;
  }
 
  .lightColor {
-   color: var($light-color);
+   color: $light-color;
  }
 
  .coralColor {
-   color: var($coral-color);
+   color: $coral-color;
  }
 
  .greenColor {
-   color: var($green-color);
+   color: $green-color;
  }
 
  .greyColor {
-   color: var($gray-color);
+   color: $gray-color;
  }
 
  .whiteColor {
-   color: var($white-color);
+   color: $white-color;
  }
 
  /* BACKGROUNDS */
  .darkBg {
-   background-color: var($dark-bgColor);
+   background-color: $dark-bgColor;
  }
 
  .purpleBg {
-   background-color: var($purple-bgColor);
+   background-color: $purple-bgColor;
  }
 
  .orangeBg {
-   background-color: var($orange-bgColor);
+   background-color: $orange-bgColor;
  }
 
  .lightBg {
-   background-color: var($light-bgColor);
+   background-color: $light-bgColor;
  }
 
  .coralBg {
-   background-color: var($coral-bgColor);
+   background-color: $coral-bgColor;
  }
 
  .greenBg {
-   background-color: var($green-bgColor);
+   background-color: $green-bgColor;
  }
 
  .greyBg {
-   background-color: var($gray-bgColor);
+   background-color: $gray-bgColor;
  }
 
  .whiteBg {
-   background-color: var($white-bgColor);
+   background-color: $white-bgColor;
  }
