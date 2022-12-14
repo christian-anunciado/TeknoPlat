@@ -192,8 +192,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ["teknoplat.com", '127.0.0.1',
-                        'teknoplat-production.up.railway.app', 'https://teknoplat-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://teknoplat-production.up.railway.app']
 
 # GLOBAL VARIABLES
 APP_KEY_100MS = env('APP_KEY_100MS')
