@@ -15,12 +15,7 @@ export const AuthProvider = ({ children }) => {
 
     let loginUser = async (e) => {
         e.preventDefault()
-        let response = await Api.post('api/token/', {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ 'email': e.target.email.value, 'password': e.target.password.value })
-        })
+        let response = await Api.post('api/token/', { email: e.target.email.value, password: e.target.password.value })
         let data = await response.json()
         if (response.status === 200) {
             setAuthToken(data)
@@ -38,12 +33,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     let updateToken = async () => {
-        let response = await Api.post('api/token/refresh/', {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ 'refresh': authToken?.refresh })
-        })
+        let response = await Api.post('api/token/refresh/', { refresh: authToken?.refresh })
         let data = await response.json()
         if (response.status === 200) {
             setAuthToken(data)
