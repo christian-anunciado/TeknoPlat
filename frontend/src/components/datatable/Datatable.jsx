@@ -40,8 +40,11 @@ const Datatable = () => {
 
 
   useEffect(() => {
-    Api.get('api/sessions?format=json')
-      .then((data) => data.json()).then((data) => setSession(data))
+    const fetchSession = async () => {
+      const res = await Api.get('api/sessions')
+      setSession(res.data)
+    }
+    fetchSession()
   }, [])
 
   useEffect(() => {

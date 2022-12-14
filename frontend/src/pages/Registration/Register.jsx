@@ -32,9 +32,10 @@ const Register = () => {
         formField.append('institute', institute)
         formField.append('password', password)
 
-        await Api.post('api/signup', {
-            data: formField
-        }).then((response) => {
+        await Api.post('api/signup',
+            formField
+        ).then((response) => {
+            console.log(response.data);
             if (response.data == '200') {
                 alert('User Successfuly Created')
                 navigate('/login')
