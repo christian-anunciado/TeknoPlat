@@ -232,8 +232,8 @@ def update_Rating(request, pk):
 
 
 @api_view(['GET'])
-def getAverageRatingModel(request):
-    userModel = AverageRatingModel.objects.all()
+def getAverageRatingModel(request, pk):
+    userModel = AverageRatingModel.objects.filter(sessionID=pk)
     serializer = AverageRatingModelSerializer(userModel, many=True)
     return Response(serializer.data)
 

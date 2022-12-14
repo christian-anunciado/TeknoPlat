@@ -41,7 +41,7 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
 
   useEffect(() => {
     const fetchApi = async () => {
-      const response = await Api.get(`api/getAverageRatings`)
+      const response = await Api.get(`api/getAverageRatings/${session.session[0].id}`)
       const data = await response.data
 
       setPunctuality(data[0].AveragePunctuality)
@@ -50,7 +50,8 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
       setInnovativeness(data[0].AverageInnovativeness)
 
       const ratingResponse = await Api.get(`api/getRatings/${session.session[0].id}`)
-      const ratingData = await ratingResponse.data
+      console.log(ratingResponse.data);
+      const ratingData = ratingResponse.data
       setFeedback(ratingData)
     }
     fetchApi()
@@ -76,49 +77,50 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
     >
       <Box sx={style}>
         <Typography id="modal-modal-description">
-          <div className="rating-space">
-            <div className="rating-container">
-              <div className="items-1 item">
-                <div className="items-1-2 item rating-logo">
-                  <IconButton onClick={handleClose} >
-                    <HighlightOffIcon />
-                  </IconButton>
+          {feedback && punctuality && presentation && delivery && innovativeness ? (null) :
+            <div className="rating-space">
+              <div className="rating-container">
+                <div className="items-1 item">
+                  <div className="items-1-2 item rating-logo">
+                    <IconButton onClick={handleClose} >
+                      <HighlightOffIcon />
+                    </IconButton>
+                  </div>
+                </div>
+                <div className="items-2 items">{session.session[0].sessionName} Session Results</div>
+                <span className="rating-line"></span>
+                <div className="items-3">
+                  <Box sx={{ width: '100%', typography: 'body1' }}>
+                    <TabContext value={value}>
+                      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                        <TabList onChange={handleChange} aria-label="lab API tabs example">
+                          <Tab label="Score" value="1" />
+                          <Tab label="Feedback" value="2" />
+                        </TabList>
+                      </Box>
+                      <TabPanel value="1">
+                        <ResponsiveContainer width="95%" height={300}>
+                          <BarChart width={1000} height={250} data={data}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis domain={[0, 5]} ticks={[0, 1, 2, 3, 4, 5]} />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="value" barSize={100} fill="#8884d8" name='Session Rating' />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </TabPanel>
+                      <TabPanel value="2">
+                        <Datatable feedback={feedback} />
+                      </TabPanel>
+                    </TabContext>
+                  </Box>
                 </div>
               </div>
-              <div className="items-2 items">{session.session[0].sessionName} Session Results</div>
-              <span className="rating-line"></span>
-              <div className="items-3">
-                <Box sx={{ width: '100%', typography: 'body1' }}>
-                  <TabContext value={value}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                      <TabList onChange={handleChange} aria-label="lab API tabs example">
-                        <Tab label="Score" value="1" />
-                        <Tab label="Feedback" value="2" />
-                      </TabList>
-                    </Box>
-                    <TabPanel value="1">
-                      <ResponsiveContainer width="95%" height={300}>
-                        <BarChart width={1000} height={250} data={data}>
-                          <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis dataKey="name" />
-                          <YAxis domain={[0, 5]} ticks={[0, 1, 2, 3, 4, 5]} />
-                          <Tooltip />
-                          <Legend />
-                          <Bar dataKey="value" barSize={100} fill="#8884d8" name='Session Rating' />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    </TabPanel>
-                    <TabPanel value="2">
-                      <Datatable feedback={feedback} />
-                    </TabPanel>
-                  </TabContext>
-                </Box>
-              </div>
             </div>
-          </div>
 
 
-
+          }
         </Typography>
       </Box>
     </Modal>

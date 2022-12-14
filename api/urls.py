@@ -18,7 +18,7 @@ urlpatterns = [
     path('getRatings/<str:pk>', views.getRateModel, name="getRatings"),
     path('updateRating/<str:pk>', views.update_Rating, name="updateRating"),
     path('rateSession', views.addRateModel, name="rateSession"),
-    path('getAverageRatings', views.getAverageRatingModel,
+    path('getAverageRatings/<str:pk>', views.getAverageRatingModel,
          name="getAverageRatings"),
     path('averageRatingsSession', views.setAverageRatingModel,
          name="averageRatingsSession"),
@@ -34,5 +34,5 @@ urlpatterns = [
          name="get100MsKeys"),
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-     path('addReport', views.addReportModel, name="addReport"),
+    path('addReport', views.addReportModel, name="addReport"),
 ]
