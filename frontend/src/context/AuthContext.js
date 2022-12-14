@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
 import { toast } from 'react-toastify';
-import Api from '../api/Api';
 
 const AuthContext = createContext()
 
@@ -16,8 +15,13 @@ export const AuthProvider = ({ children }) => {
 
     let loginUser = async (e) => {
         e.preventDefault()
-        let response = await Api.post('api/token/', { email: e.target.email.value, password: e.target.password.value })
-        console.log(response.data);
+        let response = await fetch('https://teknoplat-production.up.railway.app/api/token/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 'email': e.target.email.value, 'password': e.target.password.value })
+        })
         let data = await response.json()
         if (response.status === 200) {
             setAuthToken(data)
@@ -35,8 +39,13 @@ export const AuthProvider = ({ children }) => {
     }
 
     let updateToken = async () => {
-        let response = await Api.post('api/token/refresh/', { refresh: authToken?.refresh })
-        console.log(response.data);
+        let response = await fetch('https://teknoplat-production.up.railway.app/api/token/refresh/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 'refresh': authToken?.refresh })
+        })
         let data = await response.json()
         if (response.status === 200) {
             setAuthToken(data)
