@@ -7,7 +7,7 @@ import SessionDetails from '../SessionDetails/SessionDetails';
 import RatingSession from '../../pages/Rating/RatingSession';
 import ConfirmRatingSubmit from '../Modals/ConfirmRatingSubmit';
 import ConfirmOpenRating from '../Modals/ConfirmOpenRating';
-
+import ReportSession from '../../pages/ReportSession/ReportSession';
 function Video() {
     const screenShareOn = useHMSStore(selectIsSomeoneScreenSharing)
     const hmsActions = useHMSActions()
@@ -18,6 +18,7 @@ function Video() {
     const [ratingsModalState, setRatingsModalState] = useState(false)
     const [openRatingModalState, setOpenRatingModalState] = useState(false)
     const [roomEnded, setRoomEnded] = useState(false)
+    const [reportModal,setReportModal] = useState(false)
 
     const { videoRef } = useVideo(
         {
@@ -43,6 +44,8 @@ function Video() {
         }
         if (index === 2) {
             setRatingsModalState(true)
+        } if (index === 3) {
+            setReportModal(true)
         }
     }, [index])
 
@@ -52,8 +55,10 @@ function Video() {
         }
         if (ratingsModalState === false && index === 2) {
             setIndex(0)
+        } if (reportModal === false && index === 3) {
+            setIndex(0)
         }
-    }, [detailsModalState, ratingsModalState])
+    }, [detailsModalState, ratingsModalState, reportModal])
 
     useEffect(() => {
         if (session.role === 'participant' && roomEndedNotif) {
@@ -77,8 +82,9 @@ function Video() {
                 : <>
                     <RatingSession setRatingsModalState={setRatingsModalState} ratingsModalState={ratingsModalState} />
                     <ConfirmRatingSubmit roomEnded={roomEnded} setRoomEnded={setRoomEnded} />
+                    <ReportSession setReportModal={setReportModal} reportModal={reportModal} />
                 </>
-
+              
             }
 
             <div className='sessionNav-container'>
@@ -102,7 +108,7 @@ function Video() {
                 <button className={index === 0 ? 'active' : ""} onClick={() => setIndex(0)}>Discussion</button>
                 <button className={index === 1 ? 'active' : ""} onClick={() => setIndex(1)} >Session Details</button>
                 {session.role === 'participant' ? <button className={index === 2 ? 'active' : ""} onClick={() => setIndex(2)} disabled={session.isRatingOpen ? false : true} >Rate</button> : null}
-
+                {session.role === 'participant' ? <button className={index === 3 ? 'active' : ""} onClick={() => setIndex(3)}  >Report Session</button> : null}     
             </div>
 
             <div className="video-container">

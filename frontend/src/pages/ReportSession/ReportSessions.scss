@@ -152,14 +152,13 @@
   align-self: flex-start;
 }
 
-.rating-space .rating-container .button_rate input{
+.rating-space .rating-container .button_report input{
   font-family: 'Mulish', sans-serif;
-  padding: 10px 40px 10px 30px;
-  border: #3C64B1;
+  padding: 10px 40px 10px 40px;
+  border: #ec0000;
   font-size: 15px;
   color: white;
-  background-color: #3C64B1;
-  box-shadow: #3C64B1;
+  background-color: #ff2200;
 }
 
 .rating-space .rating-container select{
