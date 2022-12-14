@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { IconButton } from '@mui/material';
 import "./RatingSession.scss"
@@ -10,6 +9,7 @@ import { Rating } from '@mui/material';
 import SessionContext from '../../context/SessionContext';
 import AuthContext from '../../context/AuthContext';
 import { toast } from 'react-toastify'
+import Api from '../../api/Api';
 
 const style = {
   position: 'absolute',
@@ -50,11 +50,11 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
 
     try {
       if (fetchedData == null) {
-        const req = await axios.post(`http://localhost:8000/api/rateSession`, formField)
+        const req = await Api.post(`api/rateSession`, formField)
         setFetchedData(req.data);
         toast.success('Succesfully Created')
       } else {
-        const req = await axios.put(`http://localhost :8000/api/updateRating/${fetchedData.id}`, formField)
+        const req = await Api.put(`api/updateRating/${fetchedData.id}`, formField)
         toast.success('Succesfully Updated')
       }
     } catch (err) {
@@ -77,11 +77,11 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
-          <Typography id="modal-modal-description">
-            <div className="rating-space">
-              <div className="rating-container">
-                <div className="items-1 item">
-                  <div className="items-1-1 item">Rate</div>
+        <Typography id="modal-modal-description">
+          <div className="rating-space">
+            <div className="rating-container">
+              <div className="items-1 item">
+                <div className="items-1-1 item">Rate</div>
                 <div className="items-1-2 item rating-logo">
                   <IconButton onClick={handleClose} >
                     <HighlightOffIcon />

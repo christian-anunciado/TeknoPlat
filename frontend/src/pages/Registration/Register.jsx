@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
-import axios from 'axios'
 import LoginNav from '../../components/Nav/LoginNav'
 import "./Register.scss"
 import { useNavigate } from 'react-router-dom'
+import Api from '../../api/Api'
 
 
 const Register = () => {
@@ -32,9 +32,7 @@ const Register = () => {
         formField.append('institute', institute)
         formField.append('password', password)
 
-        await axios({
-            method: 'post',
-            url: 'http://127.0.0.1:8000/api/signup',
+        await Api.post('api/signup', {
             data: formField
         }).then((response) => {
             if (response.data == '200') {
