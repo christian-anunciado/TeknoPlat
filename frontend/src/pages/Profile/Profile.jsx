@@ -28,6 +28,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
 import Sidebar from "../../components/sidebar/Sidebar";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import Datatable from "../../pages/Profile/ProfileDataTable/PDatatable";
 
 const Profile = () => {
   const [filtersearch, filter] = useState("");
@@ -621,6 +622,37 @@ const Profile = () => {
                     </Grid>
                   </Paper>
                 </Box>
+                <Grid item xs={12}>
+                  <Box
+                    sx={{
+                      mb: 2,
+                      display: "flex",
+                      flexDirection: "column",
+                      flexWrap: "wrap",
+                      "& > :not(style)": {
+                        m: 1,
+                        p: 2,
+                        width: "95%",
+                        height: "100%",
+                      },
+                      maxHeight: { xs: 0, md: 890 },
+                      // height: 890,
+                      // overflow: "hidden",
+                      // overflowY: "scroll",
+                    }}
+                    InputLabelProps={{ shrink: true }}
+                  >
+                    <Paper elevation={3}>
+                      <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                          <Item>
+                            <Datatable />
+                          </Item>
+                        </Grid>
+                      </Grid>
+                    </Paper>
+                  </Box>
+                </Grid>
               </Grid>
             </Grid>
           </div>
