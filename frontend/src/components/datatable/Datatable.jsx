@@ -141,7 +141,11 @@ const Datatable = () => {
       if (req) {
         await hmsActions.join({
           userName: capitalizedName,
-          authToken: req.data
+          authToken: req.data,
+          settings: {
+            isAudioMuted: true,
+            isVideoMuted: true,
+          },
         });
 
         const formField = new FormData()

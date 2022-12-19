@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef } from 'react'
 import { toast } from 'react-toastify';
 import SessionContext from '../context/SessionContext';
 import { ImExit } from 'react-icons/im';
+import Raisehand from '../components/Util/Raisehand';
 
 function useNotification() {
     const notification = useHMSNotifications()
@@ -12,6 +13,7 @@ function useNotification() {
     const isHandRaised = useHMSStore(selectPeerMetadata(peer?.id ?? ""))?.isHandRaised
     const isRatingOpened = useHMSStore(selectPeerMetadata(peer?.id ?? ""))?.openRating
     const { session, dispatch } = useContext(SessionContext)
+
 
 
     useEffect(() => {
@@ -27,6 +29,7 @@ function useNotification() {
                     if (session.role === 'participant' && notification.data.roleName === 'creator')
                         toast.success(`${notification.data.name}(Host) has joined the session`);
                     break;
+
                 case 'PEER_LEFT':
                     if (session.role === 'creator')
                         toast.error(`${notification.data.name} has left the room`, {
@@ -38,18 +41,35 @@ function useNotification() {
                         }
                         );
                     break;
+
                 case 'METADATA_UPDATED':
                     if (isHandRaised && peer && !peer.isLocal) {
-                        raisedHand.current.push({
-                            toastID: toast(`${peer.name} raised their hand.`, {
-                                autoClose: false,
-                                hideProgressBar: false,
-                                icon: '✋',
-                                toastID: peer.id
+                        if (session.role === 'participant') {
+                            raisedHand.current.push({
+                                toastID: toast(`${peer.name} raised their hand.`, {
+                                    autoClose: false,
+                                    hideProgressBar: false,
+                                    icon: '✋',
+                                    toastID: peer.id
 
-                            }),
-                            toastCreator: peer.id
-                        })
+                                }),
+                                toastCreator: peer.id
+                            })
+                        }
+
+                        if (session.role === 'creator') {
+                            raisedHand.current.push({
+                                toastID: toast(<Raisehand peer={peer} />, {
+                                    autoClose: false,
+                                    hideProgressBar: false,
+                                    icon: '✋',
+                                    toastID: peer.id
+
+                                }),
+                                toastCreator: peer.id
+                            })
+                        }
+
 
                     }
 
@@ -74,6 +94,27 @@ function useNotification() {
 
                 case 'TRACK_DEGRADED':
                     toast.warning('Slow Internet Connection')
+                    break;
+
+                case 'CHANGE_TRACK_STATE_REQUEST':
+                    const { requestedBy, track, enabled } = notification.data;
+
+                    if (enabled) {
+                        // Ask for consent using dialog or any other appropriate UI
+                        dispatch({
+                            type: 'UPDATE_CHANGE_TRACK', payload: {
+                                requestTrackChange: {
+                                    modalState: true,
+                                    track,
+                                    enabled
+                                }
+                            }
+                        })
+
+                    } else {
+                        // Mute Request
+                        // Show toast to user
+                    }
                     break;
 
                 default:

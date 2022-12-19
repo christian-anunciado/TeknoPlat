@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import LoginNav from '../../components/Nav/LoginNav'
 import "./Register.scss"
 import { useNavigate } from 'react-router-dom'
 import Api from '../../api/Api'
