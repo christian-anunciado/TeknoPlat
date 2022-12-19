@@ -405,7 +405,22 @@ const Profile = () => {
                         alignItems="stretch"
                       >
                         <Grid container spacing={2}>
-                          <Grid item xs={6}></Grid>
+                          <Grid
+                            item
+                            xs={6}
+                            container
+                            direction="row"
+                            justifyContent="flex-start"
+                            alignItems="flex-end"
+                          >
+                            <Typography
+                              gutterBottom
+                              variant="h4"
+                              component="div"
+                            >
+                              Pitch Session History
+                            </Typography>
+                          </Grid>
                           <Grid
                             item
                             xs={6}
@@ -443,7 +458,7 @@ const Profile = () => {
                               variant="subtitle1"
                               component="div"
                             >
-                              Pitch History
+                              Session Name
                             </Typography>
                           </Grid>
                           <Grid
