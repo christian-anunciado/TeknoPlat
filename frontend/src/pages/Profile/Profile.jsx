@@ -181,6 +181,7 @@ const Profile = () => {
                                   ),
                                 }}
                                 type="text"
+                                placeholder="Enter First Name"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                                 fullWidth
@@ -200,6 +201,7 @@ const Profile = () => {
                                   ),
                                 }}
                                 type="text"
+                                placeholder="Enter Last Name"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
                                 fullWidth
@@ -211,6 +213,7 @@ const Profile = () => {
                                 margin="dense"
                                 id="input-with-icon-textfield"
                                 label="Email Address"
+                                placeholder="Enter Email Address"
                                 InputProps={{
                                   startAdornment: (
                                     <InputAdornment position="start">
@@ -229,6 +232,7 @@ const Profile = () => {
                                 margin="dense"
                                 id="input-with-icon-textfield"
                                 label="Username"
+                                placeholder="Enter Username"
                                 InputProps={{
                                   startAdornment: (
                                     <InputAdornment position="start">
@@ -254,6 +258,7 @@ const Profile = () => {
                                     </InputAdornment>
                                   ),
                                 }}
+                                placeholder="Enter Institute"
                                 value={institute}
                                 onChange={(e) => setInstitute(e.target.value)}
                                 fullWidth
@@ -270,6 +275,7 @@ const Profile = () => {
                                 </InputLabel>
                                 <Input
                                   id="standard-adornment-password"
+                                  placeholder="Enter Password"
                                   type={showPassword ? "text" : "password"}
                                   endAdornment={
                                     <InputAdornment position="end">
@@ -309,6 +315,7 @@ const Profile = () => {
                                   type={
                                     showConfirmPassword ? "text" : "password"
                                   }
+                                  placeholder="Enter Confirm Password"
                                   endAdornment={
                                     <InputAdornment position="end">
                                       <IconButton
