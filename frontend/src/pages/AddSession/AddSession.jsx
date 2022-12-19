@@ -6,6 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./AddSession.scss"
 import Api from '../../api/Api';
+import { Navigate } from 'react-router-dom';
+import Sidebar from '../../components/sidebar/Sidebar';
 const shortid = require('shortid')
 
 const AddSession = () => {
@@ -73,12 +75,25 @@ const AddSession = () => {
       form.append('sessionID', req.data.id)
       form.append('creator', user.userID)
 
-      try {
+      try { 
+        if ((session.sessionName === "") || (session.sessionPassword === "") || (session.sessionDescription === "") || (session.startsAt === "")){
+          toast.error("Input all fields", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+          return
+        }
         const req = await Api.post(`api/addSession`, form)
         session.sessionName = ''
         session.sessionDescription = ''
         session.sessionPassword = ''
         session.startsAt = ''
+        setSession(req.data)
         toast.success("Session Created Successfully", {
           position: "top-right",
           autoClose: 2000,
@@ -87,8 +102,8 @@ const AddSession = () => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        })
-
+        });
+      
       } catch (err) {
         toast.error("Session Creation Failed", {
           position: "top-right",
@@ -103,13 +118,17 @@ const AddSession = () => {
     } catch (err) {
       toast.error(err)
     }
-    window.location("/dashboard").reload()
+     window.location.reload()
   }
 
   return (
     <>
 
-      <Navbar />
+
+      <div className= "home">
+        <Sidebar/>
+      <div className = "homeContainer">
+        <Navbar />
       <div className="add-session">
         <div className="container_box">
           <div className="title">Create Session</div>
@@ -138,13 +157,15 @@ const AddSession = () => {
 
                 <input type="submit" value="Create" onClick={handleSubmit}
                 />
-                <ToastContainer />
+                <ToastContainer  />
 
               </div>
             </form>
           </div>
         </div>
 
+      </div>
+      </div>
       </div>
     </>
   )

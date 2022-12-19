@@ -180,10 +180,10 @@
  }
 
  input:-webkit-autofill {
-   -webkit-box-shadow: 0 0 0 50px #fff inset;
+   -webkit-box-shadow: 0 0 0 50px rgb(0, 0, 0) inset;
    /* Change the color to your own background color */
    box-shadow: transparent;
-   -webkit-text-fill-color: #fff;
+   -webkit-text-fill-color: rgb(0, 0, 0);
  }
 
  body {
