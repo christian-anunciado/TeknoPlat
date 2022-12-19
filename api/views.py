@@ -200,6 +200,14 @@ def getRateModel(request, pk):
     serializer = RatingModelSerializer(userModel, many=True)
     return Response(serializer.data)
 
+
+@api_view(['GET'])
+def getSingleRateModel(request, Upk, Spk):
+    userModel = RatingModel.objects.filter(sessionID=Spk, creator=Upk)
+    serializer = RatingModelSerializer(userModel, many=True)
+    return Response(serializer.data)
+
+
 @api_view(['POST'])
 def addReportModel(request):
     serializeUser = ReportModelSerializer(data=request.data)
@@ -207,6 +215,8 @@ def addReportModel(request):
         serializeUser.save()
         return Response()
     return Response(serializeUser.errors)
+
+
 @api_view(['POST'])
 def addRateModel(request):
     serializeUser = RatingModelSerializer(data=request.data)
