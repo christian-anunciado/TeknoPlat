@@ -17,6 +17,11 @@ import { useHMSActions } from "@100mslive/react-sdk";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Api from "../../api/Api";
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import SearchIcon from '@mui/icons-material/Search';
 
 
 const Datatable = () => {
@@ -66,9 +71,14 @@ const Datatable = () => {
     )
   }, [filteredSession.length])
 
-
-
-
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+  
   const actionColumn = [
     {
       field: "actions",
@@ -181,7 +191,42 @@ const Datatable = () => {
 
   return (
     <div className="datatable">
-
+    <Box sx={{ flexGrow: 1 }}>
+    <Grid container spacing={2}
+    direction="row"
+    justifyContent="flex-start"
+    alignItems="flex-end"
+    >
+      <Grid item xs={4}>
+        <TextField
+            margin="dense"
+            id="searchName"
+            label="Search"
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            fullWidth
+            variant="standard"
+          />
+      </Grid>
+      <Grid item xs={2}
+        >
+        <Button 
+        size="medium"
+        sx={{
+            width: "100%",
+            mb: 0.5,
+        }}
+        color="success"
+        variant="contained" 
+        endIcon={<SearchIcon />} 
+        onClick={() => handleOpen(search)}>
+          Send
+        </Button>
+      </Grid>
+    </Grid>
+    </Box>
+      
       <DataGrid
         className="datagrid"
         rows={sessions.map((sessions) => {
