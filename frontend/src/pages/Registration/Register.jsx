@@ -4,6 +4,8 @@ import LoginNav from '../../components/Nav/LoginNav'
 import "./Register.scss"
 import { useNavigate } from 'react-router-dom'
 import Api from '../../api/Api'
+import { toast } from 'react-toastify'
+import RegisterNav from '../../components/Nav/RegisterNav'
 
 
 const Register = () => {
@@ -37,19 +39,15 @@ const Register = () => {
         ).then((response) => {
             console.log(response.data);
             if (response.data == '200') {
-                alert('User Successfuly Created')
+                toast.success('User Successfuly Created')
                 navigate('/login')
             } else {
-                alert('Something went wrong. Please try again')
+                setPassword("")
+                setConfirmPassword("")
+                toast.error('Something went wrong. Please try again')
             }
         })
 
-        setFN("")
-        setLN("")
-        setEmail("")
-        setInstitute("")
-        setUN("")
-        setPassword("")
     }
 
     const checkPassword = (e) => {
@@ -64,7 +62,7 @@ const Register = () => {
 
     return (
         <>
-            <LoginNav />
+            <RegisterNav />
             <div className='register-container'>
                 <h1>Register</h1>
 

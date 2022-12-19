@@ -101,7 +101,7 @@ const AddSession = () => {
         })
       }
     } catch (err) {
-      alert(err)
+      toast.error(err)
     }
     window.location("/dashboard").reload()
   }

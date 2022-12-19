@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // Components
 import Sidebar from "./Sidebar";
 import Backdrop from "../Elements/Backdrop";
@@ -37,16 +37,10 @@ export default function TopNavbar() {
             <BurgerIcon />
           </BurderWrapper>
           <UlWrapperRight className="flexNullCenter">
-            <li className="semiBold font15 pointer">
-              <a href="#/login" style={{ padding: "10px 30px 10px 0" }}>
-                Log in
-              </a>
-            </li>
             <li className="semiBold font15 pointer flexCenter">
-              <a href="#/register"
-              className="radius8 lightBg" style={{ padding: "10px 15px" }}>
+              <Link to={"/register"} className="radius8 lightBg" style={{ padding: "10px 15px" }}>
                 Create an Account
-              </a>
+              </Link>
             </li>
           </UlWrapperRight>
         </NavInner>

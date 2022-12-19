@@ -95,8 +95,8 @@ const Datatable = () => {
         return (
           <div className="cellAction">
             {(statusClass === 'Live' || params.row.creator === user.userID) && statusClass !== 'Ended'
-              ? <button className={`viewButton ${params.row.actions}`} onClick={() => handleOpen(params.row.actions)}>
-                Join
+              ? <button className={`viewButton ${params.row.creator === user.userID && statusClass !== 'Live' ? 'start' : 'join'}`} onClick={() => handleOpen(params.row.actions)}>
+                {params.row.creator === user.userID && statusClass !== 'Live' ? 'Start' : 'Join'}
               </button>
               : <p>
                 Joining Disabled
@@ -175,7 +175,7 @@ const Datatable = () => {
 
       }
     } catch (err) {
-      alert(err)
+      toast.error(err)
     }
   }
 

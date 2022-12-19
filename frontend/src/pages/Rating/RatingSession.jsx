@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { IconButton } from '@mui/material';
 import "./RatingSession.scss"
 import Box from '@mui/material/Box';
@@ -29,6 +29,7 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
   // Context
   const { user } = useContext(AuthContext)
   const { session } = useContext(SessionContext)
+  const [savedRating, setSavedRating] = useState([])
 
   const [punctuality, setPunctuality] = useState(0)
   const [presentation, setPresentation] = useState(0)
@@ -36,6 +37,26 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
   const [innovativeness, setInnovativeness] = useState(0)
   const [feedback, setFeedback] = useState("")
   const [fetchedData, setFetchedData] = useState(null)
+
+  useEffect(() => {
+    const fetchSavedRating = async () => {
+      const res = await Api.get(`api/getRating/${user.userID}/${session.session[0].id}`)
+      if (res.data.length > 0) {
+        setSavedRating(res.data)
+        setPunctuality(res.data[0].punctuality)
+        setPresentation(res.data[0].presentation)
+        setDelivery(res.data[0].delivery)
+        setInnovativeness(res.data[0].innovativeness)
+        setFeedback(res.data[0].feedback)
+      }
+    }
+
+    fetchSavedRating()
+  }, [])
+
+
+
+
 
   const rateSession = async () => {
     let formField = new FormData()
@@ -49,13 +70,13 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
     formField.append('sessionID', session.session[0].id)
 
     try {
-      if (fetchedData == null) {
+      if (fetchedData == null && savedRating.length === 0) {
         const req = await Api.post(`api/rateSession`, formField)
         setFetchedData(req.data);
-        toast.success('Succesfully Created')
+        toast.success('Rating submitted')
       } else {
         const req = await Api.put(`api/updateRating/${fetchedData.id}`, formField)
-        toast.success('Succesfully Updated')
+        toast.success('Rating updated')
       }
     } catch (err) {
       toast.error('Fail to create session')

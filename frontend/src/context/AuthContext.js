@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
+import { toast } from 'react-toastify';
 
 const AuthContext = createContext()
 
@@ -27,7 +28,7 @@ export const AuthProvider = ({ children }) => {
             setUser(jwt_decode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
         } else {
-            alert('Something went wrong')
+            toast.error('Something went wrong')
         }
     }
 
