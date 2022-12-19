@@ -52,6 +52,12 @@ export function SessionContextProvider({ children }) {
                     participants: action.payload.participants,
                 }
 
+            case "UPDATE_CHANGE_TRACK":
+                return {
+                    ...state,
+                    requestTrackChange: action.payload.requestTrackChange,
+                }
+
             case "LEAVE":
                 return {
                     session: null,
@@ -62,7 +68,8 @@ export function SessionContextProvider({ children }) {
                     hostJoined: false,
                     hostName: null,
                     isRatingOpen: false,
-                    participants: null
+                    participants: null,
+                    requestTrackChange: {},
                 }
 
             default:
@@ -80,6 +87,7 @@ export function SessionContextProvider({ children }) {
         hostJoined: false,
         hostName: null,
         isRatingOpen: false,
+        requestTrackChange: {},
     }
 
     const [state, dispatch] = useReducer(sessionReducer, INITIAL_STATE)

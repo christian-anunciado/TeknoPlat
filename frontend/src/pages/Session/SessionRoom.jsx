@@ -9,12 +9,14 @@ import SessionContext from '../../context/SessionContext'
 import useGetPeer from '../../hooks/useGetPeer'
 import useNotification from '../../hooks/useNotification'
 import { Navigate } from 'react-router'
+import { useAudioLevel } from '../../hooks/useAudioLevel'
 
 function SessionRoom() {
     const { session, dispatch } = useContext(SessionContext)
     const loading = session.loading
     const role = session.role
     useNotification()
+    useAudioLevel()
 
 
     const hmsActions = useHMSActions()

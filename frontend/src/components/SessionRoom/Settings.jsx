@@ -41,6 +41,11 @@ function Settings({ role }) {
         await hmsActions.changeMetadata(newMetadata);
     }, [hmsActions, metaData]);
 
+    const participantAudio = () => {
+        toggleRaiseHand()
+        toggleAudio()
+    }
+
     return (
         <div className='sessionSettings-container'>
             <ConfirmLeaveSession leaveSessionModal={leaveSessionModal} setLeaveSessionModal={setLeaveSessionModal} />
@@ -68,12 +73,26 @@ function Settings({ role }) {
                                 <MdOutlineStopScreenShare className='button-setting' />
                             }
                         </Button>
-                    </>) : (<Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }} onClick={toggleRaiseHand}>
-                        {metaData.isHandRaised ?
-                            <MdOutlineWavingHand className='button-setting active' /> :
-                            <MdOutlineFrontHand className='button-setting' />
+                    </>) : (
+                    <>
+                        {isLocalAudioEnabled ?
+                            <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }} onClick={participantAudio}>
+                                {isLocalAudioEnabled ?
+                                    <BiMicrophone className='button-setting' /> :
+                                    <BiMicrophoneOff className='button-setting' />
+                                }
+                            </Button> :
+                            <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }} onClick={toggleRaiseHand}>
+                                {metaData.isHandRaised ?
+                                    <MdOutlineWavingHand className='button-setting active' /> :
+                                    <MdOutlineFrontHand className='button-setting' />
+                                }
+                            </Button>
                         }
-                    </Button>)
+                    </>
+                )
+
+
                 }
                 <Button sx={{ color: blueGrey[900], "&:hover": { backgroundColor: "transparent" } }}>
                     <BsPeople className='button-setting' />
@@ -87,7 +106,7 @@ function Settings({ role }) {
                     <ImExit className='user-button' />
                 </Button>
             </div>
-        </div>
+        </div >
     )
 }
 
