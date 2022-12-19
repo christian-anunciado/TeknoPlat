@@ -79,7 +79,7 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
         toast.success('Rating updated')
       }
     } catch (err) {
-      toast.error('Fail to create session')
+      toast.error('Fail to rate session')
     }
   }
 

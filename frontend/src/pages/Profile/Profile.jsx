@@ -25,7 +25,7 @@ const Profile = () => {
     });
   }
   return (
-    <div>
+    <>
       <Navbar />
 
       <div className={styles.row2}>
@@ -151,7 +151,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
 
 
   )
