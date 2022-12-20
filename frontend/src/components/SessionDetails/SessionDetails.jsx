@@ -31,7 +31,7 @@ function SessionDetails({ detailsModalState, setDetailsModalState }) {
 
     useEffect(() => {
         if (detailsModalState) {
-            setLink(`http://localhost:3000/#/joinsession/${session.session[0].searchID}`)
+            setLink(`https://teknoplat-production.up.railway.app/#/joinsession/${session.session[0].searchID}`)
         } else {
             setLink('')
         }
