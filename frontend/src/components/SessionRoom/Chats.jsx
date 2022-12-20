@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import SessionContext from '../../context/SessionContext';
-import RatingDetails from '../../pages/Rating/RatingDetails';
 import ConfirmEndRoom from '../Modals/ConfirmEndRoom';
 import Participants from '../Participants/Participants';
 import Input from './Input'
@@ -12,7 +11,6 @@ function Chats() {
     const { session } = useContext(SessionContext)
     const [endRoom, setEndRoom] = useState(false)
     const [currentTab, setCurrentTab] = useState(1)
-    const [ratingsModalState, setRatingsModalState] = useState(false)
 
     const handleEndRoom = async () => {
         setEndRoom(true)
@@ -22,8 +20,7 @@ function Chats() {
 
             {session.role === 'creator' ? (
                 <>
-                    <ConfirmEndRoom endRoom={endRoom} setEndRoom={setEndRoom} setRatingsModalState={setRatingsModalState} />
-                    <RatingDetails setRatingsModalState={setRatingsModalState} ratingsModalState={ratingsModalState} />
+                    <ConfirmEndRoom endRoom={endRoom} setEndRoom={setEndRoom} />
 
                     <div className="sessionNav-endSession">
                         <button onClick={handleEndRoom}>End Session</button>

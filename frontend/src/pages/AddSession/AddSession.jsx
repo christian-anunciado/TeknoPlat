@@ -75,8 +75,8 @@ const AddSession = () => {
       form.append('sessionID', req.data.id)
       form.append('creator', user.userID)
 
-      try { 
-        if ((session.sessionName === "") || (session.sessionPassword === "") || (session.sessionDescription === "") || (session.startsAt === "")){
+      try {
+        if ((session.sessionName === "") || (session.sessionPassword === "") || (session.sessionDescription === "") || (session.startsAt === "")) {
           toast.error("Input all fields", {
             position: "top-right",
             autoClose: 2000,
@@ -103,7 +103,7 @@ const AddSession = () => {
           draggable: true,
           progress: undefined,
         });
-      
+
       } catch (err) {
         toast.error("Session Creation Failed", {
           position: "top-right",
@@ -118,54 +118,54 @@ const AddSession = () => {
     } catch (err) {
       toast.error(err)
     }
-     window.location.reload()
+    window.location.reload()
   }
 
   return (
     <>
 
 
-      <div className= "home">
-        <Sidebar/>
-      <div className = "homeContainer">
-        <Navbar />
-      <div className="add-session">
-        <div className="container_box">
-          <div className="title">Create Session</div>
-          <div className="content">
-            <form >
-              <div className="user-details">
-                <div className="input-box">
-                  <span className="details">Session Name</span>
-                  <input type="text" name='sessionName' value={session.sessionName} placeholder="Name" onChange={handleChange} required />
-                </div>
-                <div className="input-box">
-                  <span className="details">Date and Time</span>
-                  <input type="datetime-local" name="startsAt" value={session.startsAt} placeholder="Select date and time" onKeyDown={(e) => e.preventDefault()} onChange={handleChange} min={new Date().toISOString().slice(0, 16)} required />
-                </div>
-                <div className="input-box">
-                  <span className="details">Password</span>
-                  <input type="password" name="sessionPassword" value={session.sessionPassword} placeholder="Set password" onChange={handleChange} required />
+      <div className="home">
+        <Sidebar />
+        <div className="homeContainer">
+          <Navbar />
+          <div className="add-session">
+            <div className="container_box">
+              <div className="title">Create Session</div>
+              <div className="content">
+                <form >
+                  <div className="user-details">
+                    <div className="input-box">
+                      <span className="details">Session Name</span>
+                      <input type="text" name='sessionName' value={session.sessionName} placeholder="Name" onChange={handleChange} required />
+                    </div>
+                    <div className="input-box">
+                      <span className="details">Date and Time</span>
+                      <input type="datetime-local" name="startsAt" value={session.startsAt} placeholder="Select date and time" onKeyDown={(e) => e.preventDefault()} onChange={handleChange} min={new Date().toISOString().slice(0, 16)} required />
+                    </div>
+                    <div className="input-box">
+                      <span className="details">Password</span>
+                      <input type="password" name="sessionPassword" value={session.sessionPassword} placeholder="Set password" onChange={handleChange} required />
 
-                </div>
-                <div className="input-box">
-                  <span className="details">Session Details</span>
-                  <input type="text" name="sessionDescription" value={session.sessionDescription} placeholder="Enter session details" onChange={handleChange} required />
-                </div>
+                    </div>
+                    <div className="input-box">
+                      <span className="details">Session Details</span>
+                      <input type="text" name="sessionDescription" value={session.sessionDescription} placeholder="Enter session details" onChange={handleChange} required />
+                    </div>
+                  </div>
+                  <div className="button_create">
+
+                    <input type="submit" value="Create" onClick={handleSubmit}
+                    />
+                    <ToastContainer />
+
+                  </div>
+                </form>
               </div>
-              <div className="button_create">
+            </div>
 
-                <input type="submit" value="Create" onClick={handleSubmit}
-                />
-                <ToastContainer  />
-
-              </div>
-            </form>
           </div>
         </div>
-
-      </div>
-      </div>
       </div>
     </>
   )

@@ -40,7 +40,6 @@ function JoinSession() {
       const response = await Api.get(`api/joinsession/${id}`);
       const data = await response.data;
       setApi(data);
-      console.log(data);
     };
     fetchApi();
   }, []);

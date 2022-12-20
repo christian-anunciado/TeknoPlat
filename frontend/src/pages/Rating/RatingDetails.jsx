@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { IconButton } from "@mui/material";
 import {
@@ -19,7 +19,6 @@ import Modal from "@mui/material/Modal";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Tab from "@mui/material/Tab";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import SessionContext from "../../context/SessionContext";
 import Api from "../../api/Api";
 const style = {
   position: "absolute",
@@ -34,13 +33,12 @@ const style = {
   p: 4,
 };
 
-const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
+const RatingDetails = ({ ratingsModalState, setRatingsModalState, selectedPitch }) => {
   const [punctuality, setPunctuality] = useState("");
   const [presentation, setPresentation] = useState("");
   const [delivery, setDelivery] = useState("");
   const [innovativeness, setInnovativeness] = useState("");
   const [feedback, setFeedback] = useState("");
-  const { session, dispatch } = useContext(SessionContext);
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
@@ -49,8 +47,8 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
 
   useEffect(() => {
     const fetchApi = async () => {
-      const response = await Api.get(`api/getAverageRatings`);
-      const data = await response.data;
+      const response = await Api.get(`api/getAverageRatings/${selectedPitch.id}`);
+      const data = response.data;
 
       setPunctuality(data[0].AveragePunctuality);
       setPresentation(data[0].AveragePresentation);
@@ -58,24 +56,24 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
       setInnovativeness(data[0].AverageInnovativeness);
 
       const ratingResponse = await Api.get(
-        `api/getRatings/${session.session[0].id}`
+        `api/getRatings/${selectedPitch.id}`
       );
-      const ratingData = await ratingResponse.data;
+      const ratingData = ratingResponse.data;
       setFeedback(ratingData);
     };
     fetchApi();
   }, []);
 
   const data = [
-    { name: "Project Goals and Significance", value: punctuality },
-    { name: "Project Plan and Timeline", value: presentation },
+    { name: "Goals and Significance", value: punctuality },
+    { name: "Plan and Timeline", value: presentation },
     { name: "Resource Request", value: delivery },
     { name: "Relevant Experience", value: innovativeness },
   ];
 
   const handleClose = () => {
     setRatingsModalState(false);
-    dispatch({ type: "LEAVE" });
+
   };
 
   return (
@@ -83,6 +81,7 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
       open={ratingsModalState}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      onClose={handleClose}
     >
       <Box sx={style}>
         <Typography id="modal-modal-description">
@@ -96,7 +95,7 @@ const RatingDetails = ({ ratingsModalState, setRatingsModalState }) => {
                 </div>
               </div>
               <div className="items-2 items">
-                {session.session[0].sessionName} Session Results
+                {selectedPitch.sessionName} Session Results
               </div>
               <span className="rating-line"></span>
               <div className="items-3">

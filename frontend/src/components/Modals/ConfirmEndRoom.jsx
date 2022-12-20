@@ -11,29 +11,26 @@ import { toast } from 'react-toastify';
 import Api from '../../api/Api';
 
 function ConfirmEndRoom({ endRoom, setEndRoom, setRatingsModalState }) {
-    const { session } = useContext(SessionContext)
+    const { session, dispatch } = useContext(SessionContext)
     const hmsActions = useHMSActions();
+    const currentDate = new Date().toJSON().slice(0, 16)
     const handleEndRoom = async () => {
         try {
             const lock = false; // set to true to disallow rejoins
             const reason = 'Host ended the session';
             await hmsActions.endRoom(lock, reason);
             const formField = new FormData()
+
             formField.append('status', 3)
+            formField.append('endsAt', currentDate)
             await Api.put(`api/updateSession/${session.session[0].id}`, formField)
             try {
-                const response = await toast.promise(Api.post(`api/averageRatingsSession`, {
+                const response = await Api.post(`api/averageRatingsSession`, {
                     sessionID: session.session[0].id
-                }), {
-                    pending: 'Saving session',
-                    success: 'Session saved 👌',
-                    error: 'Failed to save session 🤯'
                 })
                 if (response.status === 200) {
-                    setEndRoom(false)
-                    setTimeout(() => {
-                        setRatingsModalState(true)
-                    }, 1000);
+                    toast.success("Session saved!")
+                    dispatch({ type: "LEAVE" });
                 }
 
             } catch (err) {

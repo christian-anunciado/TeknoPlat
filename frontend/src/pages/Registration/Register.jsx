@@ -36,7 +36,6 @@ const Register = () => {
         await Api.post('api/signup',
             formField
         ).then((response) => {
-            console.log(response.data);
             if (response.data == '200') {
                 toast.success('User Successfuly Created')
                 navigate('/login')
