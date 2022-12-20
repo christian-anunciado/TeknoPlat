@@ -1,9 +1,5 @@
 import {
   useHMSStore,
-  useHMSActions,
-  selectLocalPeer,
-  selectPeerAudioByID,
-  selectSpeakers,
   selectDominantSpeaker,
   selectIsConnectedToRoom,
 } from "@100mslive/react-sdk";
@@ -16,7 +12,6 @@ export const useAudioLevel = () => {
   const currSpeaker = useRef([]);
 
   useEffect(() => {
-    console.log(currSpeaker.current[0]);
     if (isConnected) {
       if (
         dominantSpeaker &&

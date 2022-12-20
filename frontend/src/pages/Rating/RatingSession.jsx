@@ -48,15 +48,12 @@ const RatingSession = ({ setRatingsModalState, ratingsModalState, roomEnded, set
         setDelivery(res.data[0].delivery)
         setInnovativeness(res.data[0].innovativeness)
         setFeedback(res.data[0].feedback)
+        setFetchedData(res.data[0])
       }
     }
 
     fetchSavedRating()
   }, [])
-
-
-
-
 
   const rateSession = async () => {
     let formField = new FormData()

@@ -74,6 +74,7 @@ class SessionModel(models.Model):
         (1, "Open"),
         (0, "Close"),
     ]
+
     id = models.AutoField(primary_key=True)
     creator = models.ForeignKey(
         UserModel, on_delete=models.CASCADE, null=True)
@@ -84,6 +85,7 @@ class SessionModel(models.Model):
     searchID = models.TextField(max_length=30, blank=True, null=True)
     status = models.IntegerField(null=True, choices=STATUS, default=1)
     startsAt = models.DateTimeField(null=True)
+    endsAt = models.DateTimeField(null=True)
     ratingOpen = models.IntegerField(
         null=True, choices=RATING_STATUS, default=0)
 
@@ -105,11 +107,14 @@ class RatingModel(models.Model):
     sessionID = models.ForeignKey(
         SessionModel, on_delete=models.CASCADE, null=True)
 
+
 class ReportModel(models.Model):
     report = models.CharField(max_length=500)
     creator = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
     sessionID = models.ForeignKey(
         SessionModel, on_delete=models.CASCADE, null=True)
+
+
 class AverageRatingModel(models.Model):
     AveragePunctuality = models.FloatField(null=True)
     AveragePresentation = models.FloatField(null=True)

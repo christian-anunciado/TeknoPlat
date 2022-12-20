@@ -86,6 +86,13 @@ def getUserModel(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+def getSingleUser(request, pk):
+    userModel = UserModel.objects.filter(id=pk)
+    userSerializer = UserModelSerializer(userModel, many=True)
+    return Response(userSerializer.data)
+
+
 @api_view(['POST'])
 def addUserModel(request):
     serializeUser = UserModelSerializer(data=request.data)
@@ -171,6 +178,13 @@ def getSessionModel(request, pk):
     return Response(sessionSerializer.data)
 
 
+@api_view(['GET'])
+def getSessionByCreator(request, pk):
+    sessionModel = SessionModel.objects.filter(creator=pk)
+    sessionSerializer = SessionModelSerializer(sessionModel, many=True)
+    return Response(sessionSerializer.data)
+
+
 @api_view(['POST'])
 def setSessionModel(request):
     serializeUser = SessionModelSerializer(data=request.data)
@@ -241,8 +255,8 @@ def update_Rating(request, pk):
 
 
 @api_view(['GET'])
-def getAverageRatingModel(request):
-    userModel = AverageRatingModel.objects.all()
+def getAverageRatingModel(request, pk):
+    userModel = AverageRatingModel.objects.filter(sessionID=pk)
     serializer = AverageRatingModelSerializer(userModel, many=True)
     return Response(serializer.data)
 
