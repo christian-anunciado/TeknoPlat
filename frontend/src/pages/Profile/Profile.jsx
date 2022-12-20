@@ -1,14 +1,14 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
-import styles from "./Profile.module.scss";
-
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import Api from "../../api/Api";
+import "./Profile.scss";
+import Box from "@mui/material/Box";
+import Input from "@mui/material/Input";
+import InputLabel from "@mui/material/InputLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
@@ -32,13 +32,48 @@ import Datatable from "../../pages/Profile/ProfileDataTable/PDatatable";
 
 const Profile = () => {
   const [filtersearch, filter] = useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
 
-  const logout = async () => {
-    await Api.post("api/logout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    });
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const handleClickShowConfirmPassword = () =>
+    setShowConfirmPassword((show) => !show);
+
+  const handleMouseDownConfirmPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [institute, setInstitute] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [search, setSearch] = useState("");
+
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    color: theme.palette.text.secondary,
+  }));
+
+  const styles = {
+    heroContainer: {
+      height: 800,
+      backgroundImage: `url(${"../static/DSC_1037.jpg"})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      width: `calc(100vw + 48px)`,
+      margin: -24,
+      padding: 24,
+    },
   };
   return (
     <>
