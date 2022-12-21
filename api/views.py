@@ -93,6 +93,19 @@ def getSingleUser(request, pk):
     return Response(userSerializer.data)
 
 
+@api_view(['PUT'])
+def updateUser(request, pk):
+    userModel = UserModel.objects.get(id=pk)
+    serializer = UserModelSerializer(
+        userModel, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    else:
+        print(serializer.errors)
+        return Response(serializer.errors, status=400)
+
+
 @api_view(['POST'])
 def addUserModel(request):
     serializeUser = UserModelSerializer(data=request.data)

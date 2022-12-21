@@ -39,19 +39,26 @@ const Datatable = ({ userSessions, selectedPitch, setSelectedPitch }) => {
       align: 'center',
       renderCell: (params) => {
 
-        if (params.row.id !== params.row.selectedSession)
+        if (params.row.status === 3) {
+          if (params.row.id !== params.row.selectedSession)
+            return (
+              <button
+                style={{ padding: '4px 10px', backgroundColor: 'transparent', border: '2px solid green', borderRadius: '5px', cursor: 'pointer' }}
+                onClick={() => setSelectedPitch(params.row.currSession)}
+              >
+                View
+              </button>
+            )
+          else
+            return (
+              <p style={{ fontSize: '0.8rem', color: 'blue' }}>Currently Viewing</p>
+            )
+        } else {
           return (
-            <button
-              style={{ padding: '4px 10px', backgroundColor: 'transparent', border: '2px solid green', borderRadius: '5px', cursor: 'pointer' }}
-              onClick={() => setSelectedPitch(params.row.currSession)}
-            >
-              View
-            </button>
+
+            <p style={{ fontSize: '0.8rem' }}>Session is not yet over.</p>
           )
-        else
-          return (
-            <p>Currently Viewing</p>
-          )
+        }
 
 
       }
@@ -77,6 +84,7 @@ const Datatable = ({ userSessions, selectedPitch, setSelectedPitch }) => {
             sessionName: sessions.sessionName,
             sessionDescription: sessions.sessionDescription,
             selectedSession: selectedPitch.id,
+            status: sessions.status,
             currSession: sessions
           })
           )}

@@ -30,6 +30,7 @@ import Api from "../../api/Api";
 import { toast } from "react-toastify";
 import { Avatar } from "@mui/material";
 import PitchHistory from "./PitchHistory";
+import ConfirmUpdateProfile from "../../components/Modals/ConfirmUpdateProfile";
 
 const Profile = () => {
   const { user } = useContext(AuthContext)
@@ -38,7 +39,6 @@ const Profile = () => {
   const [selectedPitch, setSelectedPitch] = useState(null)
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -46,8 +46,10 @@ const Profile = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [userSessions, setUserSessions] = useState(null)
+  const [editButtonState, setEditButtonState] = useState(false)
+  const [openProfileModalState, setOpenProfileModalState] = useState(false)
+  const [formData, setFormData] = useState({})
 
   useEffect(() => {
     const getUserSession = async () => {
@@ -115,6 +117,24 @@ const Profile = () => {
     event.preventDefault();
   };
 
+  const handleEdit = (e) => {
+    e.preventDefault()
+    setEditButtonState(true)
+  }
+
+  const handleSave = (e) => {
+    e.preventDefault()
+    setEditButtonState(false)
+    setOpenProfileModalState(true)
+    setFormData({
+      firstName,
+      lastName,
+      email,
+      username,
+      institute
+    })
+  }
+
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -140,6 +160,13 @@ const Profile = () => {
         <div className="homeContainer">
           <Navbar />
           <div className="upper-background">
+            {openProfileModalState && formData && <ConfirmUpdateProfile
+              openProfileModalState={openProfileModalState}
+              setOpenProfileModalState={setOpenProfileModalState}
+              formField={formData}
+              userID={user.userID}
+
+            />}
             <Grid
               container
               spacing={2}
@@ -241,6 +268,7 @@ const Profile = () => {
                                 onChange={(e) => setFirstName(e.target.value)}
                                 fullWidth
                                 variant="standard"
+                                disabled={editButtonState ? false : true}
                               />
                             </Grid>
                             <Grid item xs={12}>
@@ -261,6 +289,7 @@ const Profile = () => {
                                 onChange={(e) => setLastName(e.target.value)}
                                 fullWidth
                                 variant="standard"
+                                disabled={editButtonState ? false : true}
                               />
                             </Grid>
                             <Grid item xs={12}>
@@ -269,6 +298,7 @@ const Profile = () => {
                                 id="input-with-icon-textfield"
                                 label="Email Address"
                                 placeholder="Enter Email Address"
+                                disabled={editButtonState ? false : true}
                                 InputProps={{
                                   startAdornment: (
                                     <InputAdornment position="start">
@@ -299,6 +329,7 @@ const Profile = () => {
                                 onChange={(e) => setUsername(e.target.value)}
                                 fullWidth
                                 variant="standard"
+                                disabled={editButtonState ? false : true}
                               />
                             </Grid>
                             <Grid item xs={12}>
@@ -318,6 +349,7 @@ const Profile = () => {
                                 onChange={(e) => setInstitute(e.target.value)}
                                 fullWidth
                                 variant="standard"
+                                disabled={editButtonState ? false : true}
                               />
                             </Grid>
                             <Grid item xs={12}>
@@ -354,6 +386,7 @@ const Profile = () => {
                                   }
                                   value={password}
                                   onChange={(e) => setPassword(e.target.value)}
+                                  disabled={true}
                                 />
                               </FormControl>
                             </Grid>
@@ -371,6 +404,7 @@ const Profile = () => {
                                     showConfirmPassword ? "text" : "password"
                                   }
                                   placeholder="Enter Confirm Password"
+                                  disabled={true}
                                   endAdornment={
                                     <InputAdornment position="end">
                                       <IconButton
@@ -409,19 +443,24 @@ const Profile = () => {
                           justifyContent="space-evenly"
                           alignItems="center"
                         >
-                          <Button
-                            variant="outlined"
-                            color="error"
-                            startIcon={<DeleteIcon />}
-                          >
-                            Delete
-                          </Button>
-                          <Button
-                            variant="contained"
-                            endIcon={<ModeEditIcon />}
-                          >
-                            Edit
-                          </Button>
+                          {editButtonState ?
+                            <Button
+                              variant="contained"
+                              endIcon={<ModeEditIcon />}
+                              sx={{ minWidth: '150px', margin: '10px', backgroundColor: 'green', "&:hover": { backgroundColor: "green" } }}
+                              onClick={handleSave}
+                            >
+                              Save
+                            </Button> :
+                            <Button
+                              variant="contained"
+                              endIcon={<ModeEditIcon />}
+                              sx={{ minWidth: '150px', margin: '10px' }}
+                              onClick={handleEdit}
+                            >
+                              Edit
+                            </Button>
+                          }
                         </Grid>
                       </Grid>
                     </Grid>

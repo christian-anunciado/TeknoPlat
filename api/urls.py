@@ -11,6 +11,7 @@ urlpatterns = [
     path('sample', views.getSampleModel, name="sample"),
     path('users', views.getUserModel, name="users"),
     path('user/<str:pk>', views.getSingleUser, name="user"),
+    path('updateUser/<str:pk>', views.updateUser, name="updateUser"),
     path('signup', views.addUserModel, name="signup"),
     path('auth', views.authUser, name="auth"),
     path('authUser', views.getAuthUser, name="authUser"),
