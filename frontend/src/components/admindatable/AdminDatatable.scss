@@ -1,0 +1,111 @@
+.datatable {
+  height: 600px;
+  padding: 20px;
+
+  .datatableTitle {
+    width: 100%;
+    font-size: 24px;
+    color: gray;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .link {
+      text-decoration: none;
+      color: green;
+      font-size: 16px;
+      font-weight: 400;
+      border: 1px solid green;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+
+  .cellWithImg {
+    display: flex;
+    align-items: center;
+
+    .cellImg {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+  }
+
+  .cellWithStatus {
+    padding: 5px;
+    border-radius: 5px;
+
+    &.Active {
+      background-color: rgba(0, 128, 0, 0.05);
+      color: green;
+    }
+
+    &.Inactive {
+      background-color: rgba(255, 0, 0, 0.05);
+      color: crimson;
+    }
+
+    &.Host {
+      background-color: rgba(255, 140, 0, 0.1);
+      color: darkorange;
+      padding: 2px 20px;
+    }
+  }
+
+  .cellAction {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    p {
+      font-size: .8rem;
+      color: gray;
+    }
+
+    .viewButton {
+      border-radius: 5px;
+      color: darkblue;
+      border: 2px solid rgba(0, 0, 139, 0.596);
+      background-color: white;
+      padding: 4px 10px !important;
+      cursor: pointer;
+
+    }
+
+    .join {
+      color: darkgreen !important;
+      border: 2px solid green !important;
+      background-color: white !important;
+      cursor: pointer;
+    }
+
+    .start {
+      background-color: initial !important;
+      background-image: linear-gradient(-180deg, #FF7E31, #E62C03);
+      color: white !important;
+      outline: none !important;
+      overflow: hidden;
+      border: none !important;
+      cursor: pointer;
+    }
+
+    button {
+      &:disabled {
+        cursor: not-allowed;
+      }
+    }
+
+    .deleteButton {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: crimson;
+      border: 1px solid rgba(220, 20, 60, 0.6);
+      cursor: pointer;
+    }
+  }
+}
