@@ -9,6 +9,7 @@ import PrivateRoute from "./utils/PrivateRoute"
 import Login from "./pages/LoginPage/Login";
 import Register from "./pages/Registration/Register";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AddSession from "./pages/AddSession/AddSession";
 import SessionRoom from "./pages/Session/SessionRoom";
 import JoinSession from "./pages/JoinSession/JoinSession";
@@ -38,6 +39,7 @@ function App() {
             <Route index element={<LandingPage />} />
             <Route element={<PrivateRoute />}>
               <Route path="dashboard" element={<Dashboard />} />
+              <Route path="admindashboard" element={<AdminDashboard />} />
               <Route path="add_session" element={<AddSession />} />
               <Route path="session/:id" element={<SessionRoom />} />
               <Route path="joinsession/:id" element={<JoinSession />} />
