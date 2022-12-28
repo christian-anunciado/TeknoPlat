@@ -30,7 +30,7 @@ class UserAdminConfig(UserAdmin):
     search_fields = ('email', 'first_name',)
     list_filter = ('email', 'first_name', 'is_active', 'is_staff')
     #ordering = ('id')
-    list_display = ('id', 'email', 'first_name', 'last_name', 'institute')
+    list_display = ('id','email', 'first_name', 'last_name','institute', 'is_superuser')
     fieldsets = (
         (None, {'fields': ('email', 'first_name', 'last_name', 'institute')}),
     )

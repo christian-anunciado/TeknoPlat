@@ -43,6 +43,12 @@ const Datatable = () => {
   const [role, setRole] = useState(null);
 
   useEffect(() => {
+    if(user.is_superuser == true){
+      navigate("/admindashboard")
+    }
+  }, []);
+
+  useEffect(() => {
     const fetchSession = async () => {
       const res = await Api.get("api/sessions");
       setSession(res.data);

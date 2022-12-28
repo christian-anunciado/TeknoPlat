@@ -115,65 +115,6 @@ def addUserModel(request):
     return Response(serializeUser.errors)
 
 
-@api_view(['POST'])
-def authUser(request):
-    email = request.data['email']
-    password = request.data['password']
-
-    user = UserModel.objects.filter(email=email).first()
-
-    if user is None:
-        raise AuthenticationError("User not found")
-
-    # if not user.password:
-     #   raise AuthenticationError("Incorrect Password")
-
-    payload = {
-        'id': user.userID,
-        'email': user.email,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
-        'iat': datetime.datetime.utcnow()
-    }
-
-    token = jwt.encode(payload, 'secret', algorithm='HS256')
-
-    res = Response()
-
-    res.set_cookie(key='jwt', value=token, httponly=True)
-
-    res.data = {
-        'jwt': token
-    }
-
-    return res
-
-
-@api_view(['GET'])
-def getAuthUser(request):
-    token = request.COOKIES.get('jwt')
-
-    if not token:
-        raise AuthenticationError("Unauthenticated")
-
-    try:
-        payload = jwt.decode(token, 'secret', algorithms=['HS256'])
-    except jwt.ExpiredSignatureError:
-        raise AuthenticationError("Expired")
-
-    user = UserModel.objects.filter(userID=payload['id']).first()
-    serializer = UserModelSerializer(user)
-    return Response(serializer.data)
-
-
-@api_view(['POST'])
-def logout(reqest):
-    response = Response()
-    response.delete_cookie('jwt')
-    response.data = {
-        'message': 'successfully logged out'
-    }
-    return response
-
 # SessionModel
 
 
@@ -354,6 +295,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['username'] = usermodel.username
         token['first_name'] = usermodel.first_name
         token['last_name'] = usermodel.last_name
+        token['is_superuser'] = usermodel.is_superuser
         # ...
 
         return token
